@@ -35,7 +35,6 @@ public class TravelManager
     public void showTravelGUI()
     {
         // Create a new TravelGUI object and pass on the created lists
-        // Set up general display parameters for the GUI
 
         // JFrame frame = new JFrame("FrameDemo");
 

@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c267d7a3-c767-4091-b6e9-faf269c2e55d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/TravelGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/TravelGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/TravelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/TravelManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -116,6 +114,7 @@
       <workItem from="1644354186570" duration="963000" />
       <workItem from="1644414435531" duration="2713000" />
       <workItem from="1644417720577" duration="37000" />
+      <workItem from="1644441417798" duration="826000" />
     </task>
     <servers />
   </component>
