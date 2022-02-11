@@ -12,4 +12,16 @@ public class Flight {
             throw new InvalidFlightException("Ths is a null airport");
         }
     }
+
+    public float Co2Emissions() {
+        return 2.0f;
+    }
+
+    public float getDistance() {
+        return 2.0f;
+    }
+
+    public float getFuelConsumption() {
+        return 2.0f;
+    }
 }
