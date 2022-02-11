@@ -7,7 +7,26 @@ public class Airport {
     private GPSCoordinates gpsLocation;
     private ControlTower controlTower;
 
-    public Airport() {
+    public Airport(String name, String code, GPSCoordinates gpsLocation, ControlTower controlTower) {
+        this.name = name;
+        this.code = code;
+        this.gpsLocation = gpsLocation;
+        this.controlTower = controlTower;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public GPSCoordinates getGpsLocation() {
+        return gpsLocation;
+    }
+
+    public ControlTower getControlTower() {
+        return controlTower;
     }
 }
