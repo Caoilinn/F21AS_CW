@@ -87,6 +87,14 @@
       <workItem from="1644499449309" duration="3157000" />
       <workItem from="1644589101470" duration="476000" />
     </task>
+    <task id="LOCAL-00001" summary="Added all necessary code to GPSCoordinates and ControlTower">
+      <created>1644506235430</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1644506235430</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -103,6 +111,7 @@
       </map>
     </option>
   </component>
+
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/F21AS_CW$Main.ic" NAME="Main Coverage Results" MODIFIED="1644420362925" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
