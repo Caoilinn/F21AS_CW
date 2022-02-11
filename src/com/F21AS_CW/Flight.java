@@ -11,7 +11,6 @@ public class Flight {
     private Airport destination;
     private FlightPlan flightPlan;
 
-
     public Flight(String flightCode, String planeCode, Airport departure, Airport destination, FlightPlan flightPlan) {
         this.flightCode = flightCode;
         this.planeCode = planeCode;
@@ -23,6 +22,26 @@ public class Flight {
             //Demo for the exception, would be better to throw if airports are not in the airports set
             throw new InvalidFlightException("Ths is a null airport");
         }
+    }
+
+    public String getFlightCode() {
+        return flightCode;
+    }
+
+    public String getPlaneCode() {
+        return planeCode;
+    }
+
+    public Airport getDeparture() {
+        return departure;
+    }
+
+    public Airport getDestination() {
+        return destination;
+    }
+
+    public FlightPlan getFlightPlan() {
+        return flightPlan;
     }
 
     public float Co2Emissions() {
