@@ -1,26 +1,24 @@
 package com.F21AS_CW;
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class TravelGUI extends JFrame implements ActionListener
-{
-    // Instance variables
-        // Declare relevant lists
-        // Declare GUI components
+public class TravelGUI {
 
-    // Constructor
-        // public TravelGUI()
-        // {
-        //     // Assign lists to instance variables
-        // }
+    public void guiCreate() {
+
+        JFrame Frame = new JFrame();
+        Frame.setSize(600, 500);
+        Frame.setLocation(700, 200);
+        Frame.setTitle("Travel Application");
+        Frame.setVisible(true);
+    }
+
 
     // Methods to set up all relevant panels
 
     // When a button is clicked, execute appropriate action
-    @Override
-    public void actionPerformed(ActionEvent e)
-    {
+   // @Override
+   // public void actionPerformed(ActionEvent e)
+   // {
         // if (e.getSource() == search)
         // {
         //     // Do something
@@ -29,7 +27,5 @@ public class TravelGUI extends JFrame implements ActionListener
         // {
         //     // Do something
         // }
-    }
+  //  }
 }
-
-
