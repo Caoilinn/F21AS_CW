@@ -40,5 +40,7 @@ public class TravelManager
 
         TravelGUI GUI = new TravelGUI();
         GUI.guiCreate();
+        GUI.setupSouthPanel();
+        GUI.setupCenterPanel();
     }
 }
