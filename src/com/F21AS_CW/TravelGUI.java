@@ -12,7 +12,9 @@ public class TravelGUI extends JFrame implements ActionListener
     }
 
     // GUI components
-    JButton add, cancel;
+    JButton addFlight, editFlight, close;
+    JTextField distance, time, fuel, co2;
+    JLabel distanceLabel;
     JTextArea textArea;
     JScrollPane scrollList;
 
@@ -27,17 +29,35 @@ public class TravelGUI extends JFrame implements ActionListener
         textArea.setVisible(true);
     }
 
+    public void setupWestPanel()
+    {
+        JPanel p = new JPanel();
+
+        distanceLabel = new JLabel("Distance (km): ");
+        p.add(distanceLabel);
+
+        distance = new JTextField(7);
+        distance.addActionListener(this);
+        p.add(distance);
+
+        this.add(p, BorderLayout.WEST);
+    }
+
     public void setupSouthPanel()
     {
         JPanel p = new JPanel();
 
-        add = new JButton("Add");
-        add.addActionListener(this);
-        p.add(add);
+        addFlight = new JButton("Add Flight");
+        addFlight.addActionListener(this);
+        p.add(addFlight);
 
-        cancel = new JButton("Cancel");
-        cancel.addActionListener(this);
-        p.add(cancel);
+        editFlight = new JButton("Edit Flight");
+        editFlight.addActionListener(this);
+        p.add(editFlight);
+
+        close = new JButton("Close");
+        close.addActionListener(this);
+        p.add(close);
 
         this.add(p, BorderLayout.SOUTH);
     }
@@ -46,23 +66,32 @@ public class TravelGUI extends JFrame implements ActionListener
    @Override
    public void actionPerformed(ActionEvent e)
    {
-        if (e.getSource() == add)
+        if (e.getSource() == addFlight)
         {
              // TODO
         }
-        else if (e.getSource() == cancel)
+        else if (e.getSource() == editFlight)
         {
             // TODO
+        }
+        else if (e.getSource() == close)
+        {
+            System.exit(0);
         }
    }
 
     public void guiCreate()
     {
-        JFrame Frame = new JFrame();
-        Frame.setPreferredSize(new Dimension(600,500));
-        Frame.setLocation(700, 200);
-        Frame.setTitle("Travel Application");
-        Frame.setVisible(true);
-        Frame.pack();
+        this.setTitle("Travel Application");
+        this.setPreferredSize(new Dimension(600,300));
+        this.setLocation(700,200);
+        this.setLayout(new BorderLayout(5,5));
+        this.setupSouthPanel();
+        this.setupCenterPanel();
+        this.setupWestPanel();
+        this.setVisible(true);
+        this.pack();
     }
+
+
 }
