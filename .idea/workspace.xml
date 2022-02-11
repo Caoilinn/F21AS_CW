@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb6f7a66-eef0-4d85-8169-f81d2a94253e" name="Changes" comment="Added all necessary code to GPSCoordinates and ControlTower">
+    <list default="true" id="c267d7a3-c767-4091-b6e9-faf269c2e55d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/FlightPlan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/FlightPlan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/Aeroplane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/Aeroplane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/Aeroplanes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/Aeroplanes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +38,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectId" id="24qNVmzcL08XPyfwfbrGhEkYDiu" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -40,9 +48,11 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -51,24 +61,21 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
+    <configuration name="TravelAPP" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.F21AS_CW.Main" />
       <module name="F21AS_CW" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="cb6f7a66-eef0-4d85-8169-f81d2a94253e" name="Changes" comment="" />
+      <changelist id="c267d7a3-c767-4091-b6e9-faf269c2e55d" name="Changes" comment="" />
       <created>1644354185354</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -77,9 +84,8 @@
       <workItem from="1644414435531" duration="2713000" />
       <workItem from="1644417720577" duration="37000" />
       <workItem from="1644425554719" duration="416000" />
-      <workItem from="1644499449309" duration="4767000" />
-      <workItem from="1644580513059" duration="3318000" />
-      <workItem from="1644602162433" duration="963000" />
+      <workItem from="1644499449309" duration="3157000" />
+      <workItem from="1644589101470" duration="476000" />
     </task>
     <task id="LOCAL-00001" summary="Added all necessary code to GPSCoordinates and ControlTower">
       <created>1644506235430</created>
@@ -92,45 +98,21 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added all necessary code to GPSCoordinates and ControlTower" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added all necessary code to GPSCoordinates and ControlTower" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="552" y="198" key="#Notifications" timestamp="1644506881591">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="552" y="198" key="#Notifications/0.0.1920.1080@0.0.1920.1080" timestamp="1644506881591" />
-    <state x="808" y="429" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1644500213811">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="808" y="429" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1644500213811" />
-    <state x="609" y="134" key="CommitChangelistDialog2" timestamp="1644506234798">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="609" y="134" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1644506234798" />
-    <state x="552" y="273" key="Vcs.Push.Dialog.v2" timestamp="1644507109975">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="552" y="273" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1644507109975" />
-    <state x="656" y="364" key="com.intellij.ide.util.TipDialog" timestamp="1644602163656">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="656" y="364" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1644602163656" />
+
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/F21AS_CW$Main.ic" NAME="Main Coverage Results" MODIFIED="1644420362925" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
