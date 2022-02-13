@@ -59,14 +59,17 @@ public class AddFlightGUI extends JFrame implements ActionListener
 
         this.add(p);
 
-        // South Panel for the add button
+        // South Panel for the add & close buttons
         JPanel p2 = new JPanel();
         add = new JButton("Add");
         add.addActionListener(this);
         p2.add(add);
+
+        close = new JButton("Close");
+        close.addActionListener(this);
+        p2.add(close);
         this.add(p2, BorderLayout.SOUTH);
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e)
@@ -77,7 +80,7 @@ public class AddFlightGUI extends JFrame implements ActionListener
         }
         else if (e.getSource() == close)
         {
-            System.exit(0);
+            this.dispose();
         }
     }
 
@@ -88,9 +91,7 @@ public class AddFlightGUI extends JFrame implements ActionListener
         this.setLocation(900,500);
         this.setLayout(new BorderLayout(5,5));
         this.mainPanel();
-        this.setVisible(true);
         this.pack();
-
     }
 
 }

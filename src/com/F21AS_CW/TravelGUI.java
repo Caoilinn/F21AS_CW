@@ -5,6 +5,8 @@ import javax.swing.*;
 
 public class TravelGUI extends JFrame implements ActionListener
 {
+    public boolean addFlightGUIisActive = false;
+
     // Declare lists to be searched
     public TravelGUI()
     {
@@ -17,6 +19,7 @@ public class TravelGUI extends JFrame implements ActionListener
     JLabel distanceLabel;
     JTextArea textArea;
     JScrollPane scrollList;
+
 
 
     // Methods to set up all relevant panels
@@ -66,9 +69,9 @@ public class TravelGUI extends JFrame implements ActionListener
    @Override
    public void actionPerformed(ActionEvent e)
    {
-        if (e.getSource() == addFlight)
+        if (e.getSource() == addFlight && this.addFlightGUIisActive==false)
         {
-             // TODO
+            showAddFlightGUI();
         }
         else if (e.getSource() == editFlight)
         {
@@ -93,5 +96,12 @@ public class TravelGUI extends JFrame implements ActionListener
         this.pack();
     }
 
-
+    public void showAddFlightGUI()
+    {
+        // Creates a new AddFlightGUI window only if there isn't one currently open
+        AddFlightGUI GUI = new AddFlightGUI();
+        GUI.guiCreate();
+        GUI.setVisible(true);
+        this.addFlightGUIisActive = true;
+    }
 }

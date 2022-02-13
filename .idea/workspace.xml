@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c267d7a3-c767-4091-b6e9-faf269c2e55d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/F21AS_CW/FlightEditorGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/AddFlightGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/AddFlightGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/TravelGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/TravelGUI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/AddFlightGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/AddFlightGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/TravelGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/TravelGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/TravelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/TravelManager.java" afterDir="false" />
@@ -125,6 +124,9 @@
       <workItem from="1644588387888" duration="20000" />
       <workItem from="1644588483797" duration="3657000" />
       <workItem from="1644592595737" duration="3352000" />
+      <workItem from="1644697107871" duration="596000" />
+      <workItem from="1644703849632" duration="583000" />
+      <workItem from="1644704453500" duration="12932000" />
     </task>
     <servers />
   </component>
