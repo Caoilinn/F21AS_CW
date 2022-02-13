@@ -31,25 +31,11 @@ public class TravelManager
             // objectName.writeToFile("output.txt", objectName.exitReport());
 
         showTravelGUI();
-        showFlightEditorGUI();
-        showAddFlightGUI();
     }
 
     public void showTravelGUI()
     {
         TravelGUI GUI = new TravelGUI();
-        GUI.guiCreate();
-    }
-
-    public void showFlightEditorGUI()
-    {
-        FlightEditorGUI GUI = new FlightEditorGUI();
-        GUI.guiCreate();
-    }
-
-    public void showAddFlightGUI()
-    {
-        AddFlightGUI GUI = new AddFlightGUI();
         GUI.guiCreate();
     }
 }
