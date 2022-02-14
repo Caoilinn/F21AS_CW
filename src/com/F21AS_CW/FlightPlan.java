@@ -45,3 +45,4 @@ public class FlightPlan {
         //returns int for ease of use with gui
         return (int) distance;
     }
+}
