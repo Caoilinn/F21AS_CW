@@ -9,17 +9,20 @@ public class Flight {
     private String planeCode;
     private Airport departure;
     private Airport destination;
+    private Date date;
+    private Time time;
     private FlightPlan flightPlan;
 
-    public Flight(String flightCode, String planeCode, Airport departure, Airport destination, FlightPlan flightPlan) {
+    public Flight(String flightCode, String planeCode, Airport departure, Airport destination, Date date, Time time, FlightPlan flightPlan) {
         this.flightCode = flightCode;
         this.planeCode = planeCode;
         this.departure = departure;
         this.destination = destination;
+        this.date = date;
+        this.time = time;
         this.flightPlan = flightPlan;
 
-        if (destination == null || departure == null) {
-            //Demo for the exception, would be better to throw if airports are not in the airports set
+        if (!Airports.CheckIfValExists(departure) || !Airports.CheckIfValExists(destination)) {
             throw new InvalidFlightException("Ths is a null airport");
         }
     }
@@ -38,6 +41,14 @@ public class Flight {
 
     public Airport getDestination() {
         return destination;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public Time getTime() {
+        return time;
     }
 
     public FlightPlan getFlightPlan() {
