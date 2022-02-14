@@ -6,9 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="c267d7a3-c767-4091-b6e9-faf269c2e55d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/Airport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/Airport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/Aeroplanes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/Aeroplanes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/Airlines.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/Airlines.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/Airports.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/Airports.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/Flight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/Flight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/Flights.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/Flights.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +21,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>

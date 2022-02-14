@@ -2,9 +2,9 @@ package com.F21AS_CW;
 
 import java.util.HashMap;
 
-public class Airports {
+public class Airports implements IWriteable{
 
-    private HashMap<String, Airport> airports;
+    private static HashMap<String, Airport> airports;
 
     public Airports(HashMap<String, Airport> airports) {
         this.airports = airports;
@@ -19,17 +19,32 @@ public class Airports {
         return airports;
     }
 
-    public boolean CheckIfValExists(Airport airport) {
-        if (this.airports.containsValue(airport))
+    public static boolean CheckIfValExists(Airport airport) {
+        if (airports.containsValue(airport))
             return true;
         else
             return false;
     }
 
-    public boolean CheckIfKeyExists(String airportCode) {
-        if (this.airports.containsKey(airportCode))
+    public static boolean CheckIfKeyExists(String airportCode) {
+        if (airports.containsKey(airportCode))
             return true;
         else
             return false;
+    }
+
+    @Override
+    public boolean WriteToFile() {
+        return false;
+    }
+
+    @Override
+    public boolean ReadFromFile() {
+        return false;
+    }
+
+    @Override
+    public void ProcessLine() {
+
     }
 }
