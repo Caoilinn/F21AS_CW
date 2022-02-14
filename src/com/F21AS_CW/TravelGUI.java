@@ -6,6 +6,7 @@ import javax.swing.*;
 public class TravelGUI extends JFrame implements ActionListener
 {
     public boolean addFlightGUIisActive = false;
+    public boolean flightEditorGUIisActive = false;
 
     // Declare lists to be searched
     public TravelGUI()
@@ -73,9 +74,9 @@ public class TravelGUI extends JFrame implements ActionListener
         {
             showAddFlightGUI();
         }
-        else if (e.getSource() == editFlight)
+        else if (e.getSource() == editFlight && this.flightEditorGUIisActive==false)
         {
-            // TODO
+            showFlightEditorGUI();
         }
         else if (e.getSource() == close)
         {
@@ -101,7 +102,13 @@ public class TravelGUI extends JFrame implements ActionListener
         // Creates a new AddFlightGUI window only if there isn't one currently open
         AddFlightGUI GUI = new AddFlightGUI();
         GUI.guiCreate();
-        GUI.setVisible(true);
         this.addFlightGUIisActive = true;
+    }
+
+    public void showFlightEditorGUI()
+    {
+        FlightEditorGUI GUI = new FlightEditorGUI();
+        GUI.guiCreate();
+        this.flightEditorGUIisActive = true;
     }
 }
