@@ -1,19 +1,19 @@
 package com.F21AS_CW;
 
 public class GPSCoordinates {
-    private String longitude;
-    private String latitude;
+    private int longitude;
+    private int latitude;
 
-    public GPSCoordinates(String l0ng, String lat) {
+    public GPSCoordinates(int l0ng, int lat) {
         longitude = l0ng;
         latitude = lat;
     }
 
-    public String getLatitude() {
+    public int getLatitude() {
         return latitude;
     }
 
-    public String getLongitude() {
+    public int getLongitude() {
         return longitude;
     }
 }

@@ -7,6 +7,4 @@ public class Main {
 	    TravelManager manager = new TravelManager();
         manager.run();
     }
-
- //Testing Upload on IDE - WIll
 }

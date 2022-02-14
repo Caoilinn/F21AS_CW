@@ -1,5 +1,4 @@
 package com.F21AS_CW;
-
 import java.util.HashMap;
 
 public class Airports implements IWriteable{
