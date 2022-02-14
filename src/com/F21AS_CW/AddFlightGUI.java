@@ -91,6 +91,7 @@ public class AddFlightGUI extends JFrame implements ActionListener
         this.setLocation(900,500);
         this.setLayout(new BorderLayout(5,5));
         this.mainPanel();
+        this.setVisible(true);
         this.pack();
     }
 
