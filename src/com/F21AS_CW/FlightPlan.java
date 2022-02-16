@@ -9,6 +9,11 @@ public class FlightPlan {
     private LinkedList<ControlTower> flightPlan;
     private static final int earthRadius = 6371;
     private int flightPlanTotalDistance = 0;
+
+    public int getFlightPlanTotalDistance() {
+        return flightPlanTotalDistance;
+    }
+
     public FlightPlan(LinkedList<ControlTower> fp) {
 
         flightPlan = fp;

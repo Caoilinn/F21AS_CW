@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c267d7a3-c767-4091-b6e9-faf269c2e55d" name="Changes" comment="" />
+    <list default="true" id="c267d7a3-c767-4091-b6e9-faf269c2e55d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/Flight.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/Flight.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/TravelGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/TravelGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/AddFlightGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/AddFlightGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/FlightPlan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/FlightPlan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/TravelGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/TravelGUI.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -93,6 +100,10 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunManager">

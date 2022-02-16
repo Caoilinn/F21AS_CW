@@ -5,7 +5,7 @@ import javax.swing.*;
 
 public class TravelGUI extends JFrame implements ActionListener
 {
-    public boolean addFlightGUIisActive = false;
+    public static boolean addFlightGUIisActive = false;
     public boolean flightEditorGUIisActive = false;
 
     // Declare lists to be searched
