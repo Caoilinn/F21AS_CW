@@ -81,6 +81,7 @@ public class AddFlightGUI extends JFrame implements ActionListener
         else if (e.getSource() == close)
         {
             this.dispose();
+            TravelGUI.addFlightGUIisActive = false;
         }
     }
 
