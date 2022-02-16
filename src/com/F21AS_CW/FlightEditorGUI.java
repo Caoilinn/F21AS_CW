@@ -61,10 +61,11 @@ public class FlightEditorGUI extends JFrame implements ActionListener
         else if (e.getSource() == close)
         {
             this.dispose();
+            TravelGUI.flightEditorGUIisActive = false;
         }
         else if (e.getSource() == find)
         {
-            // TODo
+            // TODO
         }
     }
 
