@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c267d7a3-c767-4091-b6e9-faf269c2e55d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/TravelGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/TravelGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/AddFlightGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/AddFlightGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/FlightEditorGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/FlightEditorGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/TravelGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/TravelGUI.java" afterDir="false" />
-    </list>
+    <list default="true" id="c267d7a3-c767-4091-b6e9-faf269c2e55d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
