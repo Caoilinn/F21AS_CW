@@ -2,11 +2,12 @@ package com.F21AS_CW;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 public class TravelGUI extends JFrame implements ActionListener
 {
     public static boolean addFlightGUIisActive = false;
-    public boolean flightEditorGUIisActive = false;
+    public static boolean flightEditorGUIisActive = false;
 
     // Declare lists to be searched
     public TravelGUI()
@@ -17,7 +18,7 @@ public class TravelGUI extends JFrame implements ActionListener
     // GUI components
     JButton addFlight, editFlight, close;
     JTextField distance, time, fuel, co2;
-    JLabel distanceLabel;
+    JLabel distanceLabel, timeLabel, fuelLabel, co2Label;
     JTextArea textArea;
     JScrollPane scrollList;
 
@@ -36,26 +37,47 @@ public class TravelGUI extends JFrame implements ActionListener
     public void setupWestPanel()
     {
         JPanel p = new JPanel();
+        BoxLayout boxlayout = new BoxLayout(p, BoxLayout.Y_AXIS);
+        p.setLayout(boxlayout);
 
         distanceLabel = new JLabel("Distance (km): ");
         p.add(distanceLabel);
 
-        distance = new JTextField(7);
+        distance = new JTextField(3);
         distance.addActionListener(this);
         p.add(distance);
 
+        timeLabel = new JLabel("Time: ");
+        p.add(timeLabel);
+
+        time = new JTextField(3);
+        p.add(time);
+
+        fuelLabel = new JLabel("Fuel Consumption: ");
+        p.add(fuelLabel);
+
+        fuel = new JTextField(3);
+        p.add(fuel);
+
+        co2Label = new JLabel("CO2 Emission: ");
+        p.add(co2Label);
+
+        co2 = new JTextField(3);
+        p.add(co2);
         this.add(p, BorderLayout.WEST);
+
+        p.setBorder(new EmptyBorder(new Insets(25, 25, 25, 25)));
     }
 
     public void setupSouthPanel()
     {
         JPanel p = new JPanel();
 
-        addFlight = new JButton("Add Flight");
+        addFlight = new JButton("Add");
         addFlight.addActionListener(this);
         p.add(addFlight);
 
-        editFlight = new JButton("Edit Flight");
+        editFlight = new JButton("Edit");
         editFlight.addActionListener(this);
         p.add(editFlight);
 

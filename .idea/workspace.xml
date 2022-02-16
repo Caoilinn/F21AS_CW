@@ -6,10 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="c267d7a3-c767-4091-b6e9-faf269c2e55d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/Flight.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/Flight.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/FlightEditorGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/FlightEditorGUI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/TravelGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/TravelGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/AddFlightGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/AddFlightGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/FlightPlan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/FlightPlan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/FlightEditorGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/FlightEditorGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/TravelGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/TravelGUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,7 +20,6 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
-        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -100,10 +98,6 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunManager">
@@ -135,6 +129,10 @@
       <workItem from="1644704453500" duration="12932000" />
       <workItem from="1644718412915" duration="1000" />
       <workItem from="1644837050297" duration="856000" />
+      <workItem from="1644869653140" duration="605000" />
+      <workItem from="1645013453225" duration="2158000" />
+      <workItem from="1645016555340" duration="23000" />
+      <workItem from="1645021082949" duration="2101000" />
     </task>
     <servers />
   </component>
