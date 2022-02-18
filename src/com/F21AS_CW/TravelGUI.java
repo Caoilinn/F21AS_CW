@@ -35,6 +35,7 @@ public class TravelGUI extends JFrame implements ActionListener
 
         // Sets text area and assigns it to the panel
         textArea = new JTextArea(15,40);
+        textArea.setEditable(false);
         textArea.setVisible(true);
         scrollList = new JScrollPane(textArea);
         p.add(scrollList);
@@ -46,6 +47,7 @@ public class TravelGUI extends JFrame implements ActionListener
         flightPlanLabel = new JLabel("Flight Plan: ");
         p2.add(flightPlanLabel);
         flightPlan = new JTextField(20);
+        flightPlan.setEditable(false);
         p2.add(flightPlan);
         p.add(p2);
 
