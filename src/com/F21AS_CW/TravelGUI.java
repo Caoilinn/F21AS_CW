@@ -110,6 +110,7 @@ public class TravelGUI extends JFrame implements ActionListener
     {
         this.setTitle("Travel Application");
         this.setPreferredSize(new Dimension(600,300));
+        this.setDefaultCloseOperation(this.DO_NOTHING_ON_CLOSE);
         this.setLocation(700,200);
         this.setLayout(new BorderLayout(5,5));
         this.setupSouthPanel();
