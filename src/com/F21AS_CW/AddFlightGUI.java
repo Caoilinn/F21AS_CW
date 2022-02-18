@@ -89,11 +89,11 @@ public class AddFlightGUI extends JFrame implements ActionListener
     {
         this.setTitle("Add A Flight");
         this.setPreferredSize(new Dimension(600,300));
+        this.setDefaultCloseOperation(this.DO_NOTHING_ON_CLOSE);
         this.setLocation(900,500);
         this.setLayout(new BorderLayout(5,5));
         this.mainPanel();
         this.setVisible(true);
         this.pack();
     }
-
 }
