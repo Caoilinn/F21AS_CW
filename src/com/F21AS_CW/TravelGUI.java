@@ -19,7 +19,8 @@ public class TravelGUI extends JFrame implements ActionListener
     JButton addFlight, editFlight, close;
     JTextField distance, time, fuel, co2, flightPlan;
     JLabel distanceLabel, timeLabel, fuelLabel, co2Label, flightPlanLabel;
-    JTextArea textArea;
+    JList<String> flightList;
+    //JTextArea textArea;
     JScrollPane scrollList;
 
 
@@ -33,11 +34,19 @@ public class TravelGUI extends JFrame implements ActionListener
         BoxLayout box = new BoxLayout(p, BoxLayout.Y_AXIS);
         p.setLayout(box);
 
-        // Sets text area and assigns it to the panel
-        textArea = new JTextArea(15,40);
-        textArea.setEditable(false);
-        textArea.setVisible(true);
-        scrollList = new JScrollPane(textArea);
+        // Creates placeholder list and assigns it to the panel, sets single selection
+        DefaultListModel<String> list = new DefaultListModel<>();
+        list.addElement("AF670   A350   CDG   DBX   10/01/2022   23:00");
+        list.addElement("AF670   A350   CDG   DBX   10/01/2022   23:00");
+        list.addElement("AF670   A350   CDG   DBX   10/01/2022   23:00");
+        list.addElement("AF670   A350   CDG   DBX   10/01/2022   23:00");
+        list.addElement("AF670   A350   CDG   DBX   10/01/2022   23:00");
+        list.addElement("AF670   A350   CDG   DBX   10/01/2022   23:00");
+        list.addElement("AF670   A350   CDG   DBX   10/01/2022   23:00");
+        list.addElement("AF670   A350   CDG   DBX   10/01/2022   23:00");
+        flightList = new JList(list);
+        scrollList = new JScrollPane(flightList);
+        flightList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         p.add(scrollList);
 
         // Creates another panel within the box layout and
