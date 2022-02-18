@@ -40,30 +40,38 @@ public class TravelGUI extends JFrame implements ActionListener
         BoxLayout boxlayout = new BoxLayout(p, BoxLayout.Y_AXIS);
         p.setLayout(boxlayout);
 
+        // Distance
         distanceLabel = new JLabel("Distance (km): ");
         p.add(distanceLabel);
-
         distance = new JTextField(3);
+        distance.setEditable(false);
         distance.addActionListener(this);
         p.add(distance);
 
+        // Time
         timeLabel = new JLabel("Time: ");
         p.add(timeLabel);
-
         time = new JTextField(3);
+        time.addActionListener(this);
+        time.setEditable(false);
         p.add(time);
 
+        // Fuel consumption
         fuelLabel = new JLabel("Fuel Consumption: ");
         p.add(fuelLabel);
-
         fuel = new JTextField(3);
+        fuel.addActionListener(this);
+        fuel.setEditable(false);
         p.add(fuel);
 
+        // CO2 emission
         co2Label = new JLabel("CO2 Emission: ");
         p.add(co2Label);
-
         co2 = new JTextField(3);
+        co2.addActionListener(this);
+        co2.setEditable(false);
         p.add(co2);
+
         this.add(p, BorderLayout.WEST);
 
         p.setBorder(new EmptyBorder(new Insets(25, 25, 25, 25)));

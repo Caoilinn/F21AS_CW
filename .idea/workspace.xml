@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c267d7a3-c767-4091-b6e9-faf269c2e55d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/FlightEditorGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/FlightEditorGUI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/TravelGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/TravelGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/FlightEditorGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/FlightEditorGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/TravelGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/TravelGUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -133,6 +131,7 @@
       <workItem from="1645013453225" duration="2158000" />
       <workItem from="1645016555340" duration="23000" />
       <workItem from="1645021082949" duration="2101000" />
+      <workItem from="1645193688411" duration="1342000" />
     </task>
     <servers />
   </component>
