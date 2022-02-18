@@ -17,8 +17,8 @@ public class TravelGUI extends JFrame implements ActionListener
 
     // GUI components
     JButton addFlight, editFlight, close;
-    JTextField distance, time, fuel, co2;
-    JLabel distanceLabel, timeLabel, fuelLabel, co2Label;
+    JTextField distance, time, fuel, co2, flightPlan;
+    JLabel distanceLabel, timeLabel, fuelLabel, co2Label, flightPlanLabel;
     JTextArea textArea;
     JScrollPane scrollList;
 
@@ -28,14 +28,35 @@ public class TravelGUI extends JFrame implements ActionListener
 
     public void setupCenterPanel()
     {
-        textArea = new JTextArea(15,20);
-        scrollList = new JScrollPane(textArea);
-        this.add(scrollList, BorderLayout.CENTER);
+        // Create new panel
+        JPanel p = new JPanel();
+        BoxLayout box = new BoxLayout(p, BoxLayout.Y_AXIS);
+        p.setLayout(box);
+
+        // Sets text area and assigns it to the panel
+        textArea = new JTextArea(15,40);
         textArea.setVisible(true);
+        scrollList = new JScrollPane(textArea);
+        p.add(scrollList);
+
+        // Creates another panel within the box layout and
+        // assigns a label and a text field to itself before
+        // being assigned back to the boxlayout panel
+        JPanel p2 = new JPanel();
+        flightPlanLabel = new JLabel("Flight Plan: ");
+        p2.add(flightPlanLabel);
+        flightPlan = new JTextField(20);
+        p2.add(flightPlan);
+        p.add(p2);
+
+        // Adds panel to the center and sets an empty boarder around it
+        this.add(p, BorderLayout.CENTER);
+        p.setBorder(new EmptyBorder(new Insets(25, 25, 25, 25)));
     }
 
     public void setupWestPanel()
     {
+
         JPanel p = new JPanel();
         BoxLayout boxlayout = new BoxLayout(p, BoxLayout.Y_AXIS);
         p.setLayout(boxlayout);
