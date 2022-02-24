@@ -27,7 +27,7 @@ public class TravelManager
 
     public void run()
     {
-              /*  try {
+   /*             try {
                     HashSet<String> airlinesList = new HashSet<String>();
                     File airlines = new File("Airlines");
                     Scanner Reader = new Scanner(airlines);
@@ -66,7 +66,5 @@ public class TravelManager
         TravelGUI GUI = new TravelGUI();
         GUI.guiCreate();
 
-       // Airlines air = new Airlines();
-       // air.Airlines();
     }
 }

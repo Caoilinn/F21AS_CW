@@ -9,11 +9,11 @@ public class Airlines implements IWriteable{
 
     private HashSet<String> airlines;
 
-    public Airlines(HashSet<String> airlines) {this.airlines = airlines;}
+  //  public Airlines(HashSet<String> airlines) {this.airlines = airlines;}
 
-    public Airlines(){
+    public Airlines( ){
         try {
-           // HashSet<String> airlinesList = new HashSet<String>();
+            HashSet<String> airlines = new HashSet<String>();
             File airlinesFile = new File("Airlines");
             Scanner Reader = new Scanner(airlinesFile);
             while (Reader.hasNextLine()) {
@@ -31,7 +31,6 @@ public class Airlines implements IWriteable{
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-
     }
 
     public HashSet<String> getAirlines() {
