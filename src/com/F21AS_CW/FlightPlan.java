@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.lang.Math;
 
 public class FlightPlan {
-    private LinkedList<ControlTower> flightPlan;
+    private LinkedList<Airport> flightPlan;
     private static final int earthRadius = 6371;
     private int flightPlanTotalDistance = 0;
 
@@ -14,33 +14,37 @@ public class FlightPlan {
         return flightPlanTotalDistance;
     }
 
-    public FlightPlan(LinkedList<ControlTower> fp) {
+    public FlightPlan(LinkedList<Airport> fp) {
 
         flightPlan = fp;
 
-        //calculates total distance traveled along intial flightpath given
+        //calculates total distance traveled along initial flightpath given
         if(fp.size() > 1) {
             for (int i = 0; i < flightPlan.size() - 1; i++) {
-                GPSCoordinates gps1 = flightPlan.get(i).getGpsLocation();
-                GPSCoordinates gps2 = flightPlan.get(i + 1).getGpsLocation();
+                GPSCoordinates gps1 = flightPlan.get(i).getControlTower().getGpsLocation();
+                GPSCoordinates gps2 = flightPlan.get(i + 1).getControlTower().getGpsLocation();
                 flightPlanTotalDistance += calcDistance(gps1, gps2);
             }
         }
     }
 
-    public void addToPlan(ControlTower node) {
-        ControlTower prevLast = null;
+    public FlightPlan() {
+        flightPlan = new LinkedList<Airport>();
+    }
+
+    public void addToPlan(Airport node) {
+        Airport prevLast = null;
         if(flightPlan.size() > 0) {
             prevLast = flightPlan.getLast();
         }
         flightPlan.addLast(node);
         //adds new distance between previous final control tower and the new final to the total of the flightPlan
         if(flightPlan.size() > 1 && prevLast!=null) {
-            flightPlanTotalDistance += calcDistance(node.getGpsLocation(), prevLast.getGpsLocation());
+            flightPlanTotalDistance += calcDistance(node.getControlTower().getGpsLocation(), prevLast.getControlTower().getGpsLocation());
         }
     }
 
-    public LinkedList<ControlTower> getFlightPlan() {
+    public LinkedList<Airport> getFlightPlan() {
         return flightPlan;
     }
 
