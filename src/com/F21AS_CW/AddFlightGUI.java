@@ -24,10 +24,6 @@ public class AddFlightGUI extends JFrame implements ActionListener
     public void mainPanel() {
         JPanel p = new JPanel( new GridBagLayout());
 
-        //   Airlines al = new Airlines();
-        //       for (String alAirline : al.getAirlines()) {
-        //           System.out.println("TEST");
-        //      }
 
         airlineLbl = new JLabel("Airline:");
         // add items to the combo box
@@ -89,7 +85,12 @@ public class AddFlightGUI extends JFrame implements ActionListener
     {
         if (e.getSource() == add)
         {
-            // TODO
+             Airlines al = new Airlines();
+            for (String Airline : al.getAirlines())
+            {
+                System.out.println("TEST");
+            }
+
         }
         else if (e.getSource() == close)
         {
