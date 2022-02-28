@@ -11,15 +11,15 @@ public class DataClassTests {
     FlightPlan flightPlan;
     @Test
     public void testFlightPlan() {
-        LinkedList<ControlTower> emptyList = new LinkedList<ControlTower>();
+        LinkedList<Airport> emptyList = new LinkedList<Airport>();
         flightPlan = new FlightPlan(emptyList);
         assertEquals(0,flightPlan.getFlightPlanTotalDistance());
-        GPSCoordinates gps1 = new GPSCoordinates(0,51);
-        GPSCoordinates gps2 = new GPSCoordinates(-55,25);
-        flightPlan.addToPlan(new ControlTower(gps1));
-        //assertEquals(0,flightPlan.getFlightPlanTotalDistance());
-        flightPlan.addToPlan(new ControlTower(gps2));
-        assertEquals(5451,flightPlan.getFlightPlanTotalDistance());
+        GPSCoordinates gps1 = new GPSCoordinates(-2,49);
+        GPSCoordinates gps2 = new GPSCoordinates(-12,41);
+        flightPlan.addToPlan(new Airport("Test","Test", new ControlTower(gps1)));
+        assertEquals(0,flightPlan.getFlightPlanTotalDistance());
+        flightPlan.addToPlan(new Airport("Test","Test", new ControlTower(gps2)));
+        assertEquals(1185,flightPlan.getFlightPlanTotalDistance());
     }
     @Test
     public void testFlights() {

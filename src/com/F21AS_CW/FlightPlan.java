@@ -50,13 +50,13 @@ public class FlightPlan {
 
     public int calcDistance(GPSCoordinates coords1, GPSCoordinates coords2) {
 
-       double rlat1 = ((double) coords1.getLatitude() * (3.14/180));
+       double rlat1 = ((double) coords1.getLatitude() * (Math.PI/180));
 
-       double rlong1 = ((double) coords1.getLongitude() * (3.14/180));
+       double rlong1 = ((double) coords1.getLongitude() * (Math.PI/180));
 
-        double rlat2 = ((double) coords2.getLatitude() * (3.14/180));
+        double rlat2 = ((double) coords2.getLatitude() * (Math.PI/180));
 
-        double rlong2 = ((double) coords2.getLongitude() * (3.14/180));
+        double rlong2 = ((double) coords2.getLongitude() * (Math.PI/180));
 
         double deltaLat = rlat2 - rlat1;
 
@@ -67,6 +67,7 @@ public class FlightPlan {
         double distance = 2 * earthRadius * (Math.asin(Math.sqrt(trig)));
 
         //returns int for ease of use with gui
+        System.out.println(distance);
         return (int) distance;
     }
 }
