@@ -6,14 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="c267d7a3-c767-4091-b6e9-faf269c2e55d" name="Changes" comment="Added Code to read and store airlines, need to discuss structure for this">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/AddFlightGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/AddFlightGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/Airlines.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/Airlines.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/TravelGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/TravelGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/TravelManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/TravelManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/AddFlightGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/AddFlightGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/Airlines.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/Airlines.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/TravelGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/TravelGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/TravelManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/TravelManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/Airline.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/Airline.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/Airport.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/Airport.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/FlightEditorGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/FlightEditorGUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,6 +142,9 @@
       <workItem from="1645198141257" duration="156000" />
       <workItem from="1645198976098" duration="5000" />
       <workItem from="1645199021820" duration="1342000" />
+      <workItem from="1645826189047" duration="1448000" />
+      <workItem from="1646052028030" duration="2000" />
+      <workItem from="1646052225612" duration="7258000" />
     </task>
     <task id="LOCAL-00001" summary="Added the text files">
       <created>1645544767018</created>
