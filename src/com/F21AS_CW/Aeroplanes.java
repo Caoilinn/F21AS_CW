@@ -3,13 +3,13 @@ import java.util.HashSet;
 
 public class Aeroplanes implements IWriteable{
 
-    private HashSet<String> aeroplanes;
+    private HashSet<Aeroplane> aeroplanes;
 
-    public Aeroplanes(HashSet<String> aeroplanes) {
+    public Aeroplanes(HashSet<Aeroplane> aeroplanes) {
         this.aeroplanes = aeroplanes;
     }
 
-    public HashSet<String> getAeroplanes() {
+    public HashSet<Aeroplane> getAeroplanes() {
         return aeroplanes;
     }
 
