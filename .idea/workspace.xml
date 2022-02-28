@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="c267d7a3-c767-4091-b6e9-faf269c2e55d" name="Changes" comment="Added First Test Class, currently only tests FlightPlan, FlightPlan has also been updated as the distance calculation had to be fixed due to bugs found using the tests">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -28,6 +29,12 @@
       <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/TravelManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/TravelManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/DataClassTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/DataClassTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/FlightPlan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/FlightPlan.java" afterDir="false" />
+=======
+    <list default="true" id="c267d7a3-c767-4091-b6e9-faf269c2e55d" name="Changes" comment="Added Code to read and store airlines, need to discuss structure for this">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/Aeroplanes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/Aeroplanes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/Airlines.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/Airlines.java" afterDir="false" />
+>>>>>>> master
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +49,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -130,6 +142,7 @@
       <workItem from="1645013453225" duration="2158000" />
       <workItem from="1645016555340" duration="23000" />
       <workItem from="1645021082949" duration="2101000" />
+<<<<<<< HEAD
       <workItem from="1645276977926" duration="612000" />
       <workItem from="1645363282673" duration="4136000" />
       <workItem from="1645378784312" duration="5152000" />
@@ -150,6 +163,27 @@
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
       <updated>1645828377002</updated>
+=======
+      <workItem from="1645193688411" duration="3762000" />
+      <workItem from="1645198089456" duration="30000" />
+      <workItem from="1645198141257" duration="156000" />
+      <workItem from="1645198976098" duration="5000" />
+      <workItem from="1645199021820" duration="1342000" />
+    </task>
+    <task id="LOCAL-00001" summary="Added the text files">
+      <created>1645544767018</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1645544767018</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added Code to read and store airlines, need to discuss structure for this">
+      <created>1645553447066</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1645553447066</updated>
+>>>>>>> master
     </task>
     <option name="localTasksCounter" value="3" />
     <servers />
@@ -182,6 +216,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+<<<<<<< HEAD
     <MESSAGE value="Added First Test Class, currently only tests FlightPlan, FlightPlan has also been updated as the distance calculation had to be fixed due to bugs found using the tests" />
     <MESSAGE value="changed flightPlan to be a LinkedList of Airports for easier integration with the GUI, also added a constructor that takes no parameters" />
     <option name="LAST_COMMIT_MESSAGE" value="changed flightPlan to be a LinkedList of Airports for easier integration with the GUI, also added a constructor that takes no parameters" />
@@ -231,6 +266,11 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="684" y="331" key="git4idea.merge.GitPullDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1645192296307" />
+=======
+    <MESSAGE value="Added the text files" />
+    <MESSAGE value="Added Code to read and store airlines, need to discuss structure for this" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Code to read and store airlines, need to discuss structure for this" />
+>>>>>>> master
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/F21AS_CW$Main.ic" NAME="Main Coverage Results" MODIFIED="1644420362925" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

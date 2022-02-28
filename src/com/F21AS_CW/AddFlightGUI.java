@@ -10,6 +10,7 @@ public class AddFlightGUI extends JFrame implements ActionListener
         // TODO
     }
 
+
     // GUI components
     JButton add, close;
     JLabel flightNoLbl, airlineLbl,planeLbl, departureLbl, destinationLbl;
@@ -21,43 +22,51 @@ public class AddFlightGUI extends JFrame implements ActionListener
 
     // Methods to set up all relevant panels
     public void mainPanel() {
-        JPanel p = new JPanel();
+        JPanel p = new JPanel( new GridBagLayout());
+
 
         airlineLbl = new JLabel("Airline:");
-        p.add( airlineLbl);
         // add items to the combo box
         airline.addItem("Air France");
         airline.addItem("Emirates");
-        p.add(airline);
 
         flightNoLbl = new JLabel("Flight Number:");
-        p.add( flightNoLbl);
         flightNoTxt = new JTextField(12);
         flightNoTxt.addActionListener(this);
-        p.add(flightNoTxt);
 
         planeLbl = new JLabel("Plane:");
-        p.add(planeLbl);
         // add items to the combo box
         plane.addItem("A350");
         plane.addItem("B777");
-        p.add(plane);
 
         departureLbl = new JLabel("Departure:");
-        p.add(departureLbl);
         // add items to the combo box
         departure.addItem("CDG");
         departure.addItem("LHR");
-        p.add(departure);
 
         destinationLbl = new JLabel("Destination:");
-        p.add(destinationLbl);
         // add items to the combo box
         destination.addItem("DXB");
         destination.addItem("EDI");
-        p.add(destination);
+
+        // Adding constraints to GridBagLayout
+        GridBagConstraints c = new GridBagConstraints();
+        c.insets = new Insets(10,0,0,0);
+        c.anchor=GridBagConstraints.LINE_START;
+
+        c.gridx=0;c.gridy=1;p.add(airlineLbl,c);
+        c.gridx=1;c.gridy=1;p.add(airline,c);
+        c.gridx=0;c.gridy=2;p.add(flightNoLbl,c);
+        c.gridx=1;c.gridy=2;p.add(flightNoTxt,c);
+        c.gridx=0;c.gridy=3;p.add(planeLbl,c);
+        c.gridx=1;c.gridy=3;p.add(plane,c);
+        c.gridx=0;c.gridy=4;p.add(departureLbl,c);
+        c.gridx=1;c.gridy=4;p.add(departure,c);
+        c.gridx=0;c.gridy=5;p.add(destinationLbl,c);
+        c.gridx=1;c.gridy=5;p.add(destination,c);
 
         this.add(p);
+
 
         // South Panel for the add & close buttons
         JPanel p2 = new JPanel();
@@ -76,7 +85,12 @@ public class AddFlightGUI extends JFrame implements ActionListener
     {
         if (e.getSource() == add)
         {
-            // TODO
+             Airlines al = new Airlines();
+            for (String Airline : al.getAirlines())
+            {
+                System.out.println("TEST");
+            }
+
         }
         else if (e.getSource() == close)
         {
@@ -89,11 +103,11 @@ public class AddFlightGUI extends JFrame implements ActionListener
     {
         this.setTitle("Add A Flight");
         this.setPreferredSize(new Dimension(600,300));
-        this.setLocation(900,500);
+        this.setDefaultCloseOperation(this.DO_NOTHING_ON_CLOSE);
+        this.setLocation(700,500);
         this.setLayout(new BorderLayout(5,5));
         this.mainPanel();
         this.setVisible(true);
         this.pack();
     }
-
 }
