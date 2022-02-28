@@ -13,7 +13,7 @@ public class Airlines implements IWriteable{
 
     public Airlines( ){
         try {
-            HashSet<String> airlines = new HashSet<String>();
+            this.airlines = new HashSet<String>();
             File airlinesFile = new File("Airlines");
             Scanner Reader = new Scanner(airlinesFile);
             while (Reader.hasNextLine()) {
@@ -22,7 +22,7 @@ public class Airlines implements IWriteable{
                 // String [] fields = line.split(";");
                 // String airlineCode = fields[0];
                 //String airline = fields[1];
-                airlines.add(airline);
+                this.airlines.add(airline);
                 //System.out.println(airline);
             }
             System.out.println(airlines);
