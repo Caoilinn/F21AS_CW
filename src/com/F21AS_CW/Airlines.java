@@ -11,11 +11,6 @@ public class Airlines implements IWriteable {
 
     //  public Airlines(HashSet<String> airlines) {this.airlines = airlines;}
 
-//@Override
-    public String toString(){
-        return airlines.toString();
-    }
-
     public Airlines() {
         try {
             this.airlines = new HashSet<Airline>();
@@ -34,8 +29,8 @@ public class Airlines implements IWriteable {
 
                 Airline airline = new Airline(airlineName, airlineCode);
                 this.airlines.add(airline);
-                //System.out.println(airline);
             }
+
             //This technique allows the hashset to be printed as a string from the Airline class
             for (Airline airline: airlines) {
                 System.out.println(airline.getName()+" "+airline.getCode());
