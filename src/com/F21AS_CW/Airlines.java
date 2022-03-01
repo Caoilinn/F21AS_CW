@@ -11,11 +11,6 @@ public class Airlines implements IWriteable {
 
     //  public Airlines(HashSet<String> airlines) {this.airlines = airlines;}
 
-//@Override
-    public String toString(){
-        return airlines.toString();
-    }
-
     public Airlines() {
         try {
             this.airlines = new HashSet<Airline>();
@@ -34,9 +29,7 @@ public class Airlines implements IWriteable {
 
                 Airline airline = new Airline(airlineName, airlineCode);
                 this.airlines.add(airline);
-                //System.out.println(airline);
             }
-            System.out.println(airlines);
             reader.close();
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");

@@ -15,7 +15,7 @@ public class AddFlightGUI extends JFrame implements ActionListener
     JButton add, close;
     JLabel flightNoLbl, airlineLbl,planeLbl, departureLbl, destinationLbl,dateLbl,timeLbl;
     JTextField flightNoTxt,dateTxt,timeTxt;
-    JComboBox<String> airline = new JComboBox<String>();
+    JComboBox<String> airlineCombo = new JComboBox<String>();
     JComboBox<String> plane = new JComboBox<String>();
     JComboBox<String> departure = new JComboBox<String>();
     JComboBox<String> destination = new JComboBox<String>();
@@ -24,16 +24,12 @@ public class AddFlightGUI extends JFrame implements ActionListener
     public void mainPanel() {
         JPanel p = new JPanel( new GridBagLayout());
 
-        Airlines al = new Airlines();
-        for (Airline Airline : al.getAirlines())
-        {
-            System.out.println(Airline);
-        }
-
         airlineLbl = new JLabel("Airline:");
         // add items to the combo box
-        airline.addItem("Air France");
-        airline.addItem("Emirates");
+        Airlines al = new Airlines();
+        for (Airline airline: al.getAirlines()) {
+            airlineCombo.addItem(airline.getCode()+" "+airline.getName());
+        }
 
         flightNoLbl = new JLabel("Flight Number:");
         flightNoTxt = new JTextField(12);
@@ -68,7 +64,7 @@ public class AddFlightGUI extends JFrame implements ActionListener
         c.anchor=GridBagConstraints.LINE_START;
 
         c.gridx=0;c.gridy=1;p.add(airlineLbl,c);
-        c.gridx=1;c.gridy=1;p.add(airline,c);
+        c.gridx=1;c.gridy=1;p.add(airlineCombo,c);
         c.gridx=0;c.gridy=2;p.add(flightNoLbl,c);
         c.gridx=1;c.gridy=2;p.add(flightNoTxt,c);
         c.gridx=0;c.gridy=3;p.add(planeLbl,c);
