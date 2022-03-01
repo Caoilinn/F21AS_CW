@@ -5,28 +5,34 @@ import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.Scanner;
 
-public class Airlines implements IWriteable{
+public class Airlines implements IWriteable {
 
     private HashSet<Airline> airlines;
 
-  //  public Airlines(HashSet<String> airlines) {this.airlines = airlines;}
+    //  public Airlines(HashSet<String> airlines) {this.airlines = airlines;}
 
-    public Airlines( ){
+    public Airlines() {
         try {
-            this.airlines = new HashSet<String>();
+            this.airlines = new HashSet<Airline>();
             File airlinesFile = new File("Airlines");
-            Scanner Reader = new Scanner(airlinesFile);
-            while (Reader.hasNextLine()) {
-                String airline = Reader.nextLine();
-                //String line = Reader.nextLine();
-                // String [] fields = line.split(";");
-                // String airlineCode = fields[0];
-                //String airline = fields[1];
+            Scanner reader = new Scanner(airlinesFile);
+            while (reader.hasNextLine()) {
+                String line = reader.nextLine();
+                String[] fields = line.split(";");
+
+                //If the line doesn't contain a name and code then skip over the line
+                if (fields.length < 2)
+                    continue;
+
+                String airlineCode = fields[0];
+                String airlineName = fields[1];
+
+                Airline airline = new Airline(airlineName, airlineCode);
                 this.airlines.add(airline);
                 //System.out.println(airline);
             }
             System.out.println(airlines);
-            Reader.close();
+            reader.close();
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();

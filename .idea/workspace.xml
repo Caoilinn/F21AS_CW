@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="c267d7a3-c767-4091-b6e9-faf269c2e55d" name="Changes" comment="Added First Test Class, currently only tests FlightPlan, FlightPlan has also been updated as the distance calculation had to be fixed due to bugs found using the tests">
+    <list default="true" id="c267d7a3-c767-4091-b6e9-faf269c2e55d" name="Changes" comment="Added Code to read and store airlines, need to discuss structure for this">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/F21AS_CW.iml" beforeDir="false" afterPath="$PROJECT_DIR$/F21AS_CW.iml" afterDir="false" />
@@ -27,14 +26,9 @@
       <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/TravelGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/TravelGUI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/TravelManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/TravelManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/DataClassTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/DataClassTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/FlightPlan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/FlightPlan.java" afterDir="false" />
-=======
-    <list default="true" id="c267d7a3-c767-4091-b6e9-faf269c2e55d" name="Changes" comment="Added Code to read and store airlines, need to discuss structure for this">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/Aeroplanes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/Aeroplanes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/AddFlightGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/AddFlightGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/Airlines.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/Airlines.java" afterDir="false" />
->>>>>>> master
+      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +80,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager" selected="JUnit.DataClassTests">
+  <component name="RunManager" selected="Application.TravelAPP">
     <configuration name="TravelAPP" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.F21AS_CW.Main" />
       <module name="F21AS_CW" />
@@ -115,7 +109,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -142,28 +136,6 @@
       <workItem from="1645013453225" duration="2158000" />
       <workItem from="1645016555340" duration="23000" />
       <workItem from="1645021082949" duration="2101000" />
-<<<<<<< HEAD
-      <workItem from="1645276977926" duration="612000" />
-      <workItem from="1645363282673" duration="4136000" />
-      <workItem from="1645378784312" duration="5152000" />
-      <workItem from="1645459373603" duration="3704000" />
-      <workItem from="1645822844502" duration="3433000" />
-      <workItem from="1646056065782" duration="2441000" />
-    </task>
-    <task id="LOCAL-00001" summary="Added First Test Class, currently only tests FlightPlan, FlightPlan has also been updated as the distance calculation had to be fixed due to bugs found using the tests">
-      <created>1645482243555</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1645482243555</updated>
-    </task>
-    <task id="LOCAL-00002" summary="changed flightPlan to be a LinkedList of Airports for easier integration with the GUI, also added a constructor that takes no parameters">
-      <created>1645828377002</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1645828377002</updated>
-=======
       <workItem from="1645193688411" duration="3762000" />
       <workItem from="1645198089456" duration="30000" />
       <workItem from="1645198141257" duration="156000" />
@@ -183,13 +155,9 @@
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
       <updated>1645553447066</updated>
->>>>>>> master
     </task>
     <option name="localTasksCounter" value="3" />
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -208,7 +176,6 @@
                   </entry>
                 </map>
               </option>
-              <option name="COLUMN_ORDER" />
             </State>
           </value>
         </entry>
@@ -216,61 +183,9 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-<<<<<<< HEAD
-    <MESSAGE value="Added First Test Class, currently only tests FlightPlan, FlightPlan has also been updated as the distance calculation had to be fixed due to bugs found using the tests" />
-    <MESSAGE value="changed flightPlan to be a LinkedList of Airports for easier integration with the GUI, also added a constructor that takes no parameters" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed flightPlan to be a LinkedList of Airports for easier integration with the GUI, also added a constructor that takes no parameters" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="690" y="295" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1645364230495">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="690" y="295" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1645364230495" />
-    <state x="414" y="195" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1645364683318">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="414" y="195" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1645364683318" />
-    <state x="377" y="134" key="CommitChangelistDialog2" timestamp="1645828375846">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="377" y="134" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1645828375846" />
-    <state width="1877" height="295" key="GridCell.Tab.0.bottom" timestamp="1646058648974">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1646058648974" />
-    <state width="1877" height="295" key="GridCell.Tab.0.center" timestamp="1646058648973">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1646058648973" />
-    <state width="1877" height="295" key="GridCell.Tab.0.left" timestamp="1646058648973">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1646058648973" />
-    <state width="1877" height="295" key="GridCell.Tab.0.right" timestamp="1646058648974">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1877" height="295" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1646058648974" />
-    <state x="552" y="273" key="Vcs.Push.Dialog.v2" timestamp="1645828394104">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="552" y="273" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1645828394104" />
-    <state x="656" y="364" key="com.intellij.ide.util.TipDialog" timestamp="1646056365504">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="656" y="364" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1646056365504" />
-    <state x="664" y="433" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1645193158864">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="664" y="433" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1080@0.0.1920.1080" timestamp="1645193158864" />
-    <state x="684" y="331" key="git4idea.merge.GitPullDialog" timestamp="1645192296307">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="684" y="331" key="git4idea.merge.GitPullDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1645192296307" />
-=======
     <MESSAGE value="Added the text files" />
     <MESSAGE value="Added Code to read and store airlines, need to discuss structure for this" />
     <option name="LAST_COMMIT_MESSAGE" value="Added Code to read and store airlines, need to discuss structure for this" />
->>>>>>> master
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/F21AS_CW$Main.ic" NAME="Main Coverage Results" MODIFIED="1644420362925" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
