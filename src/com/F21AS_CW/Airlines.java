@@ -36,7 +36,11 @@ public class Airlines implements IWriteable {
                 this.airlines.add(airline);
                 //System.out.println(airline);
             }
-            System.out.println(airlines);
+            //This technique allows the hashset to be printed as a string from the Airline class
+            for (Airline airline: airlines) {
+                System.out.println(airline.getName()+" "+airline.getCode());
+            }
+
             reader.close();
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
