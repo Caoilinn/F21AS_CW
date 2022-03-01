@@ -86,7 +86,7 @@ public class AddFlightGUI extends JFrame implements ActionListener
         if (e.getSource() == add)
         {
              Airlines al = new Airlines();
-            for (String Airline : al.getAirlines())
+            for (Airline Airline : al.getAirlines())
             {
                 System.out.println("TEST");
             }
