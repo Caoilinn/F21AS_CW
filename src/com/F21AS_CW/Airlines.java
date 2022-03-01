@@ -11,6 +11,10 @@ public class Airlines implements IWriteable {
 
     //  public Airlines(HashSet<String> airlines) {this.airlines = airlines;}
 
+    public String toString(){
+        return airlines.toString();
+    }
+
     public Airlines() {
         try {
             this.airlines = new HashSet<Airline>();
