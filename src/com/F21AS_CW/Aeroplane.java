@@ -3,7 +3,9 @@ package com.F21AS_CW;
 public class Aeroplane {
 
     private String model;
+    //speed in kilometres per hour
     private float cruiseSpeed;
+    //fuel consumed per 100km of distance
     private float fuelConsumption;
 
     public Aeroplane(String model, float cruiseSpeed, float fuelConsumption) {

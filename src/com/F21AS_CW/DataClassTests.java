@@ -1,4 +1,4 @@
-/*
+
 package com.F21AS_CW;
 import org.junit.*;
 import org.junit.jupiter.api.BeforeAll;
@@ -30,7 +30,4 @@ public class DataClassTests {
     public void testAirports() {
 
     }
-
-
 }
-*/
