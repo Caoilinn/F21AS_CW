@@ -14,6 +14,20 @@ public class Flight {
     private FlightPlan flightPlan;
     private Airline airline;
 
+    @Override
+    public String toString() {
+        return "Flight{" +
+                "flightCode='" + flightCode + '\'' +
+                ", plane=" + plane +
+                ", departure=" + departure +
+                ", destination=" + destination +
+                ", date='" + date + '\'' +
+                ", departureTime='" + departureTime + '\'' +
+                ", flightPlan=" + flightPlan +
+                ", airline=" + airline +
+                '}';
+    }
+
     public Flight(String flightCode, Aeroplane plane, Airport departure, Airport destination, String date, String departureTime, FlightPlan flightPlan, Airline airline) {
         this.flightCode = flightCode;
         this.plane = plane;
@@ -78,7 +92,7 @@ public class Flight {
     }
 
     public void addAirline(){
-        this.airline.addFlight(this);
+        airline.addFlight(this);
     }
 
     public String getDurationOfFlight() {

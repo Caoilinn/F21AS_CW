@@ -1,6 +1,7 @@
 package com.F21AS_CW;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
@@ -36,14 +37,12 @@ public class TravelGUI extends JFrame implements ActionListener
 
         // Creates placeholder list and assigns it to the panel, sets single selection
         DefaultListModel<String> list = new DefaultListModel<>();
-        list.addElement("AF670   A350   CDG   DBX   10/01/2022   23:00");
-        list.addElement("AF670   A350   CDG   DBX   10/01/2022   23:00");
-        list.addElement("AF670   A350   CDG   DBX   10/01/2022   23:00");
-        list.addElement("AF670   A350   CDG   DBX   10/01/2022   23:00");
-        list.addElement("AF670   A350   CDG   DBX   10/01/2022   23:00");
-        list.addElement("AF670   A350   CDG   DBX   10/01/2022   23:00");
-        list.addElement("AF670   A350   CDG   DBX   10/01/2022   23:00");
-        list.addElement("AF670   A350   CDG   DBX   10/01/2022   23:00");
+        ArrayList<Flight> flights = new ArrayList<Flight>(Flights.getFlights().values());
+        for(Flight flight: flights) {
+            System.out.println(flight);
+            list.addElement(flight.getFlightCode() + "  " + flight.getPlane().getModel() + "  " + flight.getDeparture().getName() + "  " + flight.getDestination().getName() + " "
+                    + flight.getDate() + " " + flight.getDepartureTime());
+        }
         flightList = new JList(list);
         scrollList = new JScrollPane(flightList);
         flightList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

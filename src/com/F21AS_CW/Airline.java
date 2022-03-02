@@ -7,11 +7,23 @@ public class Airline implements Comparable<Airline> {
     private String name;
     private String code;
     public ArrayList<Flight> flights;
-    private double totalDistance, totalFuelConsumption, totalEmissions;
+    private double totalDistance = 0, totalFuelConsumption = 0, totalEmissions = 0;
+
+    @Override
+    public String toString() {
+        return "Airline{" +
+                "name='" + name + '\'' +
+                ", code='" + code + '\'' +
+                ", totalDistance=" + totalDistance +
+                ", totalFuelConsumption=" + totalFuelConsumption +
+                ", totalEmissions=" + totalEmissions +
+                '}';
+    }
 
     public Airline(String name, String code) {
         this.name = name;
         this.code = code;
+        this.flights = new ArrayList<Flight>();
     }
 
     @Override
@@ -28,7 +40,7 @@ public class Airline implements Comparable<Airline> {
     }
 
     public void addFlight(Flight flight) {
-        this.flights.add(flight);
+        flights.add(flight);
     }
 
     public String getName() {
