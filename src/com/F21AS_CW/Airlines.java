@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Airlines implements IWriteable {
 
-    private HashSet<Airline> airlines;
+    private static HashSet<Airline> airlines;
 
     //  public Airlines(HashSet<String> airlines) {this.airlines = airlines;}
 
