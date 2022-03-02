@@ -14,11 +14,12 @@ public class FlightPlan {
         return flightPlanTotalDistance;
     }
 
+    //Constructor for use with  already made flightPlans, allows flightPlans to be created from a file more easily
     public FlightPlan(LinkedList<Airport> fp) {
 
         flightPlan = fp;
 
-        //calculates total distance traveled along initial flightpath given
+        //calculates total distance traveled along initial flightpath given by
         if(fp.size() > 1) {
             for (int i = 0; i < flightPlan.size() - 1; i++) {
                 GPSCoordinates gps1 = flightPlan.get(i).getControlTower().getGpsLocation();
@@ -28,18 +29,25 @@ public class FlightPlan {
         }
     }
 
+
     public FlightPlan() {
-        flightPlan = new LinkedList<Airport>();
+        this.flightPlan = new LinkedList<Airport>();
     }
 
     public void addToPlan(Airport node) {
+        if(flightPlan.size() >= 10) {
+            return;
+        }
         Airport prevLast = null;
+        // if there are nodes in the flightPlan, the last one becomes the previous last, if not prevLast stays null and we wont do a calculation
         if(flightPlan.size() > 0) {
             prevLast = flightPlan.getLast();
         }
         flightPlan.addLast(node);
-        //adds new distance between previous final control tower and the new final to the total of the flightPlan
+
+        //checks if flightPlan has more than one node in it
         if(flightPlan.size() > 1 && prevLast!=null) {
+            //adds new distance between previous final control tower and the new final to the total of the flightPlan
             flightPlanTotalDistance += calcDistance(node.getControlTower().getGpsLocation(), prevLast.getControlTower().getGpsLocation());
         }
     }
@@ -48,6 +56,7 @@ public class FlightPlan {
         return flightPlan;
     }
 
+    //implements pseudo-code example given in coursework spec, gives results that are approximately correct (Checked by hand using a calculator)
     public int calcDistance(GPSCoordinates coords1, GPSCoordinates coords2) {
 
        double rlat1 = ((double) coords1.getLatitude() * (Math.PI/180));

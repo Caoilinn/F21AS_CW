@@ -6,24 +6,24 @@ import java.sql.Date;
 public class Flight {
 
     private String flightCode;
-    private String planeCode;
+    private Aeroplane plane;
     private Airport departure;
     private Airport destination;
     private Date date;
-    private Time time;
+    private Time departureTime;
     private FlightPlan flightPlan;
 
-    public Flight(String flightCode, String planeCode, Airport departure, Airport destination, Date date, Time time, FlightPlan flightPlan) {
+    public Flight(String flightCode, Aeroplane plane, Airport departure, Airport destination, Date date, Time departureTime, FlightPlan flightPlan) {
         this.flightCode = flightCode;
-        this.planeCode = planeCode;
+        this.plane = plane;
         this.departure = departure;
         this.destination = destination;
         this.date = date;
-        this.time = time;
+        this.departureTime= departureTime;
         this.flightPlan = flightPlan;
 
         if (!Airports.CheckIfValExists(departure) || !Airports.CheckIfValExists(destination)) {
-            throw new InvalidFlightException("Ths is a null airport");
+            throw new InvalidFlightException("This is a null airport");
         }
     }
 
@@ -31,8 +31,8 @@ public class Flight {
         return flightCode;
     }
 
-    public String getPlaneCode() {
-        return planeCode;
+    public Aeroplane getPlane() {
+        return plane;
     }
 
     public Airport getDeparture() {
@@ -47,23 +47,34 @@ public class Flight {
         return date;
     }
 
-    public Time getTime() {
-        return time;
+    public Time getDepartureTime() {
+        return departureTime;
     }
 
     public FlightPlan getFlightPlan() {
         return flightPlan;
     }
 
-    public float Co2Emissions() {
-        return 2.0f;
+    public int getCo2Emissions() {
+        //using the numbers shown in coursework spec example of gui, i figured that for every 1 litre of fuel consumed 0.82kg of CO2 is emitted,
+        // this isn't exact but it'll do for our purposes
+        float emission = this.getFuelConsumption()*0.82f;
+        //returns integer for ease of use with Gui
+        return (int) emission;
     }
 
-    public float getDistance() {
-        return 2.0f;
+    public int getDistance() {
+        return flightPlan.getFlightPlanTotalDistance();
     }
 
-    public float getFuelConsumption() {
-        return 2.0f;
+    public int getFuelConsumption() {
+
+       float consumption = plane.getFuelConsumption()*(flightPlan.getFlightPlanTotalDistance()/100);
+       //returns integer for ease of use with GUI
+       return (int) consumption;
+    }
+
+    public float getDurationOfFlight() {
+        return flightPlan.getFlightPlanTotalDistance()/plane.getCruiseSpeed();
     }
 }
