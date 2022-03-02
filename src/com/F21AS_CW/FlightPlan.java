@@ -7,7 +7,7 @@ import java.lang.Math;
 
 public class FlightPlan {
     private LinkedList<Airport> flightPlan;
-    private static final int earthRadius = 6371;
+    private static final int earthRadius = 6379;
     private int flightPlanTotalDistance = 0;
 
     public int getFlightPlanTotalDistance() {
@@ -59,13 +59,13 @@ public class FlightPlan {
     //implements pseudo-code example given in coursework spec, gives results that are approximately correct (Checked by hand using a calculator)
     public int calcDistance(GPSCoordinates coords1, GPSCoordinates coords2) {
 
-       double rlat1 = ((double) coords1.getLatitude() * (Math.PI/180));
+       double rlat1 = coords1.getLatitude() * (Math.PI/180);
 
-       double rlong1 = ((double) coords1.getLongitude() * (Math.PI/180));
+       double rlong1 = coords1.getLongitude() * (Math.PI/180);
 
-        double rlat2 = ((double) coords2.getLatitude() * (Math.PI/180));
+        double rlat2 = coords2.getLatitude() * (Math.PI/180);
 
-        double rlong2 = ((double) coords2.getLongitude() * (Math.PI/180));
+        double rlong2 = coords2.getLongitude() * (Math.PI/180);
 
         double deltaLat = rlat2 - rlat1;
 
