@@ -14,12 +14,21 @@ public class FlightPlan {
         return flightPlanTotalDistance;
     }
 
+    @Override
+    public String toString() {
+        return "FlightPlan{" +
+                "flightPlan=" + flightPlan +
+                ", flightPlanTotalDistance=" + flightPlanTotalDistance +
+                '}';
+    }
+
     //Constructor for use with  already made flightPlans, allows flightPlans to be created from a file more easily
     public FlightPlan(LinkedList<Airport> fp) {
 
         flightPlan = fp;
         //calculates total distance traveled along initial flightpath given by
-        if(fp.size() > 1) {
+
+        if(flightPlan.size() > 1) {
             for (int i = 0; i < flightPlan.size() - 1; i++) {
                 GPSCoordinates gps1 = flightPlan.get(i).getControlTower().getGpsLocation();
                 GPSCoordinates gps2 = flightPlan.get(i + 1).getControlTower().getGpsLocation();
@@ -75,7 +84,7 @@ public class FlightPlan {
         double distance = 2 * earthRadius * (Math.asin(Math.sqrt(trig)));
 
         //returns int for ease of use with gui
-        System.out.println(distance);
+        //System.out.println(distance);
         return (int) distance;
     }
 }

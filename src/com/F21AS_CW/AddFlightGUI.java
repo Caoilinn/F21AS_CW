@@ -29,7 +29,7 @@ public class AddFlightGUI extends JFrame implements ActionListener
         airlineLbl = new JLabel("Airline:");
         // add items to the combo box
 
-        ArrayList<Airline> airlines = new ArrayList<>(Airlines.getAirlines().values());
+        ArrayList<Airline> airlines = new ArrayList<Airline>(Airlines.getAirlines().values());
         Collections.sort(airlines);
         for (Airline airline: airlines) {
             airlineCombo.addItem(airline.getCode()+" "+airline.getName());
@@ -40,10 +40,11 @@ public class AddFlightGUI extends JFrame implements ActionListener
         flightNoTxt.addActionListener(this);
 
         planeLbl = new JLabel("Plane:");
-        Aeroplanes plane = new Aeroplanes();
-        /*for (Aeroplane aeroplane: plane.getAeroplanes()) {
+
+        ArrayList<Aeroplane> aeroplanes = new ArrayList<Aeroplane>(Aeroplanes.getAeroplanes().values());
+        for (Aeroplane aeroplane: aeroplanes) {
             planeCombo.addItem(aeroplane.getModel());
-        }*/
+        }
         departureLbl = new JLabel("Departure:");
         destinationLbl = new JLabel("Destination:");
 

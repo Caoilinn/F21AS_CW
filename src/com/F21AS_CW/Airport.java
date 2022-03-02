@@ -15,6 +15,14 @@ public class Airport {
         this.code = code;
     }
 
+    @Override
+    public String toString() {
+        return "Airport{" +
+                "name='" + name + '\'' +
+                ", code='" + code + '\'' +
+                '}';
+    }
+
     public Airport(){
 
     }

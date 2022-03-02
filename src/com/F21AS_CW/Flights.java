@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Flights implements IWriteable {
 
-    private HashMap<String, Flight> flights;
+    private static HashMap<String, Flight> flights;
 
     public Flights(HashMap<String, Flight> flights) {
         this.flights = flights;
@@ -30,22 +30,21 @@ public class Flights implements IWriteable {
 
                 String flightCode = fields[0];
                 Airline airline = Airlines.getAirlines().get(flightCode.substring(0,2));
-                System.out.println(flightCode.substring(0,2));
 
                 //this need to be used to get an Aeroplane object from the Aeroplanes collection
                 String planeCode = fields[1];
 
-                Aeroplane plane = Aeroplanes.getAeroplanes().get(planeCode);
+                Aeroplane plane = Aeroplanes.getAeroplanes().get(planeCode.trim());
                 String dep = fields[2];
-                Airport departure = Airports.getAirports().get(dep);
+                Airport departure = Airports.getAirports().get(dep.replaceAll("\\s",""));
                 String dest = fields[3];
-                Airport destination = Airports.getAirports().get(dest);
+                Airport destination = Airports.getAirports().get(dest.replaceAll("\\s",""));
                 String date = fields[4];
                 String time = fields[5];
 
                 LinkedList<Airport> plan = new LinkedList<Airport>();
                 for(int x = 6; x < fields.length;x++) {
-                    Airport temp = Airports.getAirports().get(fields[x]);
+                    Airport temp = Airports.getAirports().get(fields[x].trim());
                     plan.addLast(temp);
                 }
 
@@ -63,7 +62,7 @@ public class Flights implements IWriteable {
 
     }
 
-    public HashMap<String, Flight> getFlights() {
+    public static HashMap<String, Flight> getFlights() {
         return flights;
     }
 

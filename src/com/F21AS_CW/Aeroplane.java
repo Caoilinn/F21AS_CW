@@ -8,6 +8,15 @@ public class Aeroplane {
     //fuel consumed per 100km of distance
     private float fuelConsumption;
 
+    @Override
+    public String toString() {
+        return "Aeroplane{" +
+                "model='" + model + '\'' +
+                ", cruiseSpeed=" + cruiseSpeed +
+                ", fuelConsumption=" + fuelConsumption +
+                '}';
+    }
+
     public Aeroplane(String model, float cruiseSpeed, float fuelConsumption) {
         this.model = model;
         this.cruiseSpeed = cruiseSpeed;
