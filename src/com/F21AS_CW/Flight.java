@@ -27,6 +27,7 @@ public class Flight {
         if (!Airports.CheckIfValExists(departure) || !Airports.CheckIfValExists(destination)) {
             throw new InvalidFlightException("This is a null airport");
         }
+        addAirline();
     }
 
     public String getFlightCode() {

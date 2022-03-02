@@ -3,6 +3,7 @@ package com.F21AS_CW;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Flights implements IWriteable {
@@ -15,7 +16,7 @@ public class Flights implements IWriteable {
 
     public Flights() {
 
-       /* try {
+       try {
             this.flights = new HashMap<>();
             File flightsFile = new File("Flights");
             Scanner reader = new Scanner(flightsFile);
@@ -28,21 +29,37 @@ public class Flights implements IWriteable {
                     continue;
 
                 String flightCode = fields[0];
+                Airline airline = Airlines.getAirlines().get(flightCode.substring(0,2));
+                System.out.println(flightCode.substring(0,2));
+
+                //this need to be used to get an Aeroplane object from the Aeroplanes collection
                 String planeCode = fields[1];
-                String departure = fields[2];
-                String destination = fields[3];
+
+                Aeroplane plane = Aeroplanes.getAeroplanes().get(planeCode);
+                String dep = fields[2];
+                Airport departure = Airports.getAirports().get(dep);
+                String dest = fields[3];
+                Airport destination = Airports.getAirports().get(dest);
                 String date = fields[4];
                 String time = fields[5];
-                String flightPlan = fields[6];
 
-                //Flight flight = new Flight(flightCode,planeCode,departure,destination,date,time,flightPlan);
-               // this.flights.put(flightCode,planeCode,departure,destination,date,time,flightPlan);
+                LinkedList<Airport> plan = new LinkedList<Airport>();
+                for(int x = 6; x < fields.length;x++) {
+                    Airport temp = Airports.getAirports().get(fields[x]);
+                    plan.addLast(temp);
+                }
+
+                FlightPlan flightPlan = new FlightPlan(plan);
+
+
+               Flight flight = new Flight(flightCode,plane,departure,destination,date,time,flightPlan,airline);
+               this.flights.put(flightCode,flight);
             }
             reader.close();
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
-        }*/
+        }
 
     }
 
@@ -63,7 +80,6 @@ public class Flights implements IWriteable {
             //If flight code is null then there isn't a valid key
             if (flight.getFlightCode() != null) {
                 this.flights.put(flight.getFlightCode(), flight);
-                flight.addAirline();
             } else
                 throw new IllegalArgumentException("This flight doesn't have a valid Flight Code");
         }

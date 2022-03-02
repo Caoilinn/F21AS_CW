@@ -3,7 +3,7 @@ package com.F21AS_CW;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Airline {
+public class Airline implements Comparable<Airline> {
     private String name;
     private String code;
     public ArrayList<Flight> flights;
@@ -49,5 +49,10 @@ public class Airline {
 
     public void setTotalEmissions(double totalEmissions) {
         this.totalEmissions = totalEmissions;
+    }
+
+    @Override
+    public int compareTo(Airline o) {
+        return this.name.compareTo(o.getName());
     }
 }

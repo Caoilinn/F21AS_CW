@@ -57,7 +57,10 @@ public class TravelManager
             // aeroplanesList.readFromFile("AeroplaneInput.csv");
         // Call a single write method
             // objectName.writeToFile("output.txt", objectName.exitReport());
-
+        Airlines airlines = new Airlines();
+        Airports airports = new Airports();
+        Aeroplanes aeroplanes = new Aeroplanes();
+        Flights flights = new Flights();
         showTravelGUI();
     }
 

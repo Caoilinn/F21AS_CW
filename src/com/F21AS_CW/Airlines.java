@@ -2,18 +2,18 @@ package com.F21AS_CW;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Airlines implements IWriteable {
 
-    private static HashSet<Airline> airlines;
+    private static HashMap<String,Airline> airlines;
 
     //  public Airlines(HashSet<String> airlines) {this.airlines = airlines;}
 
     public Airlines() {
         try {
-            this.airlines = new HashSet<Airline>();
+            this.airlines = new HashMap<String, Airline>();
             File airlinesFile = new File("Airlines");
             Scanner reader = new Scanner(airlinesFile);
             while (reader.hasNextLine()) {
@@ -28,7 +28,7 @@ public class Airlines implements IWriteable {
                 String airlineName = fields[1];
 
                 Airline airline = new Airline(airlineName, airlineCode);
-                this.airlines.add(airline);
+                this.airlines.put(airlineCode,airline);
             }
 
             reader.close();
@@ -38,7 +38,7 @@ public class Airlines implements IWriteable {
         }
     }
 
-    public HashSet<Airline> getAirlines() {
+    public static HashMap<String,Airline> getAirlines() {
         return airlines;
     }
 
