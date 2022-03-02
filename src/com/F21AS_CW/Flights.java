@@ -50,14 +50,21 @@ public class Flights implements IWriteable {
         return flights;
     }
 
+    public Flight getFlight(String flightCode) {
+        if (this.flights.containsKey(flightCode)) {
+            return flights.get(flightCode);
+        } else return null;
+    }
+
     public void AddFlight(Flight flight) {
         if (flight == null)
             throw new IllegalArgumentException("This is not a valid flight");
         else {
             //If flight code is null then there isn't a valid key
-            if(flight.getFlightCode() != null)
+            if (flight.getFlightCode() != null) {
                 this.flights.put(flight.getFlightCode(), flight);
-            else
+                flight.addAirline();
+            } else
                 throw new IllegalArgumentException("This flight doesn't have a valid Flight Code");
         }
 

@@ -5,18 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c267d7a3-c767-4091-b6e9-faf269c2e55d" name="Changes" comment="Added date and time fields">
+      <change afterPath="$PROJECT_DIR$/src/com/F21AS_CW/ReportFile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/AddFlightGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/AddFlightGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/Airlines.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/Airlines.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/AddFlightGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/AddFlightGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/Airline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/Airline.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/Airlines.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/Airlines.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/DataClassTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/DataClassTests.java" afterDir="false" />
-
-    <list default="true" id="c267d7a3-c767-4091-b6e9-faf269c2e55d" name="Changes" comment="Added Code to read and store airlines, need to discuss structure for this">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/Airlines.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/Airlines.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/DataClassTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/DataClassTests.java" afterDir="false" />
-
+      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/Flight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/Flight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/Flights.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/Flights.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/ReportGen.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
