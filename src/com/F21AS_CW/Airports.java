@@ -27,7 +27,13 @@ public class Airports implements IWriteable{
 
                 String airportCode = fields[0];
                 String airportName = fields[1];
+            //    int l0ngitude = Integer.parseInt(fields[2]);
+            //    int latitude = Integer.parseInt(fields[3]);
 
+            //    GPSCoordinates gps = new GPSCoordinates(l0ngitude,latitude);
+             //   ControlTower ct = new ControlTower(gps);
+
+              //  Airport airport = new Airport(airportCode,airportName,ct);
                 Airport airport = new Airport(airportCode,airportName);
                 this.airports.put(airportCode,airport);
             }
