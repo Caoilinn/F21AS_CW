@@ -1,6 +1,9 @@
 package com.F21AS_CW;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class Flights implements IWriteable {
 
@@ -11,6 +14,35 @@ public class Flights implements IWriteable {
     }
 
     public Flights() {
+
+       /* try {
+            this.flights = new HashMap<>();
+            File flightsFile = new File("Flights");
+            Scanner reader = new Scanner(flightsFile);
+            while (reader.hasNextLine()) {
+                String line = reader.nextLine();
+                String[] fields = line.split(";");
+
+                //If the line doesn't contain the required fields then skip over the line
+                if (fields.length < 1)
+                    continue;
+
+                String flightCode = fields[0];
+                String planeCode = fields[1];
+                String departure = fields[2];
+                String destination = fields[3];
+                String date = fields[4];
+                String time = fields[5];
+                String flightPlan = fields[6];
+
+                //Flight flight = new Flight(flightCode,planeCode,departure,destination,date,time,flightPlan);
+               // this.flights.put(flightCode,planeCode,departure,destination,date,time,flightPlan);
+            }
+            reader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }*/
 
     }
 
