@@ -20,6 +20,11 @@ public class Airports implements IWriteable{
             while (reader.hasNextLine()) {
                 String line = reader.nextLine();
                 String[] fields = line.split(";");
+
+                //If the line doesn't contain the required fields then skip over the line
+                if (fields.length < 1)
+                    continue;
+
                 String airportCode = fields[0];
                 String airportName = fields[1];
 
