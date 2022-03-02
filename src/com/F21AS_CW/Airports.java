@@ -36,29 +36,40 @@ public class Airports implements IWriteable{
                 Double degrees1 = Double.parseDouble(split1[0]);
 
                String[] split2 = split1[1].split("'");
-               Double minutes1 = Double.parseDouble(split2[0]);
+               Double minutes1 = (Double.parseDouble(split2[0]))/60;
 
                String[] split3 = split2[1].split("\"");
-               Double seconds1 = Double.parseDouble(split3[0]);
+               Double seconds1 = (Double.parseDouble(split3[0]))/3600;
                Boolean north = split3[1].equals("N");
 
                String[] split4 =  latitude.split("°");
                Double degrees2 = Double.parseDouble(split4[0]);
 
                String[] split5 = split4[1].split("'");
-               Double minutes2 = Double.parseDouble(split5[0]);
+               Double minutes2 = (Double.parseDouble(split5[0]))/60;
 
                String[] split6 = split5[1].split("\"");
-               Double seconds2 = Double.parseDouble(split6[0]);
+               Double seconds2 = (Double.parseDouble(split6[0]))/3600;
                Boolean west = split6[1].equals("W");
 
+               double DD_longitude = degrees1 + minutes1 + seconds1;
+               double DD_latitude = degrees2 + minutes2 + seconds2;
 
-            //    GPSCoordinates gps = new GPSCoordinates(l0ngitude,latitude);
-             //   ControlTower ct = new ControlTower(gps);
+               if (!north){
+                   DD_longitude *= -1;
+               }
 
-              //  Airport airport = new Airport(airportCode,airportName,ct);
+               if (!west){
+                    DD_latitude *= -1;
+               }
 
-                Airport airport = new Airport(airportCode,airportName);
+
+               GPSCoordinates gps = new GPSCoordinates(DD_longitude,DD_latitude);
+               ControlTower ct = new ControlTower(gps);
+
+               Airport airport = new Airport(airportCode,airportName,ct);
+
+               // Airport airport = new Airport(airportCode,airportName);
                 this.airports.put(airportCode,airport);
             }
             reader.close();
