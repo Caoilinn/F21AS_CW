@@ -80,7 +80,7 @@ public class Airports implements IWriteable{
 
     }
 
-    public HashMap<String, Airport> getAirports() {
+    public static HashMap<String, Airport> getAirports() {
         return airports;
     }
 

@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Aeroplanes implements IWriteable{
 
-    private HashSet<Aeroplane> aeroplanes;
+    private static HashMap<String,Aeroplane> aeroplanes;
 
 
    
@@ -18,7 +18,7 @@ public class Aeroplanes implements IWriteable{
     public Aeroplanes(){
 
         try {
-            this.aeroplanes = new HashSet<Aeroplane>();
+            this.aeroplanes = new HashMap<String, Aeroplane>();
             File aeroplanesFile = new File("Aeroplanes");
             Scanner reader = new Scanner(aeroplanesFile);
             while (reader.hasNextLine()) {
@@ -34,7 +34,7 @@ public class Aeroplanes implements IWriteable{
                 float planeFuelConsump = Float.parseFloat(fields[3]);
 
                 Aeroplane aeroplane = new Aeroplane(planeModel, planeCruiseSpeed,planeFuelConsump);
-                this.aeroplanes.add(aeroplane);
+                this.aeroplanes.put(planeModel,aeroplane);
             }
             reader.close();
         } catch (FileNotFoundException e) {
@@ -43,7 +43,7 @@ public class Aeroplanes implements IWriteable{
         }
     }
 
-    public HashSet<Aeroplane> getAeroplanes() {
+    public static HashMap<String,Aeroplane> getAeroplanes() {
         return aeroplanes;
     }
 

@@ -18,7 +18,6 @@ public class FlightPlan {
     public FlightPlan(LinkedList<Airport> fp) {
 
         flightPlan = fp;
-
         //calculates total distance traveled along initial flightpath given by
         if(fp.size() > 1) {
             for (int i = 0; i < flightPlan.size() - 1; i++) {

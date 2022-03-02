@@ -1,6 +1,8 @@
 package com.F21AS_CW;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.*;
 
 public class AddFlightGUI extends JFrame implements ActionListener
@@ -26,8 +28,10 @@ public class AddFlightGUI extends JFrame implements ActionListener
 
         airlineLbl = new JLabel("Airline:");
         // add items to the combo box
-        Airlines al = new Airlines();
-        for (Airline airline: al.getAirlines()) {
+
+        ArrayList<Airline> airlines = new ArrayList<>(Airlines.getAirlines().values());
+        Collections.sort(airlines);
+        for (Airline airline: airlines) {
             airlineCombo.addItem(airline.getCode()+" "+airline.getName());
         }
 
@@ -37,9 +41,9 @@ public class AddFlightGUI extends JFrame implements ActionListener
 
         planeLbl = new JLabel("Plane:");
         Aeroplanes plane = new Aeroplanes();
-        for (Aeroplane aeroplane: plane.getAeroplanes()) {
+        /*for (Aeroplane aeroplane: plane.getAeroplanes()) {
             planeCombo.addItem(aeroplane.getModel());
-        }
+        }*/
         departureLbl = new JLabel("Departure:");
         destinationLbl = new JLabel("Destination:");
 

@@ -12,33 +12,33 @@ public class ReportFile implements IWriteable {
         this.flights = flights;
     }
 
-    public void performCalculations() {
-
-        HashSet<Airline> airlinesSet = this.airlines.getAirlines();
-        double distance = 0, emissions = 0, fuelConsumption = 0;
-
-        //Iterate through every airline that exists
-        for (Airline airline : airlinesSet) {
-            //For every airline loop through its flights
-            for (Flight flight : airline.flights) {
-
-                //Get the flight's individual values for distance, emissions and fuel consumption then total these
-                distance += flight.getDistance();
-                emissions += flight.getCo2Emissions();
-                fuelConsumption += flight.getFuelConsumption();
-            }
-
-            //Set the airline's total distance travelled, emissions and average fuel consumption
-            airline.setTotalDistance(distance);
-            airline.setTotalEmissions(emissions);
-            airline.setAverageFuelConsumption(fuelConsumption / airline.flights.size());
-
-            //Reset for next airline in set
-            distance = 0;
-            emissions = 0;
-            fuelConsumption = 0;
-        }
-    }
+//    public void performCalculations() {
+//
+//        HashSet<Airline> airlinesSet = this.airlines.getAirlines();
+//        double distance = 0, emissions = 0, fuelConsumption = 0;
+//
+//        //Iterate through every airline that exists
+//        for (Airline airline : airlinesSet) {
+//            //For every airline loop through its flights
+//            for (Flight flight : airline.flights) {
+//
+//                //Get the flight's individual values for distance, emissions and fuel consumption then total these
+//                distance += flight.getDistance();
+//                emissions += flight.getCo2Emissions();
+//                fuelConsumption += flight.getFuelConsumption();
+//            }
+//
+//            //Set the airline's total distance travelled, emissions and average fuel consumption
+//            airline.setTotalDistance(distance);
+//            airline.setTotalEmissions(emissions);
+//            airline.setAverageFuelConsumption(fuelConsumption / airline.flights.size());
+//
+//            //Reset for next airline in set
+//            distance = 0;
+//            emissions = 0;
+//            fuelConsumption = 0;
+//        }
+//    }
 
 
     @Override
