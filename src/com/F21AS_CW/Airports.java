@@ -24,14 +24,34 @@ public class Airports implements IWriteable{
                 String[] fields = line.split(";");
 
                 //If the line doesn't contain the required fields then skip over the line
-                if (fields.length < 1)
-                    continue;
+          //     if (fields.length < 1)
+            //        continue;
 
                 String airportCode = fields[0];
                 String airportName = fields[1];
+                String l0ngitude = fields[2];
+                String latitude = fields[3];
 
-            //    int l0ngitude = Integer.parseInt(fields[2]);
-            //    int latitude = Integer.parseInt(fields[3]);
+                String[] split1 =  l0ngitude.split("°");
+                Double degrees1 = Double.parseDouble(split1[0]);
+
+               String[] split2 = split1[1].split("'");
+               Double minutes1 = Double.parseDouble(split2[0]);
+
+               String[] split3 = split2[1].split("\"");
+               Double seconds1 = Double.parseDouble(split3[0]);
+               Boolean north = split3[1].equals("N");
+
+               String[] split4 =  latitude.split("°");
+               Double degrees2 = Double.parseDouble(split4[0]);
+
+               String[] split5 = split4[1].split("'");
+               Double minutes2 = Double.parseDouble(split5[0]);
+
+               String[] split6 = split5[1].split("\"");
+               Double seconds2 = Double.parseDouble(split6[0]);
+               Boolean west = split6[1].equals("W");
+
 
             //    GPSCoordinates gps = new GPSCoordinates(l0ngitude,latitude);
              //   ControlTower ct = new ControlTower(gps);
