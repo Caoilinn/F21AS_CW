@@ -80,7 +80,11 @@ public class Flight {
         this.airline.addFlight(this);
     }
 
-    public float getDurationOfFlight() {
-        return flightPlan.getFlightPlanTotalDistance() / plane.getCruiseSpeed();
+    public String getDurationOfFlight() {
+        float time =  flightPlan.getFlightPlanTotalDistance()/plane.getCruiseSpeed();
+        int hour = (int)time;
+        int minutes = (int)(60* (time-hour));
+        String time_Duration = hour+":"+minutes;
+        return time_Duration;
     }
 }
