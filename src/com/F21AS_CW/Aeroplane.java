@@ -1,6 +1,6 @@
 package com.F21AS_CW;
 
-public class Aeroplane {
+public class Aeroplane implements Comparable<Aeroplane> {
 
     private String model;
     //speed in kilometres per hour
@@ -52,4 +52,8 @@ public class Aeroplane {
         this.fuelConsumption = fuelConsumption;
     }
 
+    @Override
+    public int compareTo(Aeroplane o) {
+        return this.model.compareTo(o.getModel());
+    }
 }
