@@ -17,8 +17,8 @@ public class AddFlightGUI extends JFrame implements ActionListener
     JTextField flightNoTxt,dateTxt,timeTxt;
     JComboBox<String> airlineCombo = new JComboBox<String>();
     JComboBox<String> plane = new JComboBox<String>();
-    JComboBox<String> departure = new JComboBox<String>();
-    JComboBox<String> destination = new JComboBox<String>();
+    JComboBox<String> departureCombo = new JComboBox<String>();
+    JComboBox<String> destinationCombo = new JComboBox<String>();
 
     // Methods to set up all relevant panels
     public void mainPanel() {
@@ -41,14 +41,14 @@ public class AddFlightGUI extends JFrame implements ActionListener
         plane.addItem("B777");
 
         departureLbl = new JLabel("Departure:");
-        // add items to the combo box
-        departure.addItem("CDG");
-        departure.addItem("LHR");
-
         destinationLbl = new JLabel("Destination:");
-        // add items to the combo box
-        destination.addItem("DXB");
-        destination.addItem("EDI");
+
+        Airports ap = new Airports();
+        for(String airportCode : ap.getAirports().keySet())
+        {
+            departureCombo.addItem(airportCode);
+            destinationCombo.addItem(airportCode);
+        }
 
         dateLbl = new JLabel("Date:");
         dateTxt = new JTextField(8);
@@ -70,9 +70,9 @@ public class AddFlightGUI extends JFrame implements ActionListener
         c.gridx=0;c.gridy=3;p.add(planeLbl,c);
         c.gridx=1;c.gridy=3;p.add(plane,c);
         c.gridx=0;c.gridy=4;p.add(departureLbl,c);
-        c.gridx=1;c.gridy=4;p.add(departure,c);
+        c.gridx=1;c.gridy=4;p.add(departureCombo,c);
         c.gridx=0;c.gridy=5;p.add(destinationLbl,c);
-        c.gridx=1;c.gridy=5;p.add(destination,c);
+        c.gridx=1;c.gridy=5;p.add(destinationCombo,c);
         c.gridx=0;c.gridy=6;p.add(dateLbl,c);
         c.gridx=1;c.gridy=6;p.add(dateTxt,c);
         c.gridx=0;c.gridy=7;p.add(timeLbl,c);
