@@ -9,12 +9,12 @@ public class Flight {
     private Aeroplane plane;
     private Airport departure;
     private Airport destination;
-    private Date date;
-    private Time departureTime;
+    private String date;
+    private String departureTime;
     private FlightPlan flightPlan;
     private Airline airline;
 
-    public Flight(String flightCode, Aeroplane plane, Airport departure, Airport destination, Date date, Time departureTime, FlightPlan flightPlan, Airline airline) {
+    public Flight(String flightCode, Aeroplane plane, Airport departure, Airport destination, String date, String departureTime, FlightPlan flightPlan, Airline airline) {
         this.flightCode = flightCode;
         this.plane = plane;
         this.departure = departure;
@@ -45,11 +45,11 @@ public class Flight {
         return destination;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public Time getDepartureTime() {
+    public String getDepartureTime() {
         return departureTime;
     }
 
