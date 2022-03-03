@@ -4,6 +4,8 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.border.EmptyBorder;
 
 public class AddFlightGUI extends JFrame implements ActionListener
 {
@@ -12,15 +14,17 @@ public class AddFlightGUI extends JFrame implements ActionListener
         // TODO
     }
 
-
     // GUI components
-    JButton add, close;
+    JButton addFlight, close, addToList, removeFromList;
     JLabel flightNoLbl, airlineLbl,planeLbl, departureLbl, destinationLbl,dateLbl,timeLbl;
     JTextField flightNoTxt,dateTxt,timeTxt;
     JComboBox<String> airlineCombo = new JComboBox<String>();
     JComboBox<String> planeCombo = new JComboBox<String>();
     JComboBox<String> departureCombo = new JComboBox<String>();
     JComboBox<String> destinationCombo = new JComboBox<String>();
+    JList<String> controlTList, flightPlanList;
+    JScrollPane scrollList1, scrollList2;
+    DefaultListModel controlTowers, flightPlan;
 
     // Methods to set up all relevant panels
     public void mainPanel() {
@@ -45,9 +49,9 @@ public class AddFlightGUI extends JFrame implements ActionListener
         for (Aeroplane aeroplane: aeroplanes) {
             planeCombo.addItem(aeroplane.getModel());
         }
+
         departureLbl = new JLabel("Departure:");
         destinationLbl = new JLabel("Destination:");
-
         Airports ap = new Airports();
         for(String airportCode : ap.getAirports().keySet())
         {
@@ -87,20 +91,63 @@ public class AddFlightGUI extends JFrame implements ActionListener
 
         // South Panel for the add & close buttons
         JPanel p2 = new JPanel();
-        add = new JButton("Add");
-        add.addActionListener(this);
-        p2.add(add);
-
+        addFlight = new JButton("Add Flight");
+        addFlight.addActionListener(this);
+        p2.add(addFlight);
         close = new JButton("Close");
         close.addActionListener(this);
         p2.add(close);
         this.add(p2, BorderLayout.SOUTH);
+
+
+        JPanel p3 = new JPanel();
+        controlTowers = new DefaultListModel<>();
+        flightPlan = new DefaultListModel<>();
+
+        // Populating the list of control towers from the hashmap
+        for(String airportCode : ap.getAirports().keySet())
+        {
+            controlTowers.addElement(airportCode);
+        }
+        controlTList = new JList(controlTowers);
+        controlTList.setVisibleRowCount(12);
+        //controlTList.setFixedCellHeight(100);
+        controlTList.setFixedCellWidth(60);
+        controlTList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        scrollList1 = new JScrollPane(controlTList);
+
+
+        flightPlanList = new JList(flightPlan);
+        flightPlanList.setVisibleRowCount(2);
+        flightPlanList.setFixedCellHeight(100);
+        flightPlanList.setFixedCellWidth(60);
+        flightPlanList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        scrollList2 = new JScrollPane(flightPlanList);
+
+     // add and remove list buttons
+        addToList = new JButton("Add");
+        addToList.addActionListener(this);
+        removeFromList = new JButton("Remove");
+        removeFromList.addActionListener(this);
+        p3.add(addToList);
+        p3.add(removeFromList);
+        this.add(p3, BorderLayout.SOUTH);
+
+        p3.setBorder(BorderFactory.createTitledBorder("Flight Plan"));
+       // controlTList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        p3.add(scrollList1);
+        p3.add(scrollList2);
+
+        this.add(p3, BorderLayout.EAST);
+       // p3.setBorder(new EmptyBorder(new Insets(25, 25, 25, 25)));
+
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        if (e.getSource() == add)
+        if (e.getSource() == addFlight)
         {
             // ToDo
 
@@ -115,7 +162,7 @@ public class AddFlightGUI extends JFrame implements ActionListener
     public void guiCreate()
     {
         this.setTitle("Add A Flight");
-        this.setPreferredSize(new Dimension(600,400));
+        this.setPreferredSize(new Dimension(800,400));
         this.setDefaultCloseOperation(this.DO_NOTHING_ON_CLOSE);
         this.setLocation(600,400);
         this.setLayout(new BorderLayout(5,5));
