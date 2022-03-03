@@ -86,8 +86,11 @@ public class Flight {
 
     public int getFuelConsumption() {
 
-        float consumption = plane.getFuelConsumption() * (flightPlan.getFlightPlanTotalDistance() / 100);
+        float consumption = plane.getFuelConsumption() * ((float) flightPlan.getFlightPlanTotalDistance() / 100.0f);
         //returns integer for ease of use with GUI
+        System.out.println(flightPlan.getFlightPlanTotalDistance()/100);
+        System.out.println(plane.getFuelConsumption());
+        System.out.println(consumption);
         return (int) consumption;
     }
 

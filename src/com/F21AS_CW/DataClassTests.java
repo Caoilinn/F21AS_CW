@@ -11,9 +11,13 @@ public class DataClassTests {
     public static void setUpDataClasses() {
         //Creates instance of each Data Structure Class so we have access to them for each test
         Airlines airlines = new Airlines();
+        airlines.ReadFromFile();
         Airports airports = new Airports();
+        airports.ReadFromFile();
         Aeroplanes aeroplanes = new Aeroplanes();
+        aeroplanes.ReadFromFile();
         Flights flights = new Flights();
+        flights.ReadFromFile();
     }
     @Test
     public void testFlightPlan() {
@@ -58,7 +62,20 @@ public class DataClassTests {
 
     }
     @Test
-    public void testFlights() {
+    public void testFlight() {
+        //test that attempting to retrieve a flight that doesn't exist returns null
+        Flight testFlight = Flights.getFlights().get("AF6");
+        assertNull(testFlight);
+
+        //check we are receiving valid flight from correct input
+        testFlight = Flights.getFlights().get("BA534");
+        assertNotNull(testFlight);
+        //check calculations for fuelConsumption, Co2Emissions and flight Duration
+        assertEquals(107455,testFlight.getFuelConsumption());
+        assertEquals(88113,testFlight.getCo2Emissions());
+        assertEquals("12:53",testFlight.getDurationOfFlight());
+        //Check exceptions are working
+        assertThrows(InvalidFlightException.class,() -> new Flight("anadna",Aeroplanes.getAeroplanes().get("B777"),null,null,"Date", "Time",null,null));
 
     }
 
