@@ -165,106 +165,172 @@ public class AddFlightGUI extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addFlight) {
-            String date = dateTxt.getText();
-            String time = timeTxt.getText();
-            String departure = departureCombo.getSelectedItem().toString();
-            String destination = destinationCombo.getSelectedItem().toString();
-            String planeCode = planeCombo.getSelectedItem().toString();
-            String[] airlineStuff = airlineCombo.getSelectedItem().toString().split(" ");
-            String airlineCode = airlineStuff[0];
-            Random rand = new Random();
-            int randNo = rand.nextInt(999 - 100);
-            if (randNo < 100) {
-                randNo += 100;
-            }
-            String flightCode = airlineCode + randNo;
-
-            if (departure.equals(destination)) {
-                JOptionPane.showMessageDialog(rootPane, "destination and departure can not be the same");
-                return;
-            }
-            if (date.equals(null) || time.equals(null)) {
-                JOptionPane.showMessageDialog(rootPane, "empty field is not allowed");
-                return;
-            }
-            if (!date.matches("\\d{2}:\\d{2}:\\d{4}")) {
-                JOptionPane.showMessageDialog(rootPane, "Date does not match dd:mm:yyyy format");
-                return;
-            }
-            if (!time.matches("\\d{2}:\\d{2}")) {
-                JOptionPane.showMessageDialog(rootPane, "Time does not match hh:mm format");
-                return;
-            }
-
-            FlightPlan plan = new FlightPlan();
-
-            Airport departureA = Airports.getAirports().get(departure);
-            plan.addToPlan(departureA);
-            for (int x = 0; x < flightPlan.size(); x++) {
-                plan.addToPlan(Airports.getAirports().get(flightPlan.get(x).toString()));
-            }
-            Airport destinationA = Airports.getAirports().get(destination);
-            plan.addToPlan(destinationA);
-            Flight flight = new Flight(flightCode, Aeroplanes.getAeroplanes().get(planeCode), departureA, destinationA, date, time, plan, Airlines.getAirlines().get(airlineCode));
-            Flights.getFlights().put(flightCode, flight);
-            System.out.println(flight);
-            TravelGUI.addFlightGUIisActive = false;
-            travelGUI.resetList();
-            this.dispose();
-
-
+            addFlight();
         } else if (e.getSource() == close) {
             this.dispose();
             TravelGUI.addFlightGUIisActive = false;
         } else if (e.getSource() == addToList) {
-            String controlTowerCode = controlTList.getSelectedValue();
-
-            if (flightPlan.getSize() >= 6) {
-                JOptionPane.showMessageDialog(rootPane, "Cannot add more than 6 control towers!");
-                return;
-            }
-
-            if (controlTList.getSelectedIndex() == -1) {
-                JOptionPane.showMessageDialog(rootPane, "Nothing Selected!");
-            } else {
-                int value = controlTList.getSelectedIndex();
-
-                if (departureCombo.getSelectedItem().toString().equals(controlTowerCode)) {
-                    JOptionPane.showMessageDialog(rootPane, "Can't add departure to flight plan");
-
-                } else if (destinationCombo.getSelectedItem().toString().equals(controlTowerCode)) {
-                    JOptionPane.showMessageDialog(rootPane, "Can't add destination to flight plan");
-                } else {
-                    flightPlan.addElement(controlTowerCode);
-                    flightPlanList.setModel(flightPlan);
-                    if (flightPlan.getSize() != 0) {
-                        controlTowers.removeElementAt(value);
-                    }
-                }
-            }
+            addToList();
         } else if (e.getSource() == removeFromList) {
-            String controlTowerCode = flightPlanList.getSelectedValue();
+            removeFromList();
 
-            if (flightPlanList.getSelectedIndex() == -1) {
-                JOptionPane.showMessageDialog(rootPane, "Nothing Selected");
-            } else {
-                int value = flightPlanList.getSelectedIndex();
-                controlTowers.addElement(controlTowerCode);
-                controlTList.setModel(controlTowers);
-
-                if (controlTowers.getSize() != 0) {
-                    flightPlan.removeElementAt(value);
-                }
-            }
         } else if (e.getSource() == destinationCombo || e.getSource() == departureCombo) {
-            for (int x = 0; x < flightPlan.size(); x++) {
-                controlTowers.addElement(flightPlan.get(x));
-            }
-            controlTList.setModel(controlTowers);
-            flightPlan.clear();
-            flightPlanList.setModel(flightPlan);
+            destinationDepartureChange();
 
         }
+    }
+
+    //Adds a new flight to the flights HashMap
+    private void addFlight() {
+        //Retrieve values from the text boxes
+        String date = dateTxt.getText();
+        String time = timeTxt.getText();
+        String departure = departureCombo.getSelectedItem().toString();
+        String destination = destinationCombo.getSelectedItem().toString();
+        String planeCode = planeCombo.getSelectedItem().toString();
+
+        //Generate flight code - airline code + random 3 digit number
+        String[] airlineStuff = airlineCombo.getSelectedItem().toString().split(" ");
+        String airlineCode = airlineStuff[0];
+        Random rand = new Random();
+        int randNo = rand.nextInt(999 - 100);
+        if (randNo < 100) {
+            randNo += 100;
+        }
+        String flightCode = airlineCode + randNo;
+
+        //Check if the departure and destination airports are the same, don't allow users to continue if so
+        if (departure.equals(destination)) {
+            JOptionPane.showMessageDialog(rootPane, "destination and departure can not be the same");
+            return;
+        }
+        //Check if data and time are empty, if so don't allow users to continue
+        if (date.equals(null) || time.equals(null)) {
+            JOptionPane.showMessageDialog(rootPane, "empty field is not allowed");
+            return;
+        }
+        //Make sure data matches a specific format (DD:MM:YYYY)
+        if (!date.matches("\\d{2}:\\d{2}:\\d{4}")) {
+            JOptionPane.showMessageDialog(rootPane, "Date does not match dd:mm:yyyy format");
+            return;
+        }
+        //Make sure time matches a specific format (HH:MM)
+        if (!time.matches("\\d{2}:\\d{2}")) {
+            JOptionPane.showMessageDialog(rootPane, "Time does not match hh:mm format");
+            return;
+        }
+
+        //Create new FlightPlan object
+        FlightPlan plan = new FlightPlan();
+
+        //Find the departure airport from the airports HashMap and add it to the beginning of flight plan
+        Airport departureA = Airports.getAirports().get(departure);
+        plan.addToPlan(departureA);
+
+        //Loop through all the airport codes in the user generated flight plan list
+        for (int x = 0; x < flightPlan.size(); x++) {
+            //retrieve the airports from the HashMap and add them to the flight plan
+            plan.addToPlan(Airports.getAirports().get(flightPlan.get(x).toString()));
+        }
+
+        //Find the destination airport from the airports HashMap and add it to the end of flight plan
+        Airport destinationA = Airports.getAirports().get(destination);
+        plan.addToPlan(destinationA);
+
+        //Create a new flight object with all the retrieved information
+        Flight flight = new Flight(flightCode, Aeroplanes.getAeroplanes().get(planeCode), departureA, destinationA, date, time, plan, Airlines.getAirlines().get(airlineCode));
+
+        //Add the flight to the flight HashMap
+        Flights.getFlights().put(flightCode, flight);
+
+        //Reset the main GUI to allow for the updated flights HashMap
+        TravelGUI.addFlightGUIisActive = false;
+        travelGUI.resetList();
+
+        //Close this window
+        this.dispose();
+    }
+
+    //Adds a specific airport code to the flight plan list
+    private void addToList() {
+        //Retrieve the selected code from the control tower list
+        String controlTowerCode = controlTList.getSelectedValue();
+
+        //Ensure no more than 6 control towers can be added
+        if (flightPlan.getSize() >= 6) {
+            JOptionPane.showMessageDialog(rootPane, "Cannot add more than 6 control towers!");
+            return;
+        }
+
+        //Ensure that the user has actually selected a code
+        if (controlTList.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Nothing Selected!");
+        } else {
+            //Retrieve the index of the selected code
+            int value = controlTList.getSelectedIndex();
+
+            //Don't allow the user to add the departure airport to the plan
+            if (departureCombo.getSelectedItem().toString().equals(controlTowerCode)) {
+                JOptionPane.showMessageDialog(rootPane, "Can't add departure to flight plan");
+            }
+            //Don't allow the user to add the destination airport to the plan
+            else if (destinationCombo.getSelectedItem().toString().equals(controlTowerCode)) {
+                JOptionPane.showMessageDialog(rootPane, "Can't add destination to flight plan");
+            } else {
+                //Add the selected code to the flight plan list
+                flightPlan.addElement(controlTowerCode);
+
+                //Reset the UI element
+                flightPlanList.setModel(flightPlan);
+
+                //Remove the selected code from the control tower list to ensure that the user doesn't add the same one twice
+                if (flightPlan.getSize() != 0) {
+                    controlTowers.removeElementAt(value);
+                }
+            }
+        }
+    }
+
+    //Removes an element from the flight plan list
+    private void removeFromList() {
+        //Retrieve the selected code from the flight plan list
+        String flightPlanCode = flightPlanList.getSelectedValue();
+
+        //Ensure the user has made a selction
+        if (flightPlanList.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Nothing Selected");
+        } else {
+            //Retrieve the index of the element
+            int value = flightPlanList.getSelectedIndex();
+
+            //Add the element back to the control tower list
+            controlTowers.addElement(flightPlanCode);
+
+            //Reset the UI element
+            controlTList.setModel(controlTowers);
+
+            //Remove the element from the flight plan list
+            if (controlTowers.getSize() != 0) {
+                flightPlan.removeElementAt(value);
+            }
+        }
+    }
+
+    //Resets the control tower list once the destination or departure airport has been changed
+    private void destinationDepartureChange() {
+        //Loop through all of the elements in flightPlan add them all back into controlTower
+        for (int x = 0; x < flightPlan.size(); x++) {
+            controlTowers.addElement(flightPlan.get(x));
+        }
+
+        //Reset the UI element
+        controlTList.setModel(controlTowers);
+
+        //Reset the flight plan list
+        flightPlan.clear();
+
+        //Reset the UI element
+        flightPlanList.setModel(flightPlan);
     }
 
     public void guiCreate() {
