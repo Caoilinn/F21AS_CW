@@ -13,7 +13,8 @@ public class TravelGUI extends JFrame implements ActionListener, ListSelectionLi
     public static boolean flightEditorGUIisActive = false;
 
     // Declare lists to be searched
-    public TravelGUI() {}
+    public TravelGUI() {
+    }
 
     // GUI components
     JButton addFlight, editFlight, close;
@@ -102,8 +103,7 @@ public class TravelGUI extends JFrame implements ActionListener, ListSelectionLi
         p.setBorder(new EmptyBorder(new Insets(25, 25, 25, 25)));
     }
 
-    public void setupSouthPanel()
-    {
+    public void setupSouthPanel() {
         JPanel p = new JPanel();
 
         // Add
@@ -127,27 +127,27 @@ public class TravelGUI extends JFrame implements ActionListener, ListSelectionLi
 
     // Action listener for the GUI components
     @Override
-    public void actionPerformed(ActionEvent e)
-    {
+    public void actionPerformed(ActionEvent e) {
         // Add
-        if (e.getSource() == addFlight && this.addFlightGUIisActive == false)
-        {showAddFlightGUI();}
+        if (e.getSource() == addFlight && this.addFlightGUIisActive == false) {
+            showAddFlightGUI();
+        }
 
         // Edit
-        else if (e.getSource() == editFlight && this.flightEditorGUIisActive == false)
-        {showFlightEditorGUI();}
+        else if (e.getSource() == editFlight && this.flightEditorGUIisActive == false) {
+            showFlightEditorGUI();
+        }
 
         // Close
-        else if (e.getSource() == close)
-        {
+        else if (e.getSource() == close) {
+            JOptionPane.showMessageDialog(rootPane, "Report File has been generated");
             TravelManager.writeToFiles();
             System.exit(0);
-        }
+        }   
     }
 
     // Sets parameters for creating the GUI
-    public void guiCreate()
-    {
+    public void guiCreate() {
         this.setTitle("Travel Application");
         this.setPreferredSize(new Dimension(600, 300));
         this.setDefaultCloseOperation(this.DO_NOTHING_ON_CLOSE);
@@ -161,16 +161,14 @@ public class TravelGUI extends JFrame implements ActionListener, ListSelectionLi
     }
 
     // Creates a new AddFlightGUI window only if there isn't one currently open
-    public void showAddFlightGUI()
-    {
+    public void showAddFlightGUI() {
         AddFlightGUI GUI = new AddFlightGUI(this);
         GUI.guiCreate();
         this.addFlightGUIisActive = true;
     }
 
     // Creates a new FlightEditorGUI window only if there isn't one currently open
-    public void showFlightEditorGUI()
-    {
+    public void showFlightEditorGUI() {
         FlightEditorGUI GUI = new FlightEditorGUI();
         GUI.guiCreate();
         this.flightEditorGUIisActive = true;
@@ -199,8 +197,7 @@ public class TravelGUI extends JFrame implements ActionListener, ListSelectionLi
     }
 
     // Refreshes the list with any new additions or amendments
-    public void resetList()
-    {
+    public void resetList() {
         DefaultListModel<String> list = new DefaultListModel<>();
         ArrayList<Flight> flights = new ArrayList<Flight>(Flights.getFlights().values());
         for (Flight flight : flights) {
