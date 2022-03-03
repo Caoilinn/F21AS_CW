@@ -42,6 +42,7 @@ public class FlightPlan {
     }
 
     public void addToPlan(Airport node) {
+        //flightPlan cant be bigger than size 8 so we check for this
         if (flightPlan.size() >= 8) {
             System.out.println("Plan is full");
             return;

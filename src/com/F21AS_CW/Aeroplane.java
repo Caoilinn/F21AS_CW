@@ -32,24 +32,14 @@ public class Aeroplane implements Comparable<Aeroplane> {
         return model;
     }
 
-    public void setModel(String model) {
-        this.model = model;
-    }
 
     public float getCruiseSpeed() {
         return cruiseSpeed;
     }
 
-    public void setCruiseSpeed(float cruiseSpeed) {
-        this.cruiseSpeed = cruiseSpeed;
-    }
 
     public float getFuelConsumption() {
         return fuelConsumption;
-    }
-
-    public void setFuelConsumption(float fuelConsumption) {
-        this.fuelConsumption = fuelConsumption;
     }
 
     @Override

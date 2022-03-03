@@ -52,8 +52,4 @@ public class Airlines implements IWriteable {
         return false;
     }
 
-    @Override
-    public void ProcessLine() {
-
-    }
 }

@@ -92,9 +92,4 @@ public class Flights implements IWriteable {
         }
         return true;
     }
-
-    @Override
-    public void ProcessLine() {
-
-    }
 }
