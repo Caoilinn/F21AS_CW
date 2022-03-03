@@ -36,14 +36,12 @@ public class Airports implements IWriteable {
 
     @Override
     public boolean WriteToFile() {
-        System.out.println("Airports write to file");
         return false;
     }
 
     @Override
     public boolean ReadFromFile() {
 
-        System.out.println("Airports read from file");
         try {
             this.airports = new HashMap<>();
             File airportsFile = new File("Airports");
