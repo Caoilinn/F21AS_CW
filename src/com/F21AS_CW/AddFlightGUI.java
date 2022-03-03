@@ -85,7 +85,7 @@ public class AddFlightGUI extends JFrame implements ActionListener
 
         this.add(p);
 
-        // South Panel for the add & close buttons
+        // South Panel for the add and close buttons
         JPanel p2 = new JPanel();
         add = new JButton("Add");
         add.addActionListener(this);
