@@ -20,6 +20,18 @@ public class Airline implements Comparable<Airline> {
                 '}';
     }
 
+    public double getTotalDistance() {
+        return totalDistance;
+    }
+
+    public double getTotalFuelConsumption() {
+        return totalFuelConsumption;
+    }
+
+    public double getTotalEmissions() {
+        return totalEmissions;
+    }
+
     public Airline(String name, String code) {
         this.name = name;
         this.code = code;

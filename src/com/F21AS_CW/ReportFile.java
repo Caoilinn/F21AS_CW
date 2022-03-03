@@ -5,17 +5,12 @@ import java.util.HashSet;
 
 public class ReportFile implements IWriteable {
 
-    Airlines airlines;
-    Flights flights;
-
-    public ReportFile(Airlines airlines, Flights flights) {
-        this.airlines = airlines;
-        this.flights = flights;
+    public ReportFile() {
     }
 
     public void performCalculations() {
 
-        ArrayList<Airline> airlines = new ArrayList<Airline>(this.airlines.getAirlines().values());
+        ArrayList<Airline> airlines = new ArrayList<Airline>(Airlines.getAirlines().values());
         double distance = 0, emissions = 0, fuelConsumption = 0;
 
         //Iterate through every airline that exists
@@ -32,13 +27,15 @@ public class ReportFile implements IWriteable {
             //Set the airline's total distance travelled, emissions and average fuel consumption
             airline.setTotalDistance(distance);
             airline.setTotalEmissions(emissions);
-            airline.setAverageFuelConsumption(fuelConsumption / airline.flights.size());
+            if (fuelConsumption >= 0)
+                airline.setAverageFuelConsumption(fuelConsumption / airline.flights.size());
 
             //Reset for next airline in set
             distance = 0;
             emissions = 0;
             fuelConsumption = 0;
         }
+
     }
 
 

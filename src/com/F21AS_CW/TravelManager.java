@@ -1,4 +1,5 @@
 package com.F21AS_CW;
+
 import java.awt.Dimension;
 
 import java.io.File;
@@ -6,27 +7,25 @@ import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.Scanner;
 
-public class TravelManager
-{
+public class TravelManager {
 
     // Instance variables
-        // private Airlines airlinesList;
-        // private Flights flightsList;
-        // private Airports airportsList;
-        // private Airplane aeroplanesList;
+    // private Airlines airlinesList;
+    // private Flights flightsList;
+    // private Airports airportsList;
+    // private Airplane aeroplanesList;
 
     // Constructor
     //  public TravelManager()
     //  {
-        // Initialise all lists
-            // airlinesList = new Airlines();
-            // flightsList = new Flights();
-            // airportsList = new Airports();
-            // aeroplanesList = new Aeroplane();
+    // Initialise all lists
+    // airlinesList = new Airlines();
+    // flightsList = new Flights();
+    // airportsList = new Airports();
+    // aeroplanesList = new Aeroplane();
     //  }
 
-    public void run()
-    {
+    public void run() {
    /*             try {
                     HashSet<String> airlinesList = new HashSet<String>();
                     File airlines = new File("Airlines");
@@ -51,21 +50,23 @@ public class TravelManager
 
 
         // Call read methods for all relevant classes
-            // airlinesList.readFromFile("AirlinesInput.csv");
-            // flightsList.readFromFile("FlightsInput.csv");
-            // airportsList.readFromFile("AirportsInput.csv");
-            // aeroplanesList.readFromFile("AeroplaneInput.csv");
+        // airlinesList.readFromFile("AirlinesInput.csv");
+        // flightsList.readFromFile("FlightsInput.csv");
+        // airportsList.readFromFile("AirportsInput.csv");
+        // aeroplanesList.readFromFile("AeroplaneInput.csv");
         // Call a single write method
-            // objectName.writeToFile("output.txt", objectName.exitReport());
+        // objectName.writeToFile("output.txt", objectName.exitReport());
         Airlines airlines = new Airlines();
         Airports airports = new Airports();
         Aeroplanes aeroplanes = new Aeroplanes();
         Flights flights = new Flights();
-        showTravelGUI();
+        ReportFile reportFile = new ReportFile();
+        //showTravelGUI();
+        reportFile.performCalculations();
+
     }
 
-    public void showTravelGUI()
-    {
+    public void showTravelGUI() {
         TravelGUI GUI = new TravelGUI();
         GUI.guiCreate();
 
