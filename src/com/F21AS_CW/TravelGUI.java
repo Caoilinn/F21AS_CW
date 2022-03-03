@@ -175,11 +175,15 @@ public class TravelGUI extends JFrame implements ActionListener, ListSelectionLi
         double emissions = flight.getCo2Emissions();
         String time = flight.getDepartureTime();
         double fuelConsumption = flight.getFuelConsumption();
+        String flightPlan = flight.getFlightPlan().toString();
 
         //Set the text fields to the appropriate values
         this.distance.setText(String.valueOf(distance));
         this.co2.setText(String.valueOf(emissions));
         this.time.setText(time);
         this.fuel.setText(String.valueOf(fuelConsumption));
+        this.flightPlan.setText(flightPlan);
+
+        //System.out.println("The flight plan is " + flightPlan);
     }
 }
