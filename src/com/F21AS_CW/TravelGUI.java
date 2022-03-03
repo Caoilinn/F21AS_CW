@@ -5,8 +5,10 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
-public class TravelGUI extends JFrame implements ActionListener {
+public class TravelGUI extends JFrame implements ActionListener, ListSelectionListener {
     public static boolean addFlightGUIisActive = false;
     public static boolean flightEditorGUIisActive = false;
 
@@ -36,11 +38,11 @@ public class TravelGUI extends JFrame implements ActionListener {
         DefaultListModel<String> list = new DefaultListModel<>();
         ArrayList<Flight> flights = new ArrayList<Flight>(Flights.getFlights().values());
         for (Flight flight : flights) {
-            System.out.println(flight);
             list.addElement(flight.getFlightCode() + "  " + flight.getPlane().getModel() + "  " + flight.getDeparture().getName() + "  " + flight.getDestination().getName() + " "
                     + flight.getDate() + " " + flight.getDepartureTime());
         }
         flightList = new JList(list);
+        flightList.addListSelectionListener(this);
         scrollList = new JScrollPane(flightList);
         flightList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         p.add(scrollList);
@@ -159,5 +161,29 @@ public class TravelGUI extends JFrame implements ActionListener {
         FlightEditorGUI GUI = new FlightEditorGUI();
         GUI.guiCreate();
         this.flightEditorGUIisActive = true;
+    }
+
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        String x = flightList.getSelectedValue();
+        String[] temp = x.split(" ");
+        String flightCode = temp[0];
+        Flight flight = Flights.getFlights().get(flightCode);
+
+        //Retrieve Distance, Emissions, Time and Fuel Consumption from the flight object
+        double distance = flight.getDistance();
+        double emissions = flight.getCo2Emissions();
+        String time = flight.getDepartureTime();
+        double fuelConsumption = flight.getFuelConsumption();
+        String flightPlan = flight.getFlightPlan().toString();
+
+        //Set the text fields to the appropriate values
+        this.distance.setText(String.valueOf(distance));
+        this.co2.setText(String.valueOf(emissions));
+        this.time.setText(time);
+        this.fuel.setText(String.valueOf(fuelConsumption));
+        this.flightPlan.setText(flightPlan);
+
+        //System.out.println("The flight plan is " + flightPlan);
     }
 }

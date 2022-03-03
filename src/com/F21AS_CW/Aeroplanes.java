@@ -22,14 +22,12 @@ public class Aeroplanes implements IWriteable {
 
     @Override
     public boolean WriteToFile() {
-        System.out.println("Aeroplanes write to file");
         return false;
     }
 
     @Override
     public boolean ReadFromFile() {
 
-        System.out.println("Aeroplanes read from file");
         try {
             this.aeroplanes = new HashMap<String, Aeroplane>();
             File aeroplanesFile = new File("Aeroplanes");

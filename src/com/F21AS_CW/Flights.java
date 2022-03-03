@@ -42,13 +42,11 @@ public class Flights implements IWriteable {
 
     @Override
     public boolean WriteToFile() {
-        System.out.println("Flights write to file");
         return false;
     }
 
     @Override
     public boolean ReadFromFile() {
-        System.out.println("Flights read from file");
         try {
             this.flights = new HashMap<>();
             File flightsFile = new File("Flights");

@@ -20,13 +20,11 @@ public class Airlines implements IWriteable {
 
     @Override
     public boolean WriteToFile() {
-        System.out.println("Airlines write to file");
         return false;
     }
 
     @Override
     public boolean ReadFromFile() {
-        System.out.println("Airlines read from file");
         try {
             this.airlines = new HashMap<String, Airline>();
             File airlinesFile = new File("Airlines");
