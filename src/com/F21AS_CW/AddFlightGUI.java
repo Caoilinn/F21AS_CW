@@ -139,7 +139,8 @@ public class AddFlightGUI extends JFrame implements ActionListener {
 
 
         flightPlanList = new JList(flightPlan);
-        flightPlanList.setVisibleRowCount(10);
+        flightPlanList.setVisibleRowCount(18);
+        //flightPlanList.setFixedCellHeight(100);
         flightPlanList.setFixedCellWidth(60);
         flightPlanList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         scrollList2 = new JScrollPane(flightPlanList);
