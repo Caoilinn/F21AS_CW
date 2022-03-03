@@ -37,7 +37,6 @@ public class FlightPlan {
         }
     }
 
-
     public FlightPlan() {
         this.flightPlan = new LinkedList<Airport>();
     }
