@@ -33,19 +33,14 @@ public class AddFlightGUI extends JFrame implements ActionListener {
     // Methods to set up all relevant panels
     public void mainPanel() {
         JPanel p = new JPanel(new GridBagLayout());
-
         airlineLbl = new JLabel("Airline:");
-        // add items to the combo box
 
+        // add items to the combo box
         ArrayList<Airline> airlines = new ArrayList<Airline>(Airlines.getAirlines().values());
         Collections.sort(airlines);
         for (Airline airline : airlines) {
             airlineCombo.addItem(airline.getCode() + " " + airline.getName());
         }
-
-//        flightNoLbl = new JLabel("Flight Number:");
-//        flightNoTxt = new JTextField(12);
-//        flightNoTxt.addActionListener(this);
 
         planeLbl = new JLabel("Plane:");
 
@@ -84,12 +79,6 @@ public class AddFlightGUI extends JFrame implements ActionListener {
         c.gridx = 1;
         c.gridy = 1;
         p.add(airlineCombo, c);
-//        c.gridx = 0;
-//        c.gridy = 2;
-//        p.add(flightNoLbl, c);
-//        c.gridx = 1;
-//        c.gridy = 2;
-//        p.add(flightNoTxt, c);
         c.gridx = 0;
         c.gridy = 3;
         p.add(planeLbl, c);
@@ -144,7 +133,6 @@ public class AddFlightGUI extends JFrame implements ActionListener {
         }
         controlTList = new JList(controlTowers);
         controlTList.setVisibleRowCount(16);
-        //controlTList.setFixedCellHeight(100);
         controlTList.setFixedCellWidth(60);
         controlTList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         scrollList1 = new JScrollPane(controlTList);
@@ -152,7 +140,6 @@ public class AddFlightGUI extends JFrame implements ActionListener {
 
         flightPlanList = new JList(flightPlan);
         flightPlanList.setVisibleRowCount(10);
-        //flightPlanList.setFixedCellHeight(100);
         flightPlanList.setFixedCellWidth(60);
         flightPlanList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         scrollList2 = new JScrollPane(flightPlanList);
@@ -167,13 +154,10 @@ public class AddFlightGUI extends JFrame implements ActionListener {
         this.add(p3, BorderLayout.SOUTH);
 
         p3.setBorder(BorderFactory.createTitledBorder("Flight Plan"));
-        // controlTList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         p3.add(scrollList1);
         p3.add(scrollList2);
 
         this.add(p3, BorderLayout.EAST);
-        // p3.setBorder(new EmptyBorder(new Insets(25, 25, 25, 25)));
-
     }
 
 
@@ -193,7 +177,6 @@ public class AddFlightGUI extends JFrame implements ActionListener {
                 randNo += 100;
             }
             String flightCode = airlineCode + randNo;
-
 
             if (departure.equals(destination)) {
                 JOptionPane.showMessageDialog(rootPane, "destination and departure can not be the same");
