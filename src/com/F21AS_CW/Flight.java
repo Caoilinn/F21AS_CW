@@ -94,15 +94,15 @@ public class Flight {
         return (int) consumption;
     }
 
-    public void addAirline(){
+    public void addAirline() {
         airline.addFlight(this);
     }
 
     public String getDurationOfFlight() {
-        float time =  flightPlan.getFlightPlanTotalDistance()/plane.getCruiseSpeed();
-        int hour = (int)time;
-        int minutes = (int)(60* (time-hour));
-        String time_Duration = hour+":"+minutes;
+        float time = flightPlan.getFlightPlanTotalDistance() / plane.getCruiseSpeed();
+        int hour = (int) time;
+        int minutes = (int) (60 * (time - hour));
+        String time_Duration = hour + ":" + minutes;
         return time_Duration;
     }
 }

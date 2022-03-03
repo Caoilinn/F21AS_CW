@@ -18,6 +18,7 @@ public class TravelManager {
         Airports airports = new Airports();
         Aeroplanes aeroplanes = new Aeroplanes();
         Flights flights = new Flights();
+        ReportFile reportFile = new ReportFile();
 
 
         //Setup array list of IWriteable so that all the read and writes can be called
@@ -26,11 +27,11 @@ public class TravelManager {
         iWriteables.add(airports);
         iWriteables.add(aeroplanes);
         iWriteables.add(flights);
+        iWriteables.add(reportFile);
 
         readFromFiles();
-        ReportFile reportFile = new ReportFile();
         showTravelGUI();
-
+        reportFile.performCalculations();
     }
 
     public void showTravelGUI() {

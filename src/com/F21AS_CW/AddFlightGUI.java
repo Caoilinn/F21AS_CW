@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 
 public class AddFlightGUI extends JFrame implements ActionListener {
     TravelGUI travelGUI;
+
     public AddFlightGUI(TravelGUI travelGUI) {
         this.travelGUI = travelGUI;
     }
@@ -187,18 +188,18 @@ public class AddFlightGUI extends JFrame implements ActionListener {
             String[] airlineStuff = airlineCombo.getSelectedItem().toString().split(" ");
             String airlineCode = airlineStuff[0];
             Random rand = new Random();
-            int randNo = rand.nextInt(999-100);
-            if(randNo < 100) {
+            int randNo = rand.nextInt(999 - 100);
+            if (randNo < 100) {
                 randNo += 100;
             }
             String flightCode = airlineCode + randNo;
 
 
-            if(departure.equals(destination)) {
+            if (departure.equals(destination)) {
                 JOptionPane.showMessageDialog(rootPane, "destination and departure can not be the same");
                 return;
             }
-            if(date.equals(null)||time.equals(null)) {
+            if (date.equals(null) || time.equals(null)) {
                 JOptionPane.showMessageDialog(rootPane, "empty field is not allowed");
                 return;
             }
@@ -215,13 +216,13 @@ public class AddFlightGUI extends JFrame implements ActionListener {
 
             Airport departureA = Airports.getAirports().get(departure);
             plan.addToPlan(departureA);
-            for(int x = 0; x < flightPlan.size();x++) {
+            for (int x = 0; x < flightPlan.size(); x++) {
                 plan.addToPlan(Airports.getAirports().get(flightPlan.get(x).toString()));
             }
             Airport destinationA = Airports.getAirports().get(destination);
             plan.addToPlan(destinationA);
-            Flight flight = new Flight(flightCode,Aeroplanes.getAeroplanes().get(planeCode),departureA,destinationA,date,time,plan,Airlines.getAirlines().get(airlineCode));
-            Flights.getFlights().put(flightCode,flight);
+            Flight flight = new Flight(flightCode, Aeroplanes.getAeroplanes().get(planeCode), departureA, destinationA, date, time, plan, Airlines.getAirlines().get(airlineCode));
+            Flights.getFlights().put(flightCode, flight);
             System.out.println(flight);
             TravelGUI.addFlightGUIisActive = false;
             travelGUI.resetList();
@@ -233,6 +234,11 @@ public class AddFlightGUI extends JFrame implements ActionListener {
             TravelGUI.addFlightGUIisActive = false;
         } else if (e.getSource() == addToList) {
             String controlTowerCode = controlTList.getSelectedValue();
+
+            if (flightPlan.getSize() >= 6) {
+                JOptionPane.showMessageDialog(rootPane, "Cannot add more than 6 control towers!");
+                return;
+            }
 
             if (controlTList.getSelectedIndex() == -1) {
                 JOptionPane.showMessageDialog(rootPane, "Nothing Selected!");
@@ -267,7 +273,7 @@ public class AddFlightGUI extends JFrame implements ActionListener {
                 }
             }
         } else if (e.getSource() == destinationCombo || e.getSource() == departureCombo) {
-            for(int x = 0; x < flightPlan.size();x++) {
+            for (int x = 0; x < flightPlan.size(); x++) {
                 controlTowers.addElement(flightPlan.get(x));
             }
             controlTList.setModel(controlTowers);

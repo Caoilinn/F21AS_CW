@@ -90,7 +90,7 @@ public class Flights implements IWriteable {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-        return false;
+        return true;
     }
 
     @Override

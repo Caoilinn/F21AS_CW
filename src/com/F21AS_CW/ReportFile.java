@@ -36,6 +36,12 @@ public class ReportFile implements IWriteable {
             fuelConsumption = 0;
         }
 
+        for (Airline airline : airlines) {
+            System.out.println("Total number of flights: " + airline.flights.size());
+            System.out.println("Distance: " + airline.getTotalDistance());
+            System.out.println("Emissions: " + airline.getTotalDistance());
+            System.out.println("Fuel Consumption: " + airline.getTotalDistance());
+        }
     }
 
 
