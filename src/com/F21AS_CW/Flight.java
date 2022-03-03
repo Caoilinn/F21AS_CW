@@ -38,6 +38,7 @@ public class Flight {
         this.flightPlan = flightPlan;
         this.airline = airline;
 
+        //throw exception if either departure or destination are invalid
         if (!Airports.CheckIfValExists(departure) || !Airports.CheckIfValExists(destination)) {
             throw new InvalidFlightException("This is a null airport");
         }
@@ -88,9 +89,6 @@ public class Flight {
 
         float consumption = plane.getFuelConsumption() * ((float) flightPlan.getFlightPlanTotalDistance() / 100.0f);
         //returns integer for ease of use with GUI
-        //System.out.println(flightPlan.getFlightPlanTotalDistance()/100);
-        //System.out.println(plane.getFuelConsumption());
-        //System.out.println(consumption);
         return (int) consumption;
     }
 

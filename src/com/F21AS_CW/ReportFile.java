@@ -55,7 +55,7 @@ public class ReportFile implements IWriteable {
                 bufferedWriter.write("Total number of flights: " + airline.flights.size() + "\n");
                 bufferedWriter.write("Distance: " + airline.getTotalDistance() + "\n");
                 bufferedWriter.write("Emissions: " + airline.getTotalEmissions() + "\n");
-                bufferedWriter.write("Fuel Consumption: " + airline.getTotalDistance() + "\n");
+                bufferedWriter.write("Fuel Consumption: " + airline.getTotalFuelConsumption() + "\n");
                 bufferedWriter.newLine();
             }
             return true;
@@ -70,9 +70,5 @@ public class ReportFile implements IWriteable {
     public boolean ReadFromFile() {
         return false;
     }
-
-    @Override
-    public void ProcessLine() {
-
-    }
+    
 }

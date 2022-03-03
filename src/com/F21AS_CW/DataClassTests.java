@@ -51,14 +51,9 @@ public class DataClassTests {
         assertEquals(7,testFlightPlan2.getFlightPlan().size());
         testFlightPlan2.addToPlan(new Airport("Test","Test", new ControlTower(gps1)));
         assertEquals(8,testFlightPlan2.getFlightPlan().size());
+        //this would take the flight plan over size 8, should print out warning and return without adding the given airport
         testFlightPlan2.addToPlan(new Airport("Test","Test", new ControlTower(gps1)));
-        assertEquals(9,testFlightPlan2.getFlightPlan().size());
-        testFlightPlan2.addToPlan(new Airport("Test","Test", new ControlTower(gps1)));
-        assertEquals(10,testFlightPlan2.getFlightPlan().size());
-
-        //this would take the flight plan over size 10, should print out warning and return without adding the given airport
-        testFlightPlan2.addToPlan(new Airport("Test","Test", new ControlTower(gps1)));
-        assertEquals(10,testFlightPlan2.getFlightPlan().size());
+        assertEquals(8,testFlightPlan2.getFlightPlan().size());
 
     }
     @Test

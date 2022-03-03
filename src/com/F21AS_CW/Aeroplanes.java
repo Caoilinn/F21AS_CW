@@ -55,8 +55,4 @@ public class Aeroplanes implements IWriteable {
         return false;
     }
 
-    @Override
-    public void ProcessLine() {
-
-    }
 }

@@ -86,11 +86,12 @@ public class Airports implements IWriteable {
                double DD_latitude = degrees1 + minutes1 + seconds1;
                double  DD_longitude = degrees2 + minutes2 + seconds2;
 
+               //check if latitude is north or south, invert the number if south
                if (!north){
                    DD_latitude *= -1;
 
                }
-
+                //check if longitude is east or west, invert the number if east
                if (!west){
                    DD_longitude *= -1;
                }
@@ -101,7 +102,6 @@ public class Airports implements IWriteable {
 
                 Airport airport = new Airport(airportCode, airportName, ct);
 
-                // Airport airport = new Airport(airportCode,airportName);
                 this.airports.put(airportCode, airport);
             }
             reader.close();
@@ -110,10 +110,5 @@ public class Airports implements IWriteable {
             e.printStackTrace();
         }
         return false;
-    }
-
-    @Override
-    public void ProcessLine() {
-
     }
 }
