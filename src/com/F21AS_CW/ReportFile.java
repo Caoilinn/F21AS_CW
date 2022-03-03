@@ -1,16 +1,22 @@
 package com.F21AS_CW;
 
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 
 public class ReportFile implements IWriteable {
+
+    private ArrayList<Airline> airlines;
 
     public ReportFile() {
     }
 
     public void performCalculations() {
 
-        ArrayList<Airline> airlines = new ArrayList<Airline>(Airlines.getAirlines().values());
+        airlines = new ArrayList<Airline>(Airlines.getAirlines().values());
         double distance = 0, emissions = 0, fuelConsumption = 0;
 
         //Iterate through every airline that exists
@@ -35,19 +41,29 @@ public class ReportFile implements IWriteable {
             emissions = 0;
             fuelConsumption = 0;
         }
-
-        for (Airline airline : airlines) {
-            System.out.println("Total number of flights: " + airline.flights.size());
-            System.out.println("Distance: " + airline.getTotalDistance());
-            System.out.println("Emissions: " + airline.getTotalDistance());
-            System.out.println("Fuel Consumption: " + airline.getTotalDistance());
-        }
     }
 
 
     @Override
     public boolean WriteToFile() {
-        return false;
+        try {
+            FileWriter fileWriter = new FileWriter("ReportFile");
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            for (Airline airline : airlines) {
+                bufferedWriter.write(airline.getName() + "\n");
+                bufferedWriter.write("Total number of flights: " + airline.flights.size() + "\n");
+                bufferedWriter.write("Distance: " + airline.getTotalDistance() + "\n");
+                bufferedWriter.write("Emissions: " + airline.getTotalEmissions() + "\n");
+                bufferedWriter.write("Fuel Consumption: " + airline.getTotalDistance() + "\n");
+                bufferedWriter.newLine();
+            }
+            return true;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
