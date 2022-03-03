@@ -173,7 +173,7 @@ public class TravelGUI extends JFrame implements ActionListener, ListSelectionLi
         //Retrieve Distance, Emissions, Time and Fuel Consumption from the flight object
         double distance = flight.getDistance();
         double emissions = flight.getCo2Emissions();
-        String time = flight.getDepartureTime();
+        String time = flight.getDurationOfFlight();
         double fuelConsumption = flight.getFuelConsumption();
         String flightPlan = flight.getFlightPlan().toString();
 
@@ -183,7 +183,5 @@ public class TravelGUI extends JFrame implements ActionListener, ListSelectionLi
         this.time.setText(time);
         this.fuel.setText(String.valueOf(fuelConsumption));
         this.flightPlan.setText(flightPlan);
-
-        //System.out.println("The flight plan is " + flightPlan);
     }
 }
