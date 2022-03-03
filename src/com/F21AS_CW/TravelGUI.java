@@ -13,28 +13,24 @@ public class TravelGUI extends JFrame implements ActionListener, ListSelectionLi
     public static boolean flightEditorGUIisActive = false;
 
     // Declare lists to be searched
-    public TravelGUI() {
-        // TODO
-    }
+    public TravelGUI() {}
 
     // GUI components
     JButton addFlight, editFlight, close;
     JTextField distance, time, fuel, co2, flightPlan;
     JLabel distanceLabel, timeLabel, fuelLabel, co2Label, flightPlanLabel;
     JList<String> flightList;
-    //JTextArea textArea;
     JScrollPane scrollList;
 
 
-    // Methods to set up all relevant panels
-
+    // GUI panels setup
     public void setupCenterPanel() {
-        // Create new panel
+
         JPanel p = new JPanel();
         BoxLayout box = new BoxLayout(p, BoxLayout.Y_AXIS);
         p.setLayout(box);
 
-        // Creates placeholder list and assigns it to the panel, sets single selection
+        // Creates a selectable, scrollable list of currently stored flights
         DefaultListModel<String> list = new DefaultListModel<>();
         ArrayList<Flight> flights = new ArrayList<Flight>(Flights.getFlights().values());
         for (Flight flight : flights) {
@@ -58,7 +54,7 @@ public class TravelGUI extends JFrame implements ActionListener, ListSelectionLi
         p2.add(flightPlan);
         p.add(p2);
 
-        // Adds panel to the center and sets an empty boarder around it
+        // Adds the panel to the center with an empty boarder
         this.add(p, BorderLayout.CENTER);
         p.setBorder(new EmptyBorder(new Insets(25, 25, 25, 25)));
     }
@@ -101,43 +97,57 @@ public class TravelGUI extends JFrame implements ActionListener, ListSelectionLi
         co2.setEditable(false);
         p.add(co2);
 
+        // Adds the panel to the west with an empty boarder
         this.add(p, BorderLayout.WEST);
-
         p.setBorder(new EmptyBorder(new Insets(25, 25, 25, 25)));
     }
 
-    public void setupSouthPanel() {
+    public void setupSouthPanel()
+    {
         JPanel p = new JPanel();
 
+        // Add
         addFlight = new JButton("Add");
         addFlight.addActionListener(this);
         p.add(addFlight);
 
+        // Edit
         editFlight = new JButton("Edit");
         editFlight.addActionListener(this);
         p.add(editFlight);
 
+        // Close
         close = new JButton("Close");
         close.addActionListener(this);
         p.add(close);
 
+        // Adds the panel to the south with an empty boarder
         this.add(p, BorderLayout.SOUTH);
     }
 
-    // When a button is clicked, execute appropriate action
+    // Action listener for the GUI components
     @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == addFlight && this.addFlightGUIisActive == false) {
-            showAddFlightGUI();
-        } else if (e.getSource() == editFlight && this.flightEditorGUIisActive == false) {
-            showFlightEditorGUI();
-        } else if (e.getSource() == close) {
+    public void actionPerformed(ActionEvent e)
+    {
+        // Add
+        if (e.getSource() == addFlight && this.addFlightGUIisActive == false)
+        {showAddFlightGUI();}
+
+        // Edit
+        else if (e.getSource() == editFlight && this.flightEditorGUIisActive == false)
+        {showFlightEditorGUI();}
+
+        // Close
+        else if (e.getSource() == close)
+        {
             TravelManager.writeToFiles();
             System.exit(0);
         }
     }
 
-    public void guiCreate() {
+    // Sets parameters for creating the GUI
+    public void guiCreate()
+    {
         this.setTitle("Travel Application");
         this.setPreferredSize(new Dimension(600, 300));
         this.setDefaultCloseOperation(this.DO_NOTHING_ON_CLOSE);
@@ -150,14 +160,17 @@ public class TravelGUI extends JFrame implements ActionListener, ListSelectionLi
         this.pack();
     }
 
-    public void showAddFlightGUI() {
-        // Creates a new AddFlightGUI window only if there isn't one currently open
+    // Creates a new AddFlightGUI window only if there isn't one currently open
+    public void showAddFlightGUI()
+    {
         AddFlightGUI GUI = new AddFlightGUI(this);
         GUI.guiCreate();
         this.addFlightGUIisActive = true;
     }
 
-    public void showFlightEditorGUI() {
+    // Creates a new FlightEditorGUI window only if there isn't one currently open
+    public void showFlightEditorGUI()
+    {
         FlightEditorGUI GUI = new FlightEditorGUI();
         GUI.guiCreate();
         this.flightEditorGUIisActive = true;
@@ -185,8 +198,9 @@ public class TravelGUI extends JFrame implements ActionListener, ListSelectionLi
         this.flightPlan.setText(flightPlan);
     }
 
-    public void resetList() {
-        System.out.println(" YEEEEPPPPPP");
+    // Refreshes the list with any new additions or amendments
+    public void resetList()
+    {
         DefaultListModel<String> list = new DefaultListModel<>();
         ArrayList<Flight> flights = new ArrayList<Flight>(Flights.getFlights().values());
         for (Flight flight : flights) {

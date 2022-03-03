@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c267d7a3-c767-4091-b6e9-faf269c2e55d" name="Changes" comment="Added date and time fields">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/TravelGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/com/F21AS_CW/TravelGUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/TravelGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/TravelGUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,6 +128,7 @@
       <workItem from="1645199021820" duration="1342000" />
       <workItem from="1646127921933" duration="766000" />
       <workItem from="1646264701176" duration="665000" />
+      <workItem from="1646343982878" duration="924000" />
     </task>
     <task id="LOCAL-00001" summary="Added the text files">
       <created>1645544767018</created>
