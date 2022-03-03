@@ -29,10 +29,10 @@ public class Airports implements IWriteable{
 
                 String airportCode = fields[0];
                 String airportName = fields[1];
-                String l0ngitude = fields[2];
-                String latitude = fields[3];
+                String latitude = fields[2];
+                String l0ngitude = fields[3];
 
-                String[] split1 =  l0ngitude.split("°");
+                String[] split1 =  latitude.split("°");
                 Double degrees1 = Double.parseDouble(split1[0]);
 
                String[] split2 = split1[1].split("'");
@@ -42,7 +42,7 @@ public class Airports implements IWriteable{
                Double seconds1 = (Double.parseDouble(split3[0]))/3600;
                Boolean north = split3[1].equals("N");
 
-               String[] split4 =  latitude.split("°");
+               String[] split4 =  l0ngitude.split("°");
                Double degrees2 = Double.parseDouble(split4[0]);
 
                String[] split5 = split4[1].split("'");
@@ -52,19 +52,20 @@ public class Airports implements IWriteable{
                Double seconds2 = (Double.parseDouble(split6[0]))/3600;
                Boolean west = split6[1].equals("W");
 
-               double DD_longitude = degrees1 + minutes1 + seconds1;
-               double DD_latitude = degrees2 + minutes2 + seconds2;
+               double DD_latitude = degrees1 + minutes1 + seconds1;
+               double  DD_longitude = degrees2 + minutes2 + seconds2;
 
                if (!north){
-                   DD_longitude *= -1;
+                   DD_latitude *= -1;
+
                }
 
                if (!west){
-                    DD_latitude *= -1;
+                   DD_longitude *= -1;
                }
 
 
-               GPSCoordinates gps = new GPSCoordinates(DD_longitude,DD_latitude);
+               GPSCoordinates gps = new GPSCoordinates(DD_latitude,DD_longitude);
                ControlTower ct = new ControlTower(gps);
 
                Airport airport = new Airport(airportCode,airportName,ct);

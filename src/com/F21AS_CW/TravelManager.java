@@ -61,7 +61,7 @@ public class TravelManager {
         Aeroplanes aeroplanes = new Aeroplanes();
         Flights flights = new Flights();
         ReportFile reportFile = new ReportFile();
-        //showTravelGUI();
+        showTravelGUI();
         reportFile.performCalculations();
 
     }

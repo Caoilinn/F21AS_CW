@@ -44,6 +44,7 @@ public class FlightPlan {
 
     public void addToPlan(Airport node) {
         if(flightPlan.size() >= 10) {
+            System.out.println("Plan is full");
             return;
         }
         Airport prevLast = null;
@@ -66,7 +67,6 @@ public class FlightPlan {
 
     //implements pseudo-code example given in coursework spec, gives results that are approximately correct (Checked by hand using a calculator)
     public int calcDistance(GPSCoordinates coords1, GPSCoordinates coords2) {
-
        double rlat1 = coords1.getLatitude() * (Math.PI/180);
 
        double rlong1 = coords1.getLongitude() * (Math.PI/180);
@@ -84,7 +84,6 @@ public class FlightPlan {
         double distance = 2 * earthRadius * (Math.asin(Math.sqrt(trig)));
 
         //returns int for ease of use with gui
-        //System.out.println(distance);
         return (int) distance;
     }
 }
