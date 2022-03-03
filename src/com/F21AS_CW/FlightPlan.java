@@ -43,7 +43,7 @@ public class FlightPlan {
     }
 
     public void addToPlan(Airport node) {
-        if (flightPlan.size() >= 10) {
+        if (flightPlan.size() >= 8) {
             System.out.println("Plan is full");
             return;
         }

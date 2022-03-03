@@ -2,15 +2,19 @@ package com.F21AS_CW;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.Random;
 import javax.swing.*;
 import javax.swing.BorderFactory;
 import javax.swing.border.EmptyBorder;
 
 public class AddFlightGUI extends JFrame implements ActionListener {
-    public AddFlightGUI() {
-        // TODO
+    TravelGUI travelGUI;
+    public AddFlightGUI(TravelGUI travelGUI) {
+        this.travelGUI = travelGUI;
     }
 
     // GUI components
@@ -38,9 +42,9 @@ public class AddFlightGUI extends JFrame implements ActionListener {
             airlineCombo.addItem(airline.getCode() + " " + airline.getName());
         }
 
-        flightNoLbl = new JLabel("Flight Number:");
-        flightNoTxt = new JTextField(12);
-        flightNoTxt.addActionListener(this);
+//        flightNoLbl = new JLabel("Flight Number:");
+//        flightNoTxt = new JTextField(12);
+//        flightNoTxt.addActionListener(this);
 
         planeLbl = new JLabel("Plane:");
 
@@ -56,6 +60,9 @@ public class AddFlightGUI extends JFrame implements ActionListener {
             departureCombo.addItem(airportCode);
             destinationCombo.addItem(airportCode);
         }
+
+        destinationCombo.addActionListener(this);
+        departureCombo.addActionListener(this);
 
         dateLbl = new JLabel("Date:");
         dateTxt = new JTextField(8);
@@ -76,12 +83,12 @@ public class AddFlightGUI extends JFrame implements ActionListener {
         c.gridx = 1;
         c.gridy = 1;
         p.add(airlineCombo, c);
-        c.gridx = 0;
-        c.gridy = 2;
-        p.add(flightNoLbl, c);
-        c.gridx = 1;
-        c.gridy = 2;
-        p.add(flightNoTxt, c);
+//        c.gridx = 0;
+//        c.gridy = 2;
+//        p.add(flightNoLbl, c);
+//        c.gridx = 1;
+//        c.gridy = 2;
+//        p.add(flightNoTxt, c);
         c.gridx = 0;
         c.gridy = 3;
         p.add(planeLbl, c);
@@ -135,7 +142,7 @@ public class AddFlightGUI extends JFrame implements ActionListener {
             controlTowers.addElement(airportCode);
         }
         controlTList = new JList(controlTowers);
-        controlTList.setVisibleRowCount(12);
+        controlTList.setVisibleRowCount(16);
         //controlTList.setFixedCellHeight(100);
         controlTList.setFixedCellWidth(60);
         controlTList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
@@ -143,8 +150,8 @@ public class AddFlightGUI extends JFrame implements ActionListener {
 
 
         flightPlanList = new JList(flightPlan);
-        flightPlanList.setVisibleRowCount(2);
-        flightPlanList.setFixedCellHeight(100);
+        flightPlanList.setVisibleRowCount(10);
+        //flightPlanList.setFixedCellHeight(100);
         flightPlanList.setFixedCellWidth(60);
         flightPlanList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         scrollList2 = new JScrollPane(flightPlanList);
@@ -172,7 +179,54 @@ public class AddFlightGUI extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addFlight) {
-            // ToDo
+            String date = dateTxt.getText();
+            String time = timeTxt.getText();
+            String departure = departureCombo.getSelectedItem().toString();
+            String destination = destinationCombo.getSelectedItem().toString();
+            String planeCode = planeCombo.getSelectedItem().toString();
+            String[] airlineStuff = airlineCombo.getSelectedItem().toString().split(" ");
+            String airlineCode = airlineStuff[0];
+            Random rand = new Random();
+            int randNo = rand.nextInt(999-100);
+            if(randNo < 100) {
+                randNo += 100;
+            }
+            String flightCode = airlineCode + randNo;
+
+
+            if(departure.equals(destination)) {
+                JOptionPane.showMessageDialog(rootPane, "destination and departure can not be the same");
+                return;
+            }
+            if(date.equals(null)||time.equals(null)) {
+                JOptionPane.showMessageDialog(rootPane, "empty field is not allowed");
+                return;
+            }
+            if (!date.matches("\\d{2}:\\d{2}:\\d{4}")) {
+                JOptionPane.showMessageDialog(rootPane, "Date does not match dd:mm:yyyy format");
+                return;
+            }
+            if (!time.matches("\\d{2}:\\d{2}")) {
+                JOptionPane.showMessageDialog(rootPane, "Time does not match hh:mm format");
+                return;
+            }
+
+            FlightPlan plan = new FlightPlan();
+
+            Airport departureA = Airports.getAirports().get(departure);
+            plan.addToPlan(departureA);
+            for(int x = 0; x < flightPlan.size();x++) {
+                plan.addToPlan(Airports.getAirports().get(flightPlan.get(x).toString()));
+            }
+            Airport destinationA = Airports.getAirports().get(destination);
+            plan.addToPlan(destinationA);
+            Flight flight = new Flight(flightCode,Aeroplanes.getAeroplanes().get(planeCode),departureA,destinationA,date,time,plan,Airlines.getAirlines().get(airlineCode));
+            Flights.getFlights().put(flightCode,flight);
+            System.out.println(flight);
+            TravelGUI.addFlightGUIisActive = false;
+            travelGUI.resetList();
+            this.dispose();
+
 
         } else if (e.getSource() == close) {
             this.dispose();
@@ -184,10 +238,18 @@ public class AddFlightGUI extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(rootPane, "Nothing Selected!");
             } else {
                 int value = controlTList.getSelectedIndex();
-                flightPlan.addElement(controlTowerCode);
-                flightPlanList.setModel(flightPlan);
-                if (flightPlan.getSize() != 0) {
-                    controlTowers.removeElementAt(value);
+
+                if (departureCombo.getSelectedItem().toString().equals(controlTowerCode)) {
+                    JOptionPane.showMessageDialog(rootPane, "Can't add departure to flight plan");
+
+                } else if (destinationCombo.getSelectedItem().toString().equals(controlTowerCode)) {
+                    JOptionPane.showMessageDialog(rootPane, "Can't add destination to flight plan");
+                } else {
+                    flightPlan.addElement(controlTowerCode);
+                    flightPlanList.setModel(flightPlan);
+                    if (flightPlan.getSize() != 0) {
+                        controlTowers.removeElementAt(value);
+                    }
                 }
             }
         } else if (e.getSource() == removeFromList) {
@@ -204,6 +266,14 @@ public class AddFlightGUI extends JFrame implements ActionListener {
                     flightPlan.removeElementAt(value);
                 }
             }
+        } else if (e.getSource() == destinationCombo || e.getSource() == departureCombo) {
+            for(int x = 0; x < flightPlan.size();x++) {
+                controlTowers.addElement(flightPlan.get(x));
+            }
+            controlTList.setModel(controlTowers);
+            flightPlan.clear();
+            flightPlanList.setModel(flightPlan);
+
         }
     }
 
