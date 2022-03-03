@@ -1,18 +1,17 @@
 package com.F21AS_CW;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-public class TravelGUI extends JFrame implements ActionListener
-{
+public class TravelGUI extends JFrame implements ActionListener {
     public static boolean addFlightGUIisActive = false;
     public static boolean flightEditorGUIisActive = false;
 
     // Declare lists to be searched
-    public TravelGUI()
-    {
+    public TravelGUI() {
         // TODO
     }
 
@@ -25,11 +24,9 @@ public class TravelGUI extends JFrame implements ActionListener
     JScrollPane scrollList;
 
 
-
     // Methods to set up all relevant panels
 
-    public void setupCenterPanel()
-    {
+    public void setupCenterPanel() {
         // Create new panel
         JPanel p = new JPanel();
         BoxLayout box = new BoxLayout(p, BoxLayout.Y_AXIS);
@@ -38,7 +35,7 @@ public class TravelGUI extends JFrame implements ActionListener
         // Creates placeholder list and assigns it to the panel, sets single selection
         DefaultListModel<String> list = new DefaultListModel<>();
         ArrayList<Flight> flights = new ArrayList<Flight>(Flights.getFlights().values());
-        for(Flight flight: flights) {
+        for (Flight flight : flights) {
             System.out.println(flight);
             list.addElement(flight.getFlightCode() + "  " + flight.getPlane().getModel() + "  " + flight.getDeparture().getName() + "  " + flight.getDestination().getName() + " "
                     + flight.getDate() + " " + flight.getDepartureTime());
@@ -64,8 +61,7 @@ public class TravelGUI extends JFrame implements ActionListener
         p.setBorder(new EmptyBorder(new Insets(25, 25, 25, 25)));
     }
 
-    public void setupWestPanel()
-    {
+    public void setupWestPanel() {
 
         JPanel p = new JPanel();
         BoxLayout boxlayout = new BoxLayout(p, BoxLayout.Y_AXIS);
@@ -108,8 +104,7 @@ public class TravelGUI extends JFrame implements ActionListener
         p.setBorder(new EmptyBorder(new Insets(25, 25, 25, 25)));
     }
 
-    public void setupSouthPanel()
-    {
+    public void setupSouthPanel() {
         JPanel p = new JPanel();
 
         addFlight = new JButton("Add");
@@ -128,30 +123,24 @@ public class TravelGUI extends JFrame implements ActionListener
     }
 
     // When a button is clicked, execute appropriate action
-   @Override
-   public void actionPerformed(ActionEvent e)
-   {
-        if (e.getSource() == addFlight && this.addFlightGUIisActive==false)
-        {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == addFlight && this.addFlightGUIisActive == false) {
             showAddFlightGUI();
-        }
-        else if (e.getSource() == editFlight && this.flightEditorGUIisActive==false)
-        {
+        } else if (e.getSource() == editFlight && this.flightEditorGUIisActive == false) {
             showFlightEditorGUI();
-        }
-        else if (e.getSource() == close)
-        {
+        } else if (e.getSource() == close) {
+            TravelManager.writeToFiles();
             System.exit(0);
         }
-   }
+    }
 
-    public void guiCreate()
-    {
+    public void guiCreate() {
         this.setTitle("Travel Application");
-        this.setPreferredSize(new Dimension(600,300));
+        this.setPreferredSize(new Dimension(600, 300));
         this.setDefaultCloseOperation(this.DO_NOTHING_ON_CLOSE);
-        this.setLocation(700,200);
-        this.setLayout(new BorderLayout(5,5));
+        this.setLocation(700, 200);
+        this.setLayout(new BorderLayout(5, 5));
         this.setupSouthPanel();
         this.setupCenterPanel();
         this.setupWestPanel();
@@ -159,16 +148,14 @@ public class TravelGUI extends JFrame implements ActionListener
         this.pack();
     }
 
-    public void showAddFlightGUI()
-    {
+    public void showAddFlightGUI() {
         // Creates a new AddFlightGUI window only if there isn't one currently open
         AddFlightGUI GUI = new AddFlightGUI();
         GUI.guiCreate();
         this.addFlightGUIisActive = true;
     }
 
-    public void showFlightEditorGUI()
-    {
+    public void showFlightEditorGUI() {
         FlightEditorGUI GUI = new FlightEditorGUI();
         GUI.guiCreate();
         this.flightEditorGUIisActive = true;
