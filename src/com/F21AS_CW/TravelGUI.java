@@ -152,7 +152,7 @@ public class TravelGUI extends JFrame implements ActionListener, ListSelectionLi
 
     public void showAddFlightGUI() {
         // Creates a new AddFlightGUI window only if there isn't one currently open
-        AddFlightGUI GUI = new AddFlightGUI();
+        AddFlightGUI GUI = new AddFlightGUI(this);
         GUI.guiCreate();
         this.addFlightGUIisActive = true;
     }
@@ -183,5 +183,16 @@ public class TravelGUI extends JFrame implements ActionListener, ListSelectionLi
         this.time.setText(time);
         this.fuel.setText(String.valueOf(fuelConsumption));
         this.flightPlan.setText(flightPlan);
+    }
+
+    public void resetList() {
+        System.out.println(" YEEEEPPPPPP");
+        DefaultListModel<String> list = new DefaultListModel<>();
+        ArrayList<Flight> flights = new ArrayList<Flight>(Flights.getFlights().values());
+        for (Flight flight : flights) {
+            list.addElement(flight.getFlightCode() + "  " + flight.getPlane().getModel() + "  " + flight.getDeparture().getName() + "  " + flight.getDestination().getName() + " "
+                    + flight.getDate() + " " + flight.getDepartureTime());
+        }
+        flightList.setModel(list);
     }
 }
