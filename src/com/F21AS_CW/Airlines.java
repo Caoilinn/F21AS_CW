@@ -7,11 +7,26 @@ import java.util.Scanner;
 
 public class Airlines implements IWriteable {
 
-    private static HashMap<String,Airline> airlines;
+    private static HashMap<String, Airline> airlines;
 
     //  public Airlines(HashSet<String> airlines) {this.airlines = airlines;}
 
     public Airlines() {
+    }
+
+    public static HashMap<String, Airline> getAirlines() {
+        return airlines;
+    }
+
+    @Override
+    public boolean WriteToFile() {
+        System.out.println("Airlines write to file");
+        return false;
+    }
+
+    @Override
+    public boolean ReadFromFile() {
+        System.out.println("Airlines read from file");
         try {
             this.airlines = new HashMap<String, Airline>();
             File airlinesFile = new File("Airlines");
@@ -28,7 +43,7 @@ public class Airlines implements IWriteable {
                 String airlineName = fields[1];
 
                 Airline airline = new Airline(airlineName, airlineCode);
-                this.airlines.put(airlineCode,airline);
+                this.airlines.put(airlineCode, airline);
             }
 
             reader.close();
@@ -36,19 +51,6 @@ public class Airlines implements IWriteable {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-    }
-
-    public static HashMap<String,Airline> getAirlines() {
-        return airlines;
-    }
-
-    @Override
-    public boolean WriteToFile() {
-        return false;
-    }
-
-    @Override
-    public boolean ReadFromFile() {
         return false;
     }
 
