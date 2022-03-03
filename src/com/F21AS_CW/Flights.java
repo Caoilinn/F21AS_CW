@@ -15,51 +15,6 @@ public class Flights implements IWriteable {
     }
 
     public Flights() {
-
-       try {
-            this.flights = new HashMap<>();
-            File flightsFile = new File("Flights");
-            Scanner reader = new Scanner(flightsFile);
-            while (reader.hasNextLine()) {
-                String line = reader.nextLine();
-                String[] fields = line.split(";");
-
-                //If the line doesn't contain the required fields then skip over the line
-                if (fields.length < 1)
-                    continue;
-
-                String flightCode = fields[0];
-                Airline airline = Airlines.getAirlines().get(flightCode.substring(0,2));
-
-                //this need to be used to get an Aeroplane object from the Aeroplanes collection
-                String planeCode = fields[1];
-
-                Aeroplane plane = Aeroplanes.getAeroplanes().get(planeCode.trim());
-                String dep = fields[2];
-                Airport departure = Airports.getAirports().get(dep.replaceAll("\\s",""));
-                String dest = fields[3];
-                Airport destination = Airports.getAirports().get(dest.replaceAll("\\s",""));
-                String date = fields[4];
-                String time = fields[5];
-
-                LinkedList<Airport> plan = new LinkedList<Airport>();
-                for(int x = 6; x < fields.length;x++) {
-                    Airport temp = Airports.getAirports().get(fields[x].trim());
-                    plan.addLast(temp);
-                }
-
-                FlightPlan flightPlan = new FlightPlan(plan);
-
-
-               Flight flight = new Flight(flightCode,plane,departure,destination,date,time,flightPlan,airline);
-               this.flights.put(flightCode,flight);
-            }
-            reader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-
     }
 
     public static HashMap<String, Flight> getFlights() {
@@ -87,11 +42,56 @@ public class Flights implements IWriteable {
 
     @Override
     public boolean WriteToFile() {
+        System.out.println("Flights write to file");
         return false;
     }
 
     @Override
     public boolean ReadFromFile() {
+        System.out.println("Flights read from file");
+        try {
+            this.flights = new HashMap<>();
+            File flightsFile = new File("Flights");
+            Scanner reader = new Scanner(flightsFile);
+            while (reader.hasNextLine()) {
+                String line = reader.nextLine();
+                String[] fields = line.split(";");
+
+                //If the line doesn't contain the required fields then skip over the line
+                if (fields.length < 1)
+                    continue;
+
+                String flightCode = fields[0];
+                Airline airline = Airlines.getAirlines().get(flightCode.substring(0, 2));
+
+                //this need to be used to get an Aeroplane object from the Aeroplanes collection
+                String planeCode = fields[1];
+
+                Aeroplane plane = Aeroplanes.getAeroplanes().get(planeCode.trim());
+                String dep = fields[2];
+                Airport departure = Airports.getAirports().get(dep.replaceAll("\\s", ""));
+                String dest = fields[3];
+                Airport destination = Airports.getAirports().get(dest.replaceAll("\\s", ""));
+                String date = fields[4];
+                String time = fields[5];
+
+                LinkedList<Airport> plan = new LinkedList<Airport>();
+                for (int x = 6; x < fields.length; x++) {
+                    Airport temp = Airports.getAirports().get(fields[x].trim());
+                    plan.addLast(temp);
+                }
+
+                FlightPlan flightPlan = new FlightPlan(plan);
+
+
+                Flight flight = new Flight(flightCode, plane, departure, destination, date, time, flightPlan, airline);
+                this.flights.put(flightCode, flight);
+            }
+            reader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
         return false;
     }
 
