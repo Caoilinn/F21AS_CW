@@ -4,7 +4,7 @@ public class GPSCoordinates {
     private double longitude;
     private double latitude;
 
-    public GPSCoordinates(double l0ng, double lat) {
+    public GPSCoordinates( double lat,double l0ng) {
         longitude = l0ng;
         latitude = lat;
     }
