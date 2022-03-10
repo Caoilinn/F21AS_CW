@@ -1,4 +1,4 @@
-package com.F21AS_CW;
+package Model;
 
 import java.util.ArrayList;
 import java.util.Objects;

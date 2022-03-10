@@ -1,11 +1,9 @@
-package com.F21AS_CW;
+package Model;
 
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 
 public class ReportFile implements IWriteable {
 

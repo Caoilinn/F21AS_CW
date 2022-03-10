@@ -1,4 +1,6 @@
-package com.F21AS_CW;
+package Model;
+
+import Controller.ControlTower;
 
 public class Airport {
     private String name;

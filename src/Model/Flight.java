@@ -1,7 +1,4 @@
-package com.F21AS_CW;
-
-import java.sql.Time;
-import java.sql.Date;
+package Model;
 
 public class Flight {
 

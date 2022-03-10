@@ -1,4 +1,6 @@
-package com.F21AS_CW;
+package Controller;
+
+import Model.GPSCoordinates;
 
 public class ControlTower {
   private GPSCoordinates gpsLocation;
