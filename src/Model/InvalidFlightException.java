@@ -1,4 +1,4 @@
-package com.F21AS_CW;
+package Model;
 
 public class InvalidFlightException extends RuntimeException {
 

@@ -1,6 +1,4 @@
-package com.F21AS_CW;
-
-import org.w3c.dom.Node;
+package Model;
 
 import java.util.LinkedList;
 import java.lang.Math;
