@@ -1,27 +1,27 @@
 package Model;
 
+import View.IObserver;
+
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class Airlines implements IWriteable {
+public class Airlines implements IReadable, ISubject {
 
-    private static HashMap<String, Airline> airlines;
+    private HashMap<String, Airline> airlines;
+    private ArrayList<IObserver> observers = new ArrayList<>();
 
     //  public Airlines(HashSet<String> airlines) {this.airlines = airlines;}
 
     public Airlines() {
     }
 
-    public static HashMap<String, Airline> getAirlines() {
+    public HashMap<String, Airline> getAirlines() {
         return airlines;
     }
 
-    @Override
-    public boolean WriteToFile() {
-        return false;
-    }
 
     @Override
     public boolean ReadFromFile() {
@@ -50,6 +50,22 @@ public class Airlines implements IWriteable {
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public void registerObserver(IObserver obs) {
+        this.observers.add(obs);
+    }
+
+    @Override
+    public void removeObserver(IObserver obs) {
+        this.observers.remove(obs);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (IObserver obs : observers)
+            obs.update();
     }
 
 }

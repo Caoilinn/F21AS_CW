@@ -1,8 +1,10 @@
 package View;
 
+import Controller.AddFlightController;
+import Controller.TravelController;
 import Model.Flight;
 import Model.Flights;
-import com.F21AS_CW.TravelManager;
+import Model.TravelModel;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -12,20 +14,23 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-public class TravelGUI extends JFrame implements ActionListener, ListSelectionListener {
+public class TravelGUI extends JFrame implements IObserver {
     public static boolean addFlightGUIisActive = false;
     public static boolean flightEditorGUIisActive = false;
 
+    private TravelModel model;
+
     // Declare lists to be searched
-    public TravelGUI() {
+    public TravelGUI(TravelModel model) {
+        this.model = model;
     }
 
     // GUI components
-    JButton addFlight, editFlight, close;
-    JTextField distance, time, fuel, co2, flightPlan;
-    JLabel distanceLabel, timeLabel, fuelLabel, co2Label, flightPlanLabel;
-    JList<String> flightList;
-    JScrollPane scrollList;
+    public JButton addFlight, editFlight, close;
+    public JTextField distance, time, fuel, co2, flightPlan;
+    public JLabel distanceLabel, timeLabel, fuelLabel, co2Label, flightPlanLabel;
+    public JList<String> flightList;
+    public JScrollPane scrollList;
 
 
     // GUI panels setup
@@ -37,13 +42,12 @@ public class TravelGUI extends JFrame implements ActionListener, ListSelectionLi
 
         // Creates a selectable, scrollable list of currently stored flights
         DefaultListModel<String> list = new DefaultListModel<>();
-        ArrayList<Flight> flights = new ArrayList<Flight>(Flights.getFlights().values());
+        ArrayList<Flight> flights = new ArrayList<Flight>(model.getFlights().values());
         for (Flight flight : flights) {
             list.addElement(flight.getFlightCode() + "  " + flight.getPlane().getModel() + "  " + flight.getDeparture().getName() + "  " + flight.getDestination().getName() + " "
                     + flight.getDate() + " " + flight.getDepartureTime());
         }
         flightList = new JList(list);
-        flightList.addListSelectionListener(this);
         scrollList = new JScrollPane(flightList);
         flightList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         p.add(scrollList);
@@ -75,14 +79,12 @@ public class TravelGUI extends JFrame implements ActionListener, ListSelectionLi
         p.add(distanceLabel);
         distance = new JTextField(3);
         distance.setEditable(false);
-        distance.addActionListener(this);
         p.add(distance);
 
         // Time
         timeLabel = new JLabel("Time: ");
         p.add(timeLabel);
         time = new JTextField(3);
-        time.addActionListener(this);
         time.setEditable(false);
         p.add(time);
 
@@ -90,7 +92,6 @@ public class TravelGUI extends JFrame implements ActionListener, ListSelectionLi
         fuelLabel = new JLabel("Fuel Consumption: ");
         p.add(fuelLabel);
         fuel = new JTextField(3);
-        fuel.addActionListener(this);
         fuel.setEditable(false);
         p.add(fuel);
 
@@ -98,7 +99,6 @@ public class TravelGUI extends JFrame implements ActionListener, ListSelectionLi
         co2Label = new JLabel("CO2 Emission: ");
         p.add(co2Label);
         co2 = new JTextField(3);
-        co2.addActionListener(this);
         co2.setEditable(false);
         p.add(co2);
 
@@ -112,43 +112,20 @@ public class TravelGUI extends JFrame implements ActionListener, ListSelectionLi
 
         // Add
         addFlight = new JButton("Add");
-        addFlight.addActionListener(this);
         p.add(addFlight);
 
         // Edit
         editFlight = new JButton("Edit");
-        editFlight.addActionListener(this);
         p.add(editFlight);
 
         // Close
         close = new JButton("Close");
-        close.addActionListener(this);
         p.add(close);
 
         // Adds the panel to the south with an empty boarder
         this.add(p, BorderLayout.SOUTH);
     }
 
-    // Action listener for the GUI components
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        // Add
-        if (e.getSource() == addFlight && this.addFlightGUIisActive == false) {
-            showAddFlightGUI();
-        }
-
-        // Edit
-        else if (e.getSource() == editFlight && this.flightEditorGUIisActive == false) {
-            showFlightEditorGUI();
-        }
-
-        // Close
-        else if (e.getSource() == close) {
-            JOptionPane.showMessageDialog(rootPane, "Report File has been generated");
-            TravelManager.writeToFiles();
-            System.exit(0);
-        }   
-    }
 
     // Sets parameters for creating the GUI
     public void guiCreate() {
@@ -166,8 +143,10 @@ public class TravelGUI extends JFrame implements ActionListener, ListSelectionLi
 
     // Creates a new AddFlightGUI window only if there isn't one currently open
     public void showAddFlightGUI() {
-        AddFlightGUI GUI = new AddFlightGUI(this);
+        System.out.println("Add Flight GUI");
+        AddFlightGUI GUI = new AddFlightGUI(this, this.model);
         GUI.guiCreate();
+        AddFlightController addFlightController = new AddFlightController(this.model, GUI);
         this.addFlightGUIisActive = true;
     }
 
@@ -178,32 +157,26 @@ public class TravelGUI extends JFrame implements ActionListener, ListSelectionLi
         this.flightEditorGUIisActive = true;
     }
 
+    //This will get called whenever the flights hashmap is added to
     @Override
-    public void valueChanged(ListSelectionEvent e) {
-        String x = flightList.getSelectedValue();
-        String[] temp = x.split(" ");
-        String flightCode = temp[0];
-        Flight flight = Flights.getFlights().get(flightCode);
+    public void update() {
+        resetList();
+    }
 
-        //Retrieve Distance, Emissions, Time and Fuel Consumption from the flight object
-        double distance = flight.getDistance();
-        double emissions = flight.getCo2Emissions();
-        String time = flight.getDurationOfFlight();
-        double fuelConsumption = flight.getFuelConsumption();
-        String flightPlan = flight.getFlightPlan().toString();
-
-        //Set the text fields to the appropriate values
-        this.distance.setText(String.valueOf(distance));
-        this.co2.setText(String.valueOf(emissions));
-        this.time.setText(time);
-        this.fuel.setText(String.valueOf(fuelConsumption));
-        this.flightPlan.setText(flightPlan);
+    public void addSetListener(TravelController.SetListener setListener) {
+        time.addActionListener(setListener);
+        fuel.addActionListener(setListener);
+        co2.addActionListener(setListener);
+        addFlight.addActionListener(setListener);
+        editFlight.addActionListener(setListener);
+        close.addActionListener(setListener);
+        flightList.addListSelectionListener(setListener);
     }
 
     // Refreshes the list with any new additions or amendments
     public void resetList() {
         DefaultListModel<String> list = new DefaultListModel<>();
-        ArrayList<Flight> flights = new ArrayList<Flight>(Flights.getFlights().values());
+        ArrayList<Flight> flights = new ArrayList<Flight>(model.getFlights().values());
         for (Flight flight : flights) {
             list.addElement(flight.getFlightCode() + "  " + flight.getPlane().getModel() + "  " + flight.getDeparture().getName() + "  " + flight.getDestination().getName() + " "
                     + flight.getDate() + " " + flight.getDepartureTime());

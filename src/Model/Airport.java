@@ -1,18 +1,22 @@
 package Model;
 
-import Controller.ControlTower;
+import View.IObserver;
 
-public class Airport {
+import java.util.ArrayList;
+
+public class Airport implements ISubject {
     private String name;
     private String code;
     private ControlTower controlTower;
+    private ArrayList<IObserver> observers = new ArrayList<>();
 
     public Airport(String name, String code, ControlTower controlTower) {
         this.name = name;
         this.code = code;
         this.controlTower = controlTower;
     }
-    public Airport(String name, String code){
+
+    public Airport(String name, String code) {
         this.name = name;
         this.code = code;
     }
@@ -25,7 +29,7 @@ public class Airport {
                 '}';
     }
 
-    public Airport(){
+    public Airport() {
 
     }
 
@@ -43,5 +47,21 @@ public class Airport {
 
     public void setControlTower(ControlTower controlTower) {
         this.controlTower = controlTower;
+    }
+
+    @Override
+    public void registerObserver(IObserver obs) {
+        this.observers.add(obs);
+    }
+
+    @Override
+    public void removeObserver(IObserver obs) {
+        this.observers.remove(obs);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (IObserver obs : observers)
+            obs.update();
     }
 }

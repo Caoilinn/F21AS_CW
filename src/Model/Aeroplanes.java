@@ -1,14 +1,17 @@
 package Model;
 
+import View.IObserver;
+
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class Aeroplanes implements IWriteable {
+public class Aeroplanes implements IReadable, ISubject {
 
-    private static HashMap<String, Aeroplane> aeroplanes;
-
+    private HashMap<String, Aeroplane> aeroplanes;
+    private ArrayList<IObserver> observers = new ArrayList<>();
 
     // public Aeroplanes(HashSet<Aeroplane> aeroplanes) {this.aeroplanes = aeroplanes;}
 
@@ -16,14 +19,11 @@ public class Aeroplanes implements IWriteable {
     public Aeroplanes() {
     }
 
-    public static HashMap<String, Aeroplane> getAeroplanes() {
+    public HashMap<String, Aeroplane> getAeroplanes() {
         return aeroplanes;
     }
 
-    @Override
-    public boolean WriteToFile() {
-        return false;
-    }
+
 
     @Override
     public boolean ReadFromFile() {
@@ -53,6 +53,22 @@ public class Aeroplanes implements IWriteable {
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public void registerObserver(IObserver obs) {
+        this.observers.add(obs);
+    }
+
+    @Override
+    public void removeObserver(IObserver obs) {
+        this.observers.remove(obs);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (IObserver obs : observers)
+            obs.update();
     }
 
 }

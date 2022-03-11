@@ -1,5 +1,7 @@
 package View;
 
+import Controller.AddFlightController;
+import Controller.TravelController;
 import Model.*;
 
 import java.awt.*;
@@ -10,24 +12,26 @@ import java.util.Random;
 import javax.swing.*;
 import javax.swing.BorderFactory;
 
-public class AddFlightGUI extends JFrame implements ActionListener {
-    TravelGUI travelGUI;
+public class AddFlightGUI extends JFrame implements IObserver {
+    public TravelGUI travelGUI;
+    TravelModel model;
 
-    public AddFlightGUI(TravelGUI travelGUI) {
+    public AddFlightGUI(TravelGUI travelGUI, TravelModel model) {
         this.travelGUI = travelGUI;
+        this.model = model;
     }
 
     // GUI components
-    JButton addFlight, close, addToList, removeFromList;
-    JLabel flightNoLbl, airlineLbl, planeLbl, departureLbl, destinationLbl, dateLbl, timeLbl;
-    JTextField flightNoTxt, dateTxt, timeTxt;
-    JComboBox<String> airlineCombo = new JComboBox<String>();
-    JComboBox<String> planeCombo = new JComboBox<String>();
-    JComboBox<String> departureCombo = new JComboBox<String>();
-    JComboBox<String> destinationCombo = new JComboBox<String>();
-    JList<String> controlTList, flightPlanList;
-    JScrollPane scrollList1, scrollList2;
-    DefaultListModel controlTowers, flightPlan;
+    public JButton addFlight, close, addToList, removeFromList;
+    public JLabel flightNoLbl, airlineLbl, planeLbl, departureLbl, destinationLbl, dateLbl, timeLbl;
+    public JTextField flightNoTxt, dateTxt, timeTxt;
+    public JComboBox<String> airlineCombo = new JComboBox<String>();
+    public JComboBox<String> planeCombo = new JComboBox<String>();
+    public JComboBox<String> departureCombo = new JComboBox<String>();
+    public JComboBox<String> destinationCombo = new JComboBox<String>();
+    public JList<String> controlTList, flightPlanList;
+    public JScrollPane scrollList1, scrollList2;
+    public DefaultListModel controlTowers, flightPlan;
 
     // Methods to set up all relevant panels
     public void mainPanel() {
@@ -35,7 +39,7 @@ public class AddFlightGUI extends JFrame implements ActionListener {
         airlineLbl = new JLabel("Airline:");
 
         // add items to the combo box
-        ArrayList<Airline> airlines = new ArrayList<Airline>(Airlines.getAirlines().values());
+        ArrayList<Airline> airlines = new ArrayList<Airline>(this.model.getAirlines().values());
         Collections.sort(airlines);
         for (Airline airline : airlines) {
             airlineCombo.addItem(airline.getCode() + " " + airline.getName());
@@ -43,29 +47,24 @@ public class AddFlightGUI extends JFrame implements ActionListener {
 
         planeLbl = new JLabel("Plane:");
 
-        ArrayList<Aeroplane> aeroplanes = new ArrayList<Aeroplane>(Aeroplanes.getAeroplanes().values());
+        ArrayList<Aeroplane> aeroplanes = new ArrayList<Aeroplane>(this.model.getAeroplanes().values());
         for (Aeroplane aeroplane : aeroplanes) {
             planeCombo.addItem(aeroplane.getModel());
         }
 
         departureLbl = new JLabel("Departure:");
         destinationLbl = new JLabel("Destination:");
-        Airports ap = new Airports();
-        for (String airportCode : ap.getAirports().keySet()) {
+        for (String airportCode : model.getAirports().keySet()) {
             departureCombo.addItem(airportCode);
             destinationCombo.addItem(airportCode);
         }
 
-        destinationCombo.addActionListener(this);
-        departureCombo.addActionListener(this);
 
         dateLbl = new JLabel("Date:");
         dateTxt = new JTextField(8);
-        dateTxt.addActionListener(this);
 
         timeLbl = new JLabel("Time:");
         timeTxt = new JTextField(8);
-        timeTxt.addActionListener(this);
 
         // Adding constraints to GridBagLayout
         GridBagConstraints c = new GridBagConstraints();
@@ -114,10 +113,8 @@ public class AddFlightGUI extends JFrame implements ActionListener {
         // South Panel for the add and close buttons
         JPanel p2 = new JPanel();
         addFlight = new JButton("Add Flight");
-        addFlight.addActionListener(this);
         p2.add(addFlight);
         close = new JButton("Close");
-        close.addActionListener(this);
         p2.add(close);
         this.add(p2, BorderLayout.NORTH);
 
@@ -127,7 +124,7 @@ public class AddFlightGUI extends JFrame implements ActionListener {
         flightPlan = new DefaultListModel<>();
 
         // Populating the list of control towers from the hashmap
-        for (String airportCode : ap.getAirports().keySet()) {
+        for (String airportCode : model.getAirports().keySet()) {
             controlTowers.addElement(airportCode);
         }
         controlTList = new JList(controlTowers);
@@ -146,9 +143,7 @@ public class AddFlightGUI extends JFrame implements ActionListener {
 
         // add and remove list buttons
         addToList = new JButton("Add");
-        addToList.addActionListener(this);
         removeFromList = new JButton("Remove");
-        removeFromList.addActionListener(this);
         p3.add(addToList);
         p3.add(removeFromList);
         this.add(p3, BorderLayout.SOUTH);
@@ -160,23 +155,17 @@ public class AddFlightGUI extends JFrame implements ActionListener {
         this.add(p3, BorderLayout.EAST);
     }
 
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == addFlight) {
-            addFlight();
-        } else if (e.getSource() == close) {
-            this.dispose();
-            TravelGUI.addFlightGUIisActive = false;
-        } else if (e.getSource() == addToList) {
-            addToList();
-        } else if (e.getSource() == removeFromList) {
-            removeFromList();
-
-        } else if (e.getSource() == destinationCombo || e.getSource() == departureCombo) {
-            destinationDepartureChange();
-
-        }
+    public void addSetListener(AddFlightController.SetListener setListener) {
+        destinationCombo.addActionListener(setListener);
+        departureCombo.addActionListener(setListener);
+        close.addActionListener(setListener);
+        planeCombo.addActionListener(setListener);
+        airlineCombo.addActionListener(setListener);
+        dateTxt.addActionListener(setListener);
+        timeTxt.addActionListener(setListener);
+        addToList.addActionListener(setListener);
+        addFlight.addActionListener(setListener);
+        removeFromList.addActionListener(setListener);
     }
 
     //Adds a new flight to the flights HashMap
@@ -223,24 +212,24 @@ public class AddFlightGUI extends JFrame implements ActionListener {
         FlightPlan plan = new FlightPlan();
 
         //Find the departure airport from the airports HashMap and add it to the beginning of flight plan
-        Airport departureA = Airports.getAirports().get(departure);
+        Airport departureA = this.model.getAirports().get(departure);
         plan.addToPlan(departureA);
 
         //Loop through all the airport codes in the user generated flight plan list
         for (int x = 0; x < flightPlan.size(); x++) {
             //retrieve the airports from the HashMap and add them to the flight plan
-            plan.addToPlan(Airports.getAirports().get(flightPlan.get(x).toString()));
+            plan.addToPlan(this.model.getAirports().get(flightPlan.get(x).toString()));
         }
 
         //Find the destination airport from the airports HashMap and add it to the end of flight plan
-        Airport destinationA = Airports.getAirports().get(destination);
+        Airport destinationA = this.model.getAirports().get(destination);
         plan.addToPlan(destinationA);
 
         //Create a new flight object with all the retrieved information
-        Flight flight = new Flight(flightCode, Aeroplanes.getAeroplanes().get(planeCode), departureA, destinationA, date, time, plan, Airlines.getAirlines().get(airlineCode));
+        Flight flight = new Flight(flightCode, this.model.getAeroplanes().get(planeCode), departureA, destinationA, date, time, plan, this.model.getAirlines().get(airlineCode));
 
         //Add the flight to the flight HashMap
-        Flights.getFlights().put(flightCode, flight);
+        this.model.getFlights().put(flightCode, flight);
 
         //Reset the main GUI to allow for the updated flights HashMap
         TravelGUI.addFlightGUIisActive = false;
@@ -341,5 +330,10 @@ public class AddFlightGUI extends JFrame implements ActionListener {
         this.mainPanel();
         this.setVisible(true);
         this.pack();
+    }
+
+    @Override
+    public void update() {
+
     }
 }

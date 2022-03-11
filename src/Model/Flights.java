@@ -1,23 +1,33 @@
 package Model;
 
+import View.IObserver;
+
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class Flights implements IWriteable {
+public class Flights implements IReadable, ISubject {
 
-    private static HashMap<String, Flight> flights;
+    private HashMap<String, Flight> flights;
+    private ArrayList<IObserver> observers = new ArrayList<>();
+    private Aeroplanes aeroplanes;
+    private Airlines airlines;
+    private Airports airports;
 
     public Flights(HashMap<String, Flight> flights) {
         this.flights = flights;
     }
 
-    public Flights() {
+    public Flights(Aeroplanes aeroplanes, Airlines airlines, Airports airports) {
+        this.aeroplanes = aeroplanes;
+        this.airlines = airlines;
+        this.airports = airports;
     }
 
-    public static HashMap<String, Flight> getFlights() {
+    public HashMap<String, Flight> getFlights() {
         return flights;
     }
 
@@ -40,10 +50,6 @@ public class Flights implements IWriteable {
 
     }
 
-    @Override
-    public boolean WriteToFile() {
-        return false;
-    }
 
     @Override
     public boolean ReadFromFile() {
@@ -60,22 +66,22 @@ public class Flights implements IWriteable {
                     continue;
 
                 String flightCode = fields[0];
-                Airline airline = Airlines.getAirlines().get(flightCode.substring(0, 2));
+                Airline airline = this.airlines.getAirlines().get(flightCode.substring(0, 2));
 
                 //this need to be used to get an Aeroplane object from the Aeroplanes collection
                 String planeCode = fields[1];
 
-                Aeroplane plane = Aeroplanes.getAeroplanes().get(planeCode.trim());
+                Aeroplane plane = this.aeroplanes.getAeroplanes().get(planeCode.trim());
                 String dep = fields[2];
-                Airport departure = Airports.getAirports().get(dep.replaceAll("\\s", ""));
+                Airport departure = this.airports.getAirports().get(dep.replaceAll("\\s", ""));
                 String dest = fields[3];
-                Airport destination = Airports.getAirports().get(dest.replaceAll("\\s", ""));
+                Airport destination = this.airports.getAirports().get(dest.replaceAll("\\s", ""));
                 String date = fields[4];
                 String time = fields[5];
 
                 LinkedList<Airport> plan = new LinkedList<Airport>();
                 for (int x = 6; x < fields.length; x++) {
-                    Airport temp = Airports.getAirports().get(fields[x].trim());
+                    Airport temp = this.airports.getAirports().get(fields[x].trim());
                     plan.addLast(temp);
                 }
 
@@ -91,5 +97,21 @@ public class Flights implements IWriteable {
             e.printStackTrace();
         }
         return true;
+    }
+
+    @Override
+    public void registerObserver(IObserver obs) {
+        this.observers.add(obs);
+    }
+
+    @Override
+    public void removeObserver(IObserver obs) {
+        this.observers.remove(obs);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (IObserver obs : observers)
+            obs.update();
     }
 }
