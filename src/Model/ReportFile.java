@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class ReportFile implements IWriteable {
+public class ReportFile implements IReadable {
 
     private ArrayList<Airline> airlines;
 
@@ -14,7 +14,7 @@ public class ReportFile implements IWriteable {
 
     public void performCalculations() {
 
-        airlines = new ArrayList<Airline>(Airlines.getAirlines().values());
+        //airlines = new ArrayList<Airline>(Airlines.getAirlines().values());
         double distance = 0, emissions = 0, fuelConsumption = 0;
 
         //Iterate through every airline that exists
@@ -41,8 +41,6 @@ public class ReportFile implements IWriteable {
         }
     }
 
-
-    @Override
     public boolean WriteToFile() {
         try {
             FileWriter fileWriter = new FileWriter("ReportFile");
@@ -68,5 +66,5 @@ public class ReportFile implements IWriteable {
     public boolean ReadFromFile() {
         return false;
     }
-    
+
 }

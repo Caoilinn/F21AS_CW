@@ -1,12 +1,16 @@
 package Model;
 
+import View.IObserver;
+
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.lang.Math;
 
-public class FlightPlan {
+public class FlightPlan implements ISubject {
     private LinkedList<Airport> flightPlan;
     private static final int earthRadius = 6379;
     private int flightPlanTotalDistance = 0;
+    private ArrayList<IObserver> observers = new ArrayList<>();
 
     @Override
     public String toString() {
@@ -83,5 +87,21 @@ public class FlightPlan {
 
         //returns int for ease of use with gui
         return (int) distance;
+    }
+
+    @Override
+    public void registerObserver(IObserver obs) {
+        this.observers.add(obs);
+    }
+
+    @Override
+    public void removeObserver(IObserver obs) {
+        this.observers.remove(obs);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (IObserver obs : observers)
+            obs.update();
     }
 }

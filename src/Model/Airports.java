@@ -1,16 +1,17 @@
 package Model;
 
-import Controller.ControlTower;
+import View.IObserver;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-public class Airports implements IWriteable {
+public class Airports implements IReadable, ISubject {
 
-    private static HashMap<String, Airport> airports;
-
+    private HashMap<String, Airport> airports;
+    private ArrayList<IObserver> observers = new ArrayList<>();
 
     // public Airports(HashMap<String, Airport> airports) {this.airports = airports;}
 
@@ -18,29 +19,23 @@ public class Airports implements IWriteable {
     public Airports() {
     }
 
-    public static HashMap<String, Airport> getAirports() {
+    public HashMap<String, Airport> getAirports() {
         return airports;
     }
 
-    public static boolean CheckIfValExists(Airport airport) {
+    public boolean CheckIfValExists(Airport airport) {
         if (airports.containsValue(airport))
             return true;
         else
             return false;
     }
 
-    public static boolean CheckIfKeyExists(String airportCode) {
+    public  boolean CheckIfKeyExists(String airportCode) {
         if (airports.containsKey(airportCode))
             return true;
         else
             return false;
     }
-
-    @Override
-    public boolean WriteToFile() {
-        return false;
-    }
-
     @Override
     public boolean ReadFromFile() {
 
@@ -62,7 +57,7 @@ public class Airports implements IWriteable {
                 String l0ngitude = fields[3];
 
 
-                String[] split1 =  latitude.split("°");
+                String[] split1 = latitude.split("°");
 
                 Double degrees1 = Double.parseDouble(split1[0]);
 
@@ -74,8 +69,8 @@ public class Airports implements IWriteable {
                 Boolean north = split3[1].equals("N");
 
 
-               String[] split4 =  l0ngitude.split("°");
-               Double degrees2 = Double.parseDouble(split4[0]);
+                String[] split4 = l0ngitude.split("°");
+                Double degrees2 = Double.parseDouble(split4[0]);
 
                 String[] split5 = split4[1].split("'");
                 Double minutes2 = (Double.parseDouble(split5[0])) / 60;
@@ -85,22 +80,22 @@ public class Airports implements IWriteable {
                 Boolean west = split6[1].equals("W");
 
 
-               double DD_latitude = degrees1 + minutes1 + seconds1;
-               double  DD_longitude = degrees2 + minutes2 + seconds2;
+                double DD_latitude = degrees1 + minutes1 + seconds1;
+                double DD_longitude = degrees2 + minutes2 + seconds2;
 
-               //check if latitude is north or south, invert the number if south
-               if (!north){
-                   DD_latitude *= -1;
+                //check if latitude is north or south, invert the number if south
+                if (!north) {
+                    DD_latitude *= -1;
 
-               }
+                }
                 //check if longitude is east or west, invert the number if east
-               if (!west){
-                   DD_longitude *= -1;
-               }
+                if (!west) {
+                    DD_longitude *= -1;
+                }
 
 
-               GPSCoordinates gps = new GPSCoordinates(DD_latitude,DD_longitude);
-               ControlTower ct = new ControlTower(gps);
+                GPSCoordinates gps = new GPSCoordinates(DD_latitude, DD_longitude);
+                ControlTower ct = new ControlTower(gps);
 
                 Airport airport = new Airport(airportCode, airportName, ct);
 
@@ -112,5 +107,21 @@ public class Airports implements IWriteable {
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public void registerObserver(IObserver obs) {
+        this.observers.add(obs);
+    }
+
+    @Override
+    public void removeObserver(IObserver obs) {
+        this.observers.remove(obs);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (IObserver obs : observers)
+            obs.update();
     }
 }

@@ -1,6 +1,10 @@
 package Model;
 
-public class Flight {
+import View.IObserver;
+
+import java.util.ArrayList;
+
+public class Flight implements ISubject {
 
     private String flightCode;
     private Aeroplane plane;
@@ -10,6 +14,7 @@ public class Flight {
     private String departureTime;
     private FlightPlan flightPlan;
     private Airline airline;
+    private ArrayList<IObserver> observers = new ArrayList<>();
 
     @Override
     public String toString() {
@@ -35,10 +40,7 @@ public class Flight {
         this.flightPlan = flightPlan;
         this.airline = airline;
 
-        //throw exception if either departure or destination are invalid
-        if (!Airports.CheckIfValExists(departure) || !Airports.CheckIfValExists(destination)) {
-            throw new InvalidFlightException("This is a null airport");
-        }
+
         addAirline();
     }
 
@@ -99,5 +101,21 @@ public class Flight {
         int minutes = (int) (60 * (time - hour));
         String time_Duration = hour + ":" + minutes;
         return time_Duration;
+    }
+
+    @Override
+    public void registerObserver(IObserver obs) {
+        this.observers.add(obs);
+    }
+
+    @Override
+    public void removeObserver(IObserver obs) {
+        this.observers.remove(obs);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (IObserver obs : observers)
+            obs.update();
     }
 }

@@ -1,12 +1,18 @@
 package Model;
 
-public class Aeroplane implements Comparable<Aeroplane> {
+import View.IObserver;
+
+import java.util.ArrayList;
+
+public class Aeroplane implements Comparable<Aeroplane>, ISubject {
 
     private String model;
     //speed in kilometres per hour
     private float cruiseSpeed;
     //fuel consumed per 100km of distance
     private float fuelConsumption;
+    //the observers listening for changes instances of this class
+    private ArrayList<IObserver> observers = new ArrayList<>();
 
     @Override
     public String toString() {
@@ -45,5 +51,21 @@ public class Aeroplane implements Comparable<Aeroplane> {
     @Override
     public int compareTo(Aeroplane o) {
         return this.model.compareTo(o.getModel());
+    }
+
+    @Override
+    public void registerObserver(IObserver obs) {
+        this.observers.add(obs);
+    }
+
+    @Override
+    public void removeObserver(IObserver obs) {
+        this.observers.remove(obs);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (IObserver obs : observers)
+            obs.update();
     }
 }

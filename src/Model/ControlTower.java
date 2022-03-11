@@ -1,4 +1,4 @@
-package Controller;
+package Model;
 
 import Model.GPSCoordinates;
 
