@@ -14,6 +14,8 @@ public class Flight implements ISubject {
     private String departureTime;
     private FlightPlan flightPlan;
     private Airline airline;
+    private GPSCoordinates gpsCoordinates;
+    private ControlTower nextCT;
     private ArrayList<IObserver> observers = new ArrayList<>();
 
     @Override
@@ -39,7 +41,9 @@ public class Flight implements ISubject {
         this.departureTime = departureTime;
         this.flightPlan = flightPlan;
         this.airline = airline;
-
+        //Initial GPS location of a flight is that of its origin control tower
+        this.gpsCoordinates = departure.getControlTower().getGpsLocation();
+        this.nextCT = flightPlan.getFlightPlan().get(1).getControlTower();
 
         addAirline();
     }
@@ -80,7 +84,7 @@ public class Flight implements ISubject {
         return (int) emission;
     }
 
-    public int getDistance() {
+    public double getDistance() {
         return flightPlan.getFlightPlanTotalDistance();
     }
 
@@ -96,11 +100,34 @@ public class Flight implements ISubject {
     }
 
     public String getDurationOfFlight() {
-        float time = flightPlan.getFlightPlanTotalDistance() / plane.getCruiseSpeed();
+        double time = flightPlan.getFlightPlanTotalDistance() / plane.getCruiseSpeed();
         int hour = (int) time;
         int minutes = (int) (60 * (time - hour));
         String time_Duration = hour + ":" + minutes;
         return time_Duration;
+    }
+
+    public void updateGPSPosition() {
+        double rLatCurrent = Math.toRadians(this.gpsCoordinates.getLatitude());
+        double rLongCurrent = Math.toRadians(this.gpsCoordinates.getLongitude());
+        double rLatNext = Math.toRadians(nextCT.getGpsLocation().getLatitude());
+        double rLongNext = Math.toRadians(nextCT.getGpsLocation().getLongitude());
+
+        double deltaLong = rLongCurrent - rLongNext;
+
+        double bearing = Math.atan2(Math.sin(deltaLong) * Math.cos(rLatNext), Math.cos(rLatCurrent) * Math.sin(rLatNext) - Math.sin(rLatCurrent) * Math.cos(rLatNext) * Math.cos(deltaLong));
+
+        //Assuming that every update is one hour and speed is in kmph
+        double angularDistance = this.plane.getCruiseSpeed() / GPSCoordinates.EARTH_RADIUS;
+
+        double latNew = Math.asin((Math.sin(rLatCurrent) * Math.cos(angularDistance)) + (Math.cos(rLatCurrent) * Math.sin(angularDistance) * Math.cos(bearing)));
+        double longNew = rLongCurrent + Math.atan2(Math.sin(bearing) * Math.sin(angularDistance) * Math.cos(rLatCurrent), Math.cos(angularDistance) - Math.sin(rLatCurrent) * Math.sin(latNew));
+
+        this.gpsCoordinates = new GPSCoordinates(Math.toDegrees(latNew), Math.toDegrees(longNew));
+    }
+
+    public void printGPSLocation() {
+        System.out.println("Latitude: " + this.gpsCoordinates.getLatitude() + "\n Longitude: " + this.gpsCoordinates.getLongitude());
     }
 
     @Override

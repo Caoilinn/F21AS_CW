@@ -1,8 +1,11 @@
 package com.F21AS_CW;
 
 import Controller.TravelController;
-import Model.TravelModel;
+import Model.*;
 import View.TravelGUI;
+
+import java.util.LinkedList;
+import java.util.Timer;
 
 public class Main {
 
