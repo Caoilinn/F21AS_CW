@@ -83,13 +83,15 @@ public class Airports implements IReadable, ISubject {
                 double DD_latitude = degrees1 + minutes1 + seconds1;
                 double DD_longitude = degrees2 + minutes2 + seconds2;
 
+                //for testing purposes we keep our formatting in line with https://www.movable-type.co.uk/scripts/latlong.html
+
                 //check if latitude is north or south, invert the number if south
                 if (!north) {
                     DD_latitude *= -1;
 
                 }
-                //check if longitude is east or west, invert the number if east
-                if (!west) {
+                //check if longitude is east or west, invert the number if west
+                if (west) {
                     DD_longitude *= -1;
                 }
 

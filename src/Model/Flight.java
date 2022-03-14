@@ -116,6 +116,7 @@ public class Flight implements ISubject {
         double deltaLong = rLongCurrent - rLongNext;
 
         double bearing = Math.atan2(Math.sin(deltaLong) * Math.cos(rLatNext), Math.cos(rLatCurrent) * Math.sin(rLatNext) - Math.sin(rLatCurrent) * Math.cos(rLatNext) * Math.cos(deltaLong));
+        System.out.println(Math.toDegrees(bearing));
 
         //Assuming that every update is one hour and speed is in kmph
         double angularDistance = this.plane.getCruiseSpeed() / GPSCoordinates.EARTH_RADIUS;

@@ -15,5 +15,9 @@ public class Main {
         travelModel.registerObserver(travelGUI);
         travelGUI.guiCreate();
         TravelController travelController = new TravelController(travelModel, travelGUI);
+
+        travelModel.getFlights().get("AF670").printGPSLocation();
+        travelModel.getFlights().get("AF670").updateGPSPosition();
+        travelModel.getFlights().get("AF670").printGPSLocation();
     }
 }
