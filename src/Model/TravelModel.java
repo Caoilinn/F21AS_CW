@@ -90,7 +90,7 @@ public class TravelModel implements ISubject {
             for (Flight flight : airline.flights) {
 
                 //Get the flight's individual values for distance, emissions and fuel consumption then total these
-                distance += flight.getDistance();
+                distance = distance + flight.getDistance();
                 emissions += flight.getCo2Emissions();
                 fuelConsumption += flight.getFuelConsumption();
             }
