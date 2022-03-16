@@ -30,12 +30,13 @@ public class Airports implements IReadable, ISubject {
             return false;
     }
 
-    public  boolean CheckIfKeyExists(String airportCode) {
+    public boolean CheckIfKeyExists(String airportCode) {
         if (airports.containsKey(airportCode))
             return true;
         else
             return false;
     }
+
     @Override
     public boolean ReadFromFile() {
 
@@ -97,7 +98,7 @@ public class Airports implements IReadable, ISubject {
 
 
                 GPSCoordinates gps = new GPSCoordinates(DD_latitude, DD_longitude);
-                ControlTower ct = new ControlTower(gps);
+                ControlTower ct = new ControlTower(gps, airportCode);
 
                 Airport airport = new Airport(airportCode, airportName, ct);
 
@@ -109,6 +110,13 @@ public class Airports implements IReadable, ISubject {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public void startThreads() {
+        for (Airport airport : this.airports.values()) {
+            Thread thread = new Thread(airport.getControlTower());
+            thread.start();
+        }
     }
 
     @Override
