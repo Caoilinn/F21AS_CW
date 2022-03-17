@@ -108,9 +108,9 @@ Fuel Consumption: NaN
 
  Air France
 Total number of flights: 1
-Distance: 5626.0
-Emissions: 34471.0
-Fuel Consumption: 42039.0
+Distance: 5620.804643996109
+Emissions: 34440.0
+Fuel Consumption: 42000.0
 
  Air Algerie
 Total number of flights: 0
@@ -240,9 +240,9 @@ Fuel Consumption: NaN
 
  British Airways
 Total number of flights: 1
-Distance: 11278.0
-Emissions: 88113.0
-Fuel Consumption: 107455.0
+Distance: 11264.419705872333
+Emissions: 88007.0
+Fuel Consumption: 107326.0
 
  Jade Cargo International
 Total number of flights: 0
@@ -1000,5 +1000,4 @@ Distance: 0.0
 Emissions: 0.0
 Fuel Consumption: NaN
 
- Austrian Cargo
-Total number 
+ Austri

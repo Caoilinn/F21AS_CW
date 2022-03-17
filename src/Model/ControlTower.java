@@ -2,12 +2,14 @@ package Model;
 
 import Model.GPSCoordinates;
 import View.IObserver;
+import com.F21AS_CW.Main;
 
 import java.util.ArrayList;
 
 public class ControlTower implements Runnable, ISubject {
     private GPSCoordinates gpsLocation;
     private String name;
+    private ArrayList<IObserver> observers = new ArrayList<>();
 
     //The flights that the control tower is currently looking after
     private ArrayList<Flight> ctFlights;
@@ -59,13 +61,20 @@ public class ControlTower implements Runnable, ISubject {
         for (Flight flight : this.ctFlights) {
             Thread thread = new Thread(flight);
             thread.start();
-            System.out.println("This flight has landed: " + flight.getStatus());
         }
-
+        while (true) {
+            try {
+                Thread.sleep(Main.FLIGHT_UPDATE_TIME_OFFSET);
+                notifyObservers();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
     public void registerObserver(IObserver obs) {
+        this.observers.add(obs);
 
     }
 
@@ -75,7 +84,9 @@ public class ControlTower implements Runnable, ISubject {
     }
 
     @Override
-    public void notifyObservers() {
-
+    public synchronized void notifyObservers() {
+        for (IObserver obs : this.observers) {
+            obs.update();
+        }
     }
 }

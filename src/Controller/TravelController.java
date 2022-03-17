@@ -51,7 +51,7 @@ public class TravelController {
             Flight flight = model.getFlights().get(flightCode);
 
             //Retrieve Distance, Emissions, Time and Fuel Consumption from the flight object
-            double distance = flight.getDistance();
+            double distance = flight.getCurrentDistance();
             double emissions = flight.getCo2Emissions();
             String time = flight.getDurationOfFlight();
             double fuelConsumption = flight.getFuelConsumption();
@@ -65,5 +65,4 @@ public class TravelController {
             view.flightPlan.setText(flightPlan);
         }
     }
-
 }
