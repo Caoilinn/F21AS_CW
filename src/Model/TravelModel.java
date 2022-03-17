@@ -1,6 +1,7 @@
 package Model;
 
 import View.IObserver;
+import View.TravelGUI;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -18,6 +19,7 @@ public class TravelModel implements ISubject {
     Aeroplanes aeroplanes;
     Flights flights;
     ReportFile reportFile;
+    ArrayList<ControlTower> controlTowers = new ArrayList<>();
 
     public TravelModel() {
         this.airlines = new Airlines();
@@ -25,7 +27,6 @@ public class TravelModel implements ISubject {
         this.aeroplanes = new Aeroplanes();
         this.flights = new Flights(this.aeroplanes, this.airlines, this.airports);
         this.reportFile = new ReportFile();
-
 
         //Setup array list of IWriteable so that all the read and writes can be called
         iReadables = new ArrayList<IReadable>();
@@ -37,6 +38,10 @@ public class TravelModel implements ISubject {
 
         readFromFiles();
 
+        for (Airport a : this.airports.getAirports().values()) {
+            this.controlTowers.add(a.getControlTower());
+
+        }
     }
 
     public void addFlight(Flight flight) {
@@ -47,6 +52,16 @@ public class TravelModel implements ISubject {
     public static void readFromFiles() {
         for (IReadable iReadable : iReadables)
             iReadable.ReadFromFile();
+    }
+
+    public void addControlTowersObserver() {
+        for (ControlTower ct : this.controlTowers) {
+            for (IObserver obs : this.observers) {
+                if (obs instanceof TravelGUI) {
+                    ct.registerObserver(obs);
+                }
+            }
+        }
     }
 
     public HashMap<String, Airline> getAirlines() {
@@ -99,7 +114,9 @@ public class TravelModel implements ISubject {
             airline.setTotalDistance(distance);
             airline.setTotalEmissions(emissions);
             if (fuelConsumption >= 0)
+
                 airline.setAverageFuelConsumption(fuelConsumption / airline.flights.size());
+
 
             //Reset for next airline in set
             distance = 0;

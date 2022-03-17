@@ -14,6 +14,7 @@ public class Main {
         TravelModel travelModel = new TravelModel();
         TravelGUI travelGUI = new TravelGUI(travelModel);
         travelModel.registerObserver(travelGUI);
+        travelModel.addControlTowersObserver();
 
         for (Airport airport : travelModel.getAirports().values()) {
             Thread thread = new Thread(airport.getControlTower());

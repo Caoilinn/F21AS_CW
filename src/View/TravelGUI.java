@@ -179,7 +179,7 @@ public class TravelGUI extends JFrame implements IObserver {
         ArrayList<Flight> flights = new ArrayList<Flight>(model.getFlights().values());
         for (Flight flight : flights) {
             list.addElement(flight.getFlightCode() + "  " + flight.getPlane().getModel() + "  " + flight.getDeparture().getName() + "  " + flight.getDestination().getName() + " "
-                    + flight.getDate() + " " + flight.getDepartureTime());
+                    + flight.getDate() + " " + flight.getDepartureTime() + " " + flight.getGPSCoordinates());
         }
         flightList.setModel(list);
     }
