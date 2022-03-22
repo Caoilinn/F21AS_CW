@@ -183,4 +183,22 @@ public class TravelGUI extends JFrame implements IObserver {
         }
         flightList.setModel(list);
     }
+private class TravelWorker extends SwingWorker<Integer, Integer> {
+
+    private boolean _suspended = false;
+
+    public synchronized void suspend() { _suspended = true; notifyAll(); }
+    public synchronized void resume() { _suspended = false; notifyAll(); }
+
+    @Override
+    protected Integer doInBackground() throws Exception {
+        synchronized (this) {
+            while (_suspended) {
+                wait();
+
+            }
+        }
+        return null;
+    }
+}
 }

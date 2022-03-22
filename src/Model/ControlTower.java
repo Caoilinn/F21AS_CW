@@ -62,7 +62,7 @@ public class ControlTower implements Runnable, ISubject {
             Thread thread = new Thread(flight);
             thread.start();
         }
-        while (true) {
+        while (!this.ctFlights.isEmpty()) {
             try {
                 Thread.sleep(Main.FLIGHT_UPDATE_TIME_OFFSET);
                 notifyObservers();
