@@ -89,10 +89,10 @@ Emissions: 0.0
 Fuel Consumption: NaN
 
  Air Canada
-Total number of flights: 0
-Distance: 0.0
-Emissions: 0.0
-Fuel Consumption: NaN
+Total number of flights: 1
+Distance: 13987.243507571184
+Emissions: 111757.0
+Fuel Consumption: 136290.0
 
  Tampa Airlines
 Total number of flights: 0
@@ -179,10 +179,10 @@ Emissions: 0.0
 Fuel Consumption: NaN
 
  Alaska Airlines
-Total number of flights: 0
-Distance: 0.0
-Emissions: 0.0
-Fuel Consumption: NaN
+Total number of flights: 1
+Distance: 14777.769892123404
+Emissions: 121177.0
+Fuel Consumption: 147777.0
 
  Royal Air Maroc
 Total number of flights: 0
@@ -215,10 +215,10 @@ Emissions: 0.0
 Fuel Consumption: NaN
 
  Alitalia
-Total number of flights: 0
-Distance: 0.0
-Emissions: 0.0
-Fuel Consumption: NaN
+Total number of flights: 1
+Distance: 14777.769892123404
+Emissions: 121177.0
+Fuel Consumption: 147777.0
 
  Japan Air System
 Total number of flights: 0
@@ -239,10 +239,10 @@ Emissions: 0.0
 Fuel Consumption: NaN
 
  British Airways
-Total number of flights: 1
-Distance: 11264.419705872333
-Emissions: 88007.0
-Fuel Consumption: 107326.0
+Total number of flights: 2
+Distance: 25251.663213443517
+Emissions: 176143.0
+Fuel Consumption: 107404.5
 
  Jade Cargo International
 Total number of flights: 0
@@ -995,9 +995,4 @@ Emissions: 0.0
 Fuel Consumption: NaN
 
  Sky West Airlines
-Total number of flights: 0
-Distance: 0.0
-Emissions: 0.0
-Fuel Consumption: NaN
-
- Austri
+Total numbe

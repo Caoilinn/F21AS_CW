@@ -148,8 +148,9 @@ public class Flight implements ISubject, Runnable {
 
         double bearing = Math.atan2(Math.sin(deltaLong) * Math.cos(rLatNext), Math.cos(rLatCurrent) * Math.sin(rLatNext) - Math.sin(rLatCurrent) * Math.cos(rLatNext) * Math.cos(deltaLong));
         bearing = bearing * -1.0;
-        //Assuming that every update is one hour and speed is in kmph
-        double angularDistance = this.plane.getCruiseSpeed() / GPSCoordinates.EARTH_RADIUS;
+        // Every update is 15min sim time. Speed = kmph.
+        double linearDistance = this.plane.getCruiseSpeed() / 0.25;
+        double angularDistance = linearDistance / GPSCoordinates.EARTH_RADIUS;
 
         double latNew = Math.asin((Math.sin(rLatCurrent) * Math.cos(angularDistance)) + (Math.cos(rLatCurrent) * Math.sin(angularDistance) * Math.cos(bearing)));
         double longNew = rLongCurrent + Math.atan2(Math.sin(bearing) * Math.sin(angularDistance) * Math.cos(rLatCurrent), Math.cos(angularDistance) - Math.sin(rLatCurrent) * Math.sin(latNew));
@@ -223,6 +224,8 @@ public class Flight implements ISubject, Runnable {
             }
         }
         this.flightLanded = true;
+        this.gpsCoordinates = this.currentControlTower.getGpsLocation();
+        System.out.println(this.flightCode + "Has Landed!");
         this.currentControlTower.removeFlight(this);
 
     }
