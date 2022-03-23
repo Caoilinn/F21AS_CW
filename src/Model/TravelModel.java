@@ -18,7 +18,7 @@ public class TravelModel implements ISubject {
     Airports airports;
     Aeroplanes aeroplanes;
     Flights flights;
-    ReportFile reportFile;
+    //ReportFile reportFile;
     ArrayList<ControlTower> controlTowers = new ArrayList<>();
 
     public TravelModel() {
@@ -26,7 +26,7 @@ public class TravelModel implements ISubject {
         this.airports = new Airports();
         this.aeroplanes = new Aeroplanes();
         this.flights = new Flights(this.aeroplanes, this.airlines, this.airports);
-        this.reportFile = new ReportFile();
+        //this.reportFile = new ReportFile();
 
         //Setup array list of IWriteable so that all the read and writes can be called
         iReadables = new ArrayList<IReadable>();
@@ -34,7 +34,7 @@ public class TravelModel implements ISubject {
         iReadables.add(airports);
         iReadables.add(aeroplanes);
         iReadables.add(flights);
-        iReadables.add(reportFile);
+        //iReadables.add(reportFile);
 
         readFromFiles();
 

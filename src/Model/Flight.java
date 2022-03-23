@@ -20,7 +20,7 @@ public class Flight implements ISubject, Runnable {
     private ControlTower currentControlTower;
     private ControlTower nextCT;
     private boolean flightLanded;
-    private int listCounter = 1;
+    public int listCounter = 1;
     private int updateCounter = 1;
     private ArrayList<IObserver> observers = new ArrayList<>();
 
@@ -126,7 +126,7 @@ public class Flight implements ISubject, Runnable {
     }
 
     public double getCurrentDistance() {
-        return this.updateCounter * this.plane.getCruiseSpeed();
+        return this.updateCounter * (this.plane.getCruiseSpeed() * 0.25);
     }
 
     public synchronized void updateGPSPosition() {
@@ -156,11 +156,8 @@ public class Flight implements ISubject, Runnable {
         double longNew = rLongCurrent + Math.atan2(Math.sin(bearing) * Math.sin(angularDistance) * Math.cos(rLatCurrent), Math.cos(angularDistance) - Math.sin(rLatCurrent) * Math.sin(latNew));
 
         this.gpsCoordinates = new GPSCoordinates(Math.toDegrees(latNew), Math.toDegrees(longNew));
-    }
-
-    public void notifyControlTower() {
-        //This menthod needs implemented;
-        this.currentControlTower.updatePlaneLocation(this);
+        if (this.flightCode.equals("BA664"))
+            System.out.println("------Position update------");
     }
 
     //The new control tower should set itself as the flight's current control tower
@@ -172,7 +169,6 @@ public class Flight implements ISubject, Runnable {
             nextCT = flightPlan.getFlightPlan().get(listCounter).getControlTower();
         else
             nextCT = null;
-
     }
 
     public void printGPSLocation() {
@@ -198,24 +194,42 @@ public class Flight implements ISubject, Runnable {
     //Flights should synchronously update their positions
     @Override
     public void run() {
+        if (this.flightCode.equals("BA664")) {
+            System.out.println("-------TotalDistance------\n" + getDistance());
+        }
+
         while (true) {
             try {
                 // No need to synchronise here all Flight objects have their own instance of the
                 // GPS location variables
-                if (nextCT == null) {
-                    break;
-                }
+                //if (nextCT == null) {
+                //    break;
+                //}
 
                 Thread.sleep(Main.FLIGHT_UPDATE_TIME_OFFSET);
                 updateGPSPosition();
 
                 double distanceCurrentControlTower = GPSCoordinates.calcDistance(this.gpsCoordinates, currentControlTower.getGpsLocation());
-                double distanceNextControlTower = GPSCoordinates.calcDistance(this.gpsCoordinates, nextCT.getGpsLocation());
 
-                if (distanceCurrentControlTower > distanceNextControlTower) {
-                    this.currentControlTower.removeFlight(this);
-                    updateControlTower();
-                    this.currentControlTower.addFlight(this);
+                if (getCurrentDistance() >= getDistance()) {
+                    break;
+                }
+
+
+                if (this.flightCode.equals("BA664")) {
+                    System.out.println(getCurrentDistance());
+                }
+
+
+                //Only check for updating control towers if there is a new control tower to travel to
+                if (nextCT != null) {
+                    double distanceNextControlTower = GPSCoordinates.calcDistance(this.gpsCoordinates, nextCT.getGpsLocation());
+
+                    if (distanceCurrentControlTower > distanceNextControlTower) {
+                        this.currentControlTower.removeFlight(this);
+                        updateControlTower();
+                        this.currentControlTower.addFlight(this);
+                    }
                 }
 
 
