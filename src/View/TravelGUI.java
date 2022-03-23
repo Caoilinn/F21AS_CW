@@ -31,6 +31,7 @@ public class TravelGUI extends JFrame implements IObserver {
     public JLabel distanceLabel, timeLabel, fuelLabel, co2Label, flightPlanLabel;
     public JList<String> flightList;
     public JScrollPane scrollList;
+    public JTable flightPlanTable;
 
 
     // GUI panels setup
@@ -52,16 +53,23 @@ public class TravelGUI extends JFrame implements IObserver {
         flightList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         p.add(scrollList);
 
-        // Creates another panel within the box layout and
-        // assigns a label and a text field to itself before
-        // being assigned back to the boxlayout panel
+        // Flight plan
         JPanel p2 = new JPanel();
-        flightPlanLabel = new JLabel("Flight Plan: ");
-        p2.add(flightPlanLabel);
-        flightPlan = new JTextField(20);
-        flightPlan.setEditable(false);
-        p2.add(flightPlan);
+        String[] columnNames = { "Control Tower", "Status"};
+        Object[][] info = {
+                {"test", "test"},
+                {"test", "test"},
+                {"test", "test"},
+                {"test", "test"},
+                {"test", "test"},
+        };
+        flightPlanTable = new JTable(info, columnNames);
+        flightPlanTable.setRowSelectionAllowed(false);
+        flightPlanTable.setColumnSelectionAllowed(false);
+        p2.add(flightPlanTable);
         p.add(p2);
+
+
 
         // Adds the panel to the center with an empty boarder
         this.add(p, BorderLayout.CENTER);

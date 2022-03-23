@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c267d7a3-c767-4091-b6e9-faf269c2e55d" name="Changes" comment="Added date and time fields">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Flights" beforeDir="false" afterPath="$PROJECT_DIR$/Flights" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ReportFile" beforeDir="false" afterPath="$PROJECT_DIR$/ReportFile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/ControlTower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ControlTower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Flight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Flight.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/TravelGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/TravelGUI.java" afterDir="false" />
     </list>
     <list id="b994e8db-be41-404c-804e-9bd5da8be7e1" name="Changes by Adam" comment="" />
@@ -145,6 +142,7 @@
       <workItem from="1646909122098" duration="2699000" />
       <workItem from="1647001892160" duration="11475000" />
       <workItem from="1647952062981" duration="3407000" />
+      <workItem from="1647988543391" duration="192000" />
     </task>
     <task id="LOCAL-00001" summary="Added the text files">
       <created>1645544767018</created>
