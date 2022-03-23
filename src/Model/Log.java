@@ -1,5 +1,8 @@
 package Model;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Log {
@@ -29,5 +32,22 @@ public class Log {
 
     public int getSize() {
         return log.size();
+    }
+
+    public boolean WriteToFile() {
+        try {
+            FileWriter fileWriter = new FileWriter("LogFile");
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            for (String line : log) {
+                bufferedWriter.write(line);
+                bufferedWriter.newLine();
+            }
+            return true;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

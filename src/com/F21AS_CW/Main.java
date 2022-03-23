@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.Timer;
 
 public class Main {
-    public static final int FLIGHT_UPDATE_TIME_OFFSET = 1000;
+    public static final int FLIGHT_UPDATE_TIME_OFFSET = 500;
 
     public static void main(String[] args) {
         TravelModel travelModel = new TravelModel();

@@ -26,13 +26,12 @@ public class TravelGUI extends JFrame implements IObserver {
     }
 
     // GUI components
-    public JButton addFlight, editFlight, close;
-    public JTextField distance, time, fuel, co2, flightPlan;
-    public JLabel distanceLabel, timeLabel, fuelLabel, co2Label, flightPlanLabel;
+    public JButton addFlight, editFlight, close, start, stop;
+    public JTextField distance, time, fuel, co2, flightPlan, flightStatus;
+    public JLabel distanceLabel, timeLabel, fuelLabel, co2Label, flightPlanLabel, flightStatusLabel;
     public JList<String> flightList;
     public JScrollPane scrollList;
-    public JTable flightPlanTable;
-
+    public String selectedFlight;
 
     // GUI panels setup
     public void setupCenterPanel() {
@@ -54,7 +53,7 @@ public class TravelGUI extends JFrame implements IObserver {
         p.add(scrollList);
 
         // Flight plan
-        JPanel p2 = new JPanel();
+        /*JPanel p2 = new JPanel();
         String[] columnNames = { "Control Tower", "Status"};
         Object[][] info = {
                 {"test", "test"},
@@ -63,12 +62,34 @@ public class TravelGUI extends JFrame implements IObserver {
                 {"test", "test"},
                 {"test", "test"},
         };
+        flightPlanTable.setValueAt() //sets a particular cell in a JTable
         flightPlanTable = new JTable(info, columnNames);
         flightPlanTable.setRowSelectionAllowed(false);
         flightPlanTable.setColumnSelectionAllowed(false);
         p2.add(flightPlanTable);
         p.add(p2);
 
+        flightPlanTable.editCellAt(0,0)
+        */
+
+        // Creates another panel within the box layout and
+        // assigns a label and a text field to itself before
+        // being assigned back to the boxlayout panel
+        JPanel p2 = new JPanel();
+        flightPlanLabel = new JLabel("Flight Plan: ");
+        p2.add(flightPlanLabel);
+        flightPlan = new JTextField(20);
+        flightPlan.setEditable(false);
+        p2.add(flightPlan);
+        p.add(p2);
+
+        JPanel p3 = new JPanel();
+        flightStatusLabel = new JLabel("Flight Status: ");
+        p3.add(flightStatusLabel);
+        flightStatus = new JTextField(20);
+        flightStatus.setEditable(false);
+        p3.add(flightStatus);
+        p.add(p3);
 
 
         // Adds the panel to the center with an empty boarder
@@ -130,6 +151,14 @@ public class TravelGUI extends JFrame implements IObserver {
         close = new JButton("Close");
         p.add(close);
 
+        // Start
+        start = new JButton("Start");
+        p.add(start);
+
+        // Stop
+        stop = new JButton("Stop");
+        p.add(stop);
+
         // Adds the panel to the south with an empty boarder
         this.add(p, BorderLayout.SOUTH);
     }
@@ -138,7 +167,7 @@ public class TravelGUI extends JFrame implements IObserver {
     // Sets parameters for creating the GUI
     public void guiCreate() {
         this.setTitle("Travel Application");
-        this.setPreferredSize(new Dimension(600, 300));
+        this.setPreferredSize(new Dimension(900, 300));
         this.setDefaultCloseOperation(this.DO_NOTHING_ON_CLOSE);
         this.setLocation(700, 200);
         this.setLayout(new BorderLayout(5, 5));
@@ -165,10 +194,47 @@ public class TravelGUI extends JFrame implements IObserver {
         this.flightEditorGUIisActive = true;
     }
 
+    public void updateFlightStatus(String selection) {
+        if (selection != null) {
+            String[] temp = selection.split(" ");
+            String flightCode = temp[0];
+            Flight flight = model.getFlights().get(flightCode);
+
+            //Retrieve Distance, Emissions, Time and Fuel Consumption from the flight object
+            double distance = flight.getCurrentDistance();
+            double emissions = flight.getCo2Emissions();
+            String time = flight.getDurationOfFlight();
+            double fuelConsumption = flight.getFuelConsumption();
+            String flightPlan = flight.getFlightPlan().toString();
+            String flightStatus = "";
+
+            for (int i = 0; i < flight.getFlightPlan().getFlightPlan().size(); i++) {
+                if (i < flight.listCounter||flight.listCounter == flight.getFlightPlan().getFlightPlan().size()-1) {
+                    flightStatus += "Done | ";
+                } else if (i == flight.listCounter) {
+                    flightStatus += "En route | ";
+                }
+            }
+            //Set the text fields to the appropriate values
+            this.distance.setText(String.valueOf(distance));
+            this.co2.setText(String.valueOf(emissions));
+            this.time.setText(time);
+            this.fuel.setText(String.valueOf(fuelConsumption));
+            this.flightPlan.setText(flightPlan);
+            this.flightStatus.setText(flightStatus);
+        }
+    }
+
     //This will get called whenever the flights hashmap is added to
     @Override
     public void update() {
+
         resetList();
+        updateFlightStatus(selectedFlight);
+    }
+
+    public void setSelectedFlight(String selection) {
+        selectedFlight = selection;
     }
 
     public void addSetListener(TravelController.SetListener setListener) {
@@ -191,22 +257,30 @@ public class TravelGUI extends JFrame implements IObserver {
         }
         flightList.setModel(list);
     }
-private class TravelWorker extends SwingWorker<Integer, Integer> {
 
-    private boolean _suspended = false;
+    private class TravelWorker extends SwingWorker<Integer, Integer> {
 
-    public synchronized void suspend() { _suspended = true; notifyAll(); }
-    public synchronized void resume() { _suspended = false; notifyAll(); }
+        private boolean _suspended = false;
 
-    @Override
-    protected Integer doInBackground() throws Exception {
-        synchronized (this) {
-            while (_suspended) {
-                wait();
-
-            }
+        public synchronized void suspend() {
+            _suspended = true;
+            notifyAll();
         }
-        return null;
+
+        public synchronized void resume() {
+            _suspended = false;
+            notifyAll();
+        }
+
+        @Override
+        protected Integer doInBackground() throws Exception {
+            synchronized (this) {
+                while (_suspended) {
+                    wait();
+
+                }
+            }
+            return null;
+        }
     }
-}
 }

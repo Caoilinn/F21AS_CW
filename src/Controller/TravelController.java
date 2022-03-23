@@ -45,7 +45,7 @@ public class TravelController {
 
         @Override
         public void valueChanged(ListSelectionEvent e) {
-            String x = view.flightList.getSelectedValue();
+            /*String x = view.flightList.getSelectedValue();
             String[] temp = x.split(" ");
             String flightCode = temp[0];
             Flight flight = model.getFlights().get(flightCode);
@@ -56,13 +56,24 @@ public class TravelController {
             String time = flight.getDurationOfFlight();
             double fuelConsumption = flight.getFuelConsumption();
             String flightPlan = flight.getFlightPlan().toString();
+            String flightStatus = "";
 
+            for (int i = 0; i < flight.listCounter; i++) {
+                flightStatus += " Done";
+            }
             //Set the text fields to the appropriate values
             view.distance.setText(String.valueOf(distance));
             view.co2.setText(String.valueOf(emissions));
             view.time.setText(time);
             view.fuel.setText(String.valueOf(fuelConsumption));
             view.flightPlan.setText(flightPlan);
+            view.flightStatus.setText(flightStatus);*/
+            String selectedFlight = null;
+            if (view.flightList.getSelectedValue() != null) {
+                selectedFlight = view.flightList.getSelectedValue();
+                view.setSelectedFlight(selectedFlight);
+            }
+            view.updateFlightStatus(selectedFlight);
         }
     }
 }

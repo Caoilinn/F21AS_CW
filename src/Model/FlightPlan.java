@@ -15,7 +15,7 @@ public class FlightPlan implements ISubject {
     public String toString() {
         String plan = "";
         for (Airport airport : flightPlan)
-            plan += airport.getName() + " ";
+            plan += airport.getName() + " | ";
         return plan;
     }
 
