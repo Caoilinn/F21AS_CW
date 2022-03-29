@@ -3,7 +3,9 @@ package Model;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Log {
     private static Log instance;
@@ -12,18 +14,20 @@ public class Log {
     private Log() {
         this.log = new ArrayList<String>();
     }
+
     public static Log getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new Log();
         }
         return instance;
     }
 
     public void addToLog(String line) {
-        if(line == null) {
+        if (line == null) {
             return;
         }
-        log.add(line);
+        String timeStamp = new SimpleDateFormat("HH:MM").format(Calendar.getInstance().getTime());
+        log.add("Time: " + timeStamp + " \t" + line);
     }
 
     public String getLine(int x) {
@@ -34,20 +38,20 @@ public class Log {
         return log.size();
     }
 
-    public boolean WriteToFile() {
+    public void WriteToFile() {
         try {
+
             FileWriter fileWriter = new FileWriter("LogFile");
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-            for (String line : log) {
-                bufferedWriter.write(line);
+            for (String s : this.log) {
+                bufferedWriter.write(s + "");
                 bufferedWriter.newLine();
             }
-            return true;
+            bufferedWriter.flush();
 
         } catch (IOException e) {
             e.printStackTrace();
-            return false;
         }
     }
 }
