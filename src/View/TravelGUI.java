@@ -188,11 +188,11 @@ public class TravelGUI extends JFrame implements IObserver {
     }
 
     // Creates a new FlightEditorGUI window only if there isn't one currently open
-    public void showFlightEditorGUI() {
+    /*public void showFlightEditorGUI() {
         FlightEditorGUI GUI = new FlightEditorGUI();
         GUI.guiCreate();
         this.flightEditorGUIisActive = true;
-    }
+    }*/
 
     public void updateFlightStatus(String selection) {
         if (selection != null) {
@@ -209,7 +209,7 @@ public class TravelGUI extends JFrame implements IObserver {
             String flightStatus = "";
 
             for (int i = 0; i < flight.getFlightPlan().getFlightPlan().size(); i++) {
-                if (i < flight.listCounter||flight.listCounter == flight.getFlightPlan().getFlightPlan().size()-1) {
+                if (i < flight.listCounter || flight.listCounter == flight.getFlightPlan().getFlightPlan().size() - 1) {
                     flightStatus += "Done | ";
                 } else if (i == flight.listCounter) {
                     flightStatus += "En route | ";
@@ -244,6 +244,8 @@ public class TravelGUI extends JFrame implements IObserver {
         addFlight.addActionListener(setListener);
         editFlight.addActionListener(setListener);
         close.addActionListener(setListener);
+        start.addActionListener(setListener);
+        stop.addActionListener(setListener);
         flightList.addListSelectionListener(setListener);
     }
 
@@ -256,31 +258,5 @@ public class TravelGUI extends JFrame implements IObserver {
                     + flight.getDate() + " " + flight.getDepartureTime() + " " + flight.getGPSCoordinates());
         }
         flightList.setModel(list);
-    }
-
-    private class TravelWorker extends SwingWorker<Integer, Integer> {
-
-        private boolean _suspended = false;
-
-        public synchronized void suspend() {
-            _suspended = true;
-            notifyAll();
-        }
-
-        public synchronized void resume() {
-            _suspended = false;
-            notifyAll();
-        }
-
-        @Override
-        protected Integer doInBackground() throws Exception {
-            synchronized (this) {
-                while (_suspended) {
-                    wait();
-
-                }
-            }
-            return null;
-        }
     }
 }

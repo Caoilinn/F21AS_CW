@@ -1,7 +1,7 @@
 package Model;
 
-import Model.GPSCoordinates;
 import View.IObserver;
+import Controller.TravelController;
 import com.F21AS_CW.Main;
 
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ public class ControlTower implements Runnable, ISubject {
 
 
     //The flights that the control tower is currently looking after
-    private ArrayList<Flight> ctFlights;
+    public ArrayList<Flight> ctFlights;
 
     public ControlTower(GPSCoordinates gps, String name) {
         gpsLocation = gps;
@@ -33,6 +33,9 @@ public class ControlTower implements Runnable, ISubject {
         this.ctFlights.remove(flight);
     }
 
+    public String getName() {
+        return this.name;
+    }
 
     @Override
     public void run() {
@@ -42,15 +45,35 @@ public class ControlTower implements Runnable, ISubject {
             Thread thread = new Thread(flight);
             thread.start();
         }
-        while (!this.ctFlights.isEmpty()) {
+        while (true) {
+            if (TravelController.suspended) {
+                synchronized (this) {
+                    while (TravelController.suspended) {
+                        System.out.println("Waiting in while");
+                        System.out.println("Control Tower: " + name + " is suspended");
+                        try {
+                            wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    System.out.println("Out of while");
+                }
+            }
             try {
                 Thread.sleep(Main.FLIGHT_UPDATE_TIME_OFFSET);
+
                 notifyObservers();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        System.out.println("Exited ");
+    }
+
+    public void restartThreads() {
+        synchronized (this) {
+            notify();
+        }
     }
 
     @Override

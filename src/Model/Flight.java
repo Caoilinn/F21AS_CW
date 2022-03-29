@@ -1,10 +1,10 @@
 package Model;
 
 import View.IObserver;
+import Controller.TravelController;
 import com.F21AS_CW.Main;
 
 import java.util.ArrayList;
-import java.util.ListIterator;
 
 public class Flight implements ISubject, Runnable {
 
@@ -156,19 +156,18 @@ public class Flight implements ISubject, Runnable {
         double longNew = rLongCurrent + Math.atan2(Math.sin(bearing) * Math.sin(angularDistance) * Math.cos(rLatCurrent), Math.cos(angularDistance) - Math.sin(rLatCurrent) * Math.sin(latNew));
 
         this.gpsCoordinates = new GPSCoordinates(Math.toDegrees(latNew), Math.toDegrees(longNew));
-        if (this.flightCode.equals("BA664"))
-            System.out.println("------Position update------");
     }
 
     //The new control tower should set itself as the flight's current control tower
     public synchronized void updateControlTower() {
         this.listCounter++;
-        ControlTower temp = nextCT;
         currentControlTower = nextCT;
-        if (listCounter < flightPlan.getFlightPlan().size())
+        this.currentControlTower.addFlight(this);
+        if (listCounter < flightPlan.getFlightPlan().size()) {
             nextCT = flightPlan.getFlightPlan().get(listCounter).getControlTower();
-        else
+        } else
             nextCT = null;
+        Log.getInstance().addToLog("Flight: " + flightCode + " is now communicating with CT: " + currentControlTower.getName());
     }
 
     public void printGPSLocation() {
@@ -194,17 +193,18 @@ public class Flight implements ISubject, Runnable {
     //Flights should synchronously update their positions
     @Override
     public void run() {
-        if (this.flightCode.equals("BA664")) {
-            System.out.println("-------TotalDistance------\n" + getDistance());
-        }
+        //if (this.flightCode.equals("BA664")) {
+        //    System.out.println("-------TotalDistance------\n" + getDistance());
+        //}
 
         while (true) {
             try {
-                // No need to synchronise here all Flight objects have their own instance of the
-                // GPS location variables
-                //if (nextCT == null) {
-                //    break;
-                //}
+                if (TravelController.suspended) {
+                    System.out.println("Flight: " + this.flightCode + " is suspended");
+                    synchronized (this) {
+                        wait();
+                    }
+                }
 
                 Thread.sleep(Main.FLIGHT_UPDATE_TIME_OFFSET);
                 updateGPSPosition();
@@ -215,12 +215,6 @@ public class Flight implements ISubject, Runnable {
                     break;
                 }
 
-
-                if (this.flightCode.equals("BA664")) {
-                    System.out.println(getCurrentDistance());
-                }
-
-
                 //Only check for updating control towers if there is a new control tower to travel to
                 if (nextCT != null) {
                     double distanceNextControlTower = GPSCoordinates.calcDistance(this.gpsCoordinates, nextCT.getGpsLocation());
@@ -228,7 +222,6 @@ public class Flight implements ISubject, Runnable {
                     if (distanceCurrentControlTower > distanceNextControlTower) {
                         this.currentControlTower.removeFlight(this);
                         updateControlTower();
-                        this.currentControlTower.addFlight(this);
                     }
                 }
 
@@ -239,8 +232,14 @@ public class Flight implements ISubject, Runnable {
         }
         this.flightLanded = true;
         this.gpsCoordinates = this.currentControlTower.getGpsLocation();
-        System.out.println(this.flightCode + "Has Landed!");
+        Log.getInstance().addToLog(this.flightCode + " Has Landed!");
         this.currentControlTower.removeFlight(this);
 
+    }
+
+    public void restartThreads() {
+        synchronized (this) {
+            notify();
+        }
     }
 }

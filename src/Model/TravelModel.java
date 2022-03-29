@@ -19,7 +19,7 @@ public class TravelModel implements ISubject {
     Aeroplanes aeroplanes;
     Flights flights;
     //ReportFile reportFile;
-    ArrayList<ControlTower> controlTowers = new ArrayList<>();
+    public ArrayList<ControlTower> controlTowers = new ArrayList<>();
 
     public TravelModel() {
         this.airlines = new Airlines();
@@ -140,6 +140,7 @@ public class TravelModel implements ISubject {
                 bufferedWriter.write("Fuel Consumption: " + airline.getTotalFuelConsumption() + "\n");
                 bufferedWriter.newLine();
             }
+            bufferedWriter.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }

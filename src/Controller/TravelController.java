@@ -1,6 +1,8 @@
 package Controller;
 
+import Model.ControlTower;
 import Model.Flight;
+import Model.Log;
 import Model.TravelModel;
 import View.TravelGUI;
 
@@ -14,6 +16,7 @@ public class TravelController {
 
     private TravelModel model;
     private TravelGUI view;
+    public static boolean suspended = false;
 
     public TravelController(TravelModel model, TravelGUI view) {
         this.model = model;
@@ -32,15 +35,37 @@ public class TravelController {
 
             // Edit
             else if (e.getSource() == view.editFlight && view.flightEditorGUIisActive == false) {
-                view.showFlightEditorGUI();
+                // view.showFlightEditorGUI();
             }
 
             // Close
             else if (e.getSource() == view.close) {
                 JOptionPane.showMessageDialog(view.getRootPane(), "Report File Generated");
                 model.writeToFile();
+                Log.getInstance().WriteToFile();
                 System.exit(0);
+            } else if (e.getSource() == view.start) {
+                start();
+            } else if (e.getSource() == view.stop) {
+                stop();
             }
+
+        }
+
+        public void start() {
+            suspended = false;
+            /*synchronized (this) {
+                this.notifyAll();
+            }*/
+            for(ControlTower ct: model.controlTowers){
+                ct.restartThreads();
+                for(Flight f: ct.ctFlights)
+                    f.restartThreads();
+            }
+        }
+
+        public void stop() {
+            suspended = true;
         }
 
         @Override
