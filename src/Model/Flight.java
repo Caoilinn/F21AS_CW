@@ -19,10 +19,14 @@ public class Flight implements ISubject, Runnable {
     private GPSCoordinates gpsCoordinates;
     private ControlTower currentControlTower;
     private ControlTower nextCT;
+    private ControlTower heading;
     private boolean flightLanded;
     public int listCounter = 1;
     private int updateCounter = 1;
     private ArrayList<IObserver> observers = new ArrayList<>();
+    private double distanceInOneUpdate;
+    private double currentBearing;
+    private boolean headingChanged = false;
 
     @Override
     public String toString() {
@@ -50,12 +54,16 @@ public class Flight implements ISubject, Runnable {
         //Initial GPS location of a flight is that of its origin control tower
         this.gpsCoordinates = departure.getControlTower().getGpsLocation();
         this.nextCT = flightPlan.getFlightPlan().get(1).getControlTower();
+        this.heading = nextCT;
 
         //Adds this flight to its departure airport's control tower
         this.currentControlTower = this.departure.getControlTower();
         this.currentControlTower.addFlight(this);
         addAirline();
         this.flightLanded = false;
+        //one update is equal to 15 minutes of simulated time
+        this.distanceInOneUpdate = this.plane.getCruiseSpeed() * 0.25;
+
     }
 
     public String getFlightCode() {
@@ -126,35 +134,38 @@ public class Flight implements ISubject, Runnable {
     }
 
     public double getCurrentDistance() {
-        return this.updateCounter * (this.plane.getCruiseSpeed() * 0.25);
+        return this.updateCounter * (this.distanceInOneUpdate);
     }
 
-    public synchronized void updateGPSPosition() {
-        this.updateCounter++;
+    public void caluclateBearing() {
         double rLatCurrent = Math.toRadians(this.gpsCoordinates.getLatitude());
         double rLongCurrent = Math.toRadians(this.gpsCoordinates.getLongitude());
-        double rLatNext = 0.0;
-        double rLongNext = 0.0;
-        if (nextCT != null) {
-            rLatNext = Math.toRadians(nextCT.getGpsLocation().getLatitude());
-            rLongNext = Math.toRadians(nextCT.getGpsLocation().getLongitude());
-        } else {
-            rLatNext = Math.toRadians(currentControlTower.getGpsLocation().getLatitude());
-            rLongNext = Math.toRadians(currentControlTower.getGpsLocation().getLatitude());
-        }
 
+        double rLatNext = Math.toRadians(this.heading.getGpsLocation().getLatitude());
+        double rLongNext = Math.toRadians(this.heading.getGpsLocation().getLongitude());
 
-        double deltaLong = rLongCurrent - rLongNext;
+        double deltaLong = rLongNext - rLongCurrent;
 
-        double bearing = Math.atan2(Math.sin(deltaLong) * Math.cos(rLatNext), Math.cos(rLatCurrent) * Math.sin(rLatNext) - Math.sin(rLatCurrent) * Math.cos(rLatNext) * Math.cos(deltaLong));
-        bearing = bearing * -1.0;
+        double bearingY = Math.sin(deltaLong) * Math.cos(rLatNext);
+
+        double bearingX = Math.cos(rLatCurrent) * Math.sin(rLatNext) - Math.sin(rLatCurrent) * Math.cos(rLatNext) * Math.cos(deltaLong);
+
+        this.currentBearing = (Math.toDegrees(Math.atan2(bearingY, bearingX)) + 360) % 360;
+
+    }
+    public synchronized void updateGPSPosition() {
+        this.updateCounter++;
+        caluclateBearing();
+        double rLatCurrent = Math.toRadians(this.gpsCoordinates.getLatitude());
+        double rLongCurrent = Math.toRadians(this.gpsCoordinates.getLongitude());
+
         // Every update is 15min sim time. Speed = kmph.
-        double linearDistance = this.plane.getCruiseSpeed() / 0.25;
+        double linearDistance = this.distanceInOneUpdate;
         double angularDistance = linearDistance / GPSCoordinates.EARTH_RADIUS;
 
-        double latNew = Math.asin((Math.sin(rLatCurrent) * Math.cos(angularDistance)) + (Math.cos(rLatCurrent) * Math.sin(angularDistance) * Math.cos(bearing)));
-        double longNew = rLongCurrent + Math.atan2(Math.sin(bearing) * Math.sin(angularDistance) * Math.cos(rLatCurrent), Math.cos(angularDistance) - Math.sin(rLatCurrent) * Math.sin(latNew));
-
+        double latNew = Math.asin(Math.sin(rLatCurrent) * Math.cos(angularDistance) + Math.cos(rLatCurrent) * Math.sin(angularDistance) * Math.cos(Math.toRadians(this.currentBearing)));
+        double longNew = rLongCurrent + Math.atan2(Math.sin(Math.toRadians(this.currentBearing)) * Math.sin(angularDistance) * Math.cos(rLatCurrent), Math.cos(angularDistance) - Math.sin(rLatCurrent) * Math.sin(latNew));
+        longNew = (longNew + 3* Math.PI) % (2 * Math.PI) - Math.PI;
         this.gpsCoordinates = new GPSCoordinates(Math.toDegrees(latNew), Math.toDegrees(longNew));
     }
 
@@ -167,6 +178,7 @@ public class Flight implements ISubject, Runnable {
             nextCT = flightPlan.getFlightPlan().get(listCounter).getControlTower();
         } else
             nextCT = null;
+        headingChanged = false;
         Log.getInstance().addToLog("Flight: " + flightCode + " is now communicating with CT: " + currentControlTower.getName());
     }
 
@@ -193,9 +205,6 @@ public class Flight implements ISubject, Runnable {
     //Flights should synchronously update their positions
     @Override
     public void run() {
-        //if (this.flightCode.equals("BA664")) {
-        //    System.out.println("-------TotalDistance------\n" + getDistance());
-        //}
 
         while (true) {
             try {
@@ -211,27 +220,59 @@ public class Flight implements ISubject, Runnable {
 
                 double distanceCurrentControlTower = GPSCoordinates.calcDistance(this.gpsCoordinates, currentControlTower.getGpsLocation());
 
-                if (getCurrentDistance() >= getDistance()) {
-                    break;
-                }
+                double distanceToHeading = GPSCoordinates.calcDistance(this.gpsCoordinates, heading.getGpsLocation());
+
 
                 //Only check for updating control towers if there is a new control tower to travel to
                 if (nextCT != null) {
-                    double distanceNextControlTower = GPSCoordinates.calcDistance(this.gpsCoordinates, nextCT.getGpsLocation());
+                    if (headingChanged) {
+                        double distanceNextControlTower = GPSCoordinates.calcDistance(this.gpsCoordinates, nextCT.getGpsLocation());
 
-                    if (distanceCurrentControlTower > distanceNextControlTower) {
-                        this.currentControlTower.removeFlight(this);
-                        updateControlTower();
+                        if (distanceCurrentControlTower > distanceNextControlTower) {
+                            this.currentControlTower.removeFlight(this);
+
+                            updateControlTower();
+                        }
                     }
                 }
 
+                if (distanceToHeading <= this.distanceInOneUpdate) {
+                    if (listCounter < flightPlan.getFlightPlan().size()) {
+                        this.heading = flightPlan.getFlightPlan().get(listCounter).getControlTower();
+                        headingChanged = true;
+                        if (this.flightCode.equals("BA664")) {
+                            System.out.println("Changing heading");
+                        }
+                    } else {
+                        if (this.flightCode.equals("BA664")) {
 
+                            this.gpsCoordinates = heading.getGpsLocation();
+                        }
+                        System.out.println("balls piss shit");
+                        break;
+                    }
+                }
+                if (this.flightCode.equals("BA664")) {
+                    System.out.println("-------CurrentLocation------\n" + getGPSCoordinates());
+                    System.out.println("-------CurrentTower------\n" + this.currentControlTower.getName());
+                    System.out.println("-------CurrentTower location------\n" + this.heading.getGpsLocation().getLatitude() + " " +this.heading.getGpsLocation().getLongitude());
+                    if(nextCT != null) {
+                        System.out.println("-------NextTower------\n" + this.nextCT.getName());
+                    }
+                    System.out.println("-------Heading------\n" + this.heading.getName());
+                    System.out.println("-------Bearing------\n" + this.currentBearing);
+                    System.out.println("-------Distance to heading------\n" + GPSCoordinates.calcDistance(this.gpsCoordinates, heading.getGpsLocation()));
+                    if(nextCT != null) {
+                        System.out.println("-------Distance to next------\n" + GPSCoordinates.calcDistance(this.gpsCoordinates, nextCT.getGpsLocation()));
+                    }
+
+                    System.out.println();
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
         this.flightLanded = true;
-        this.gpsCoordinates = this.currentControlTower.getGpsLocation();
         Log.getInstance().addToLog(this.flightCode + " Has Landed!");
         this.currentControlTower.removeFlight(this);
 
