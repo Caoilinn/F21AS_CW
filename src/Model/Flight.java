@@ -95,7 +95,9 @@ public class Flight implements ISubject, Runnable {
     }
 
     public String getGPSCoordinates() {
-        return this.gpsCoordinates.getLatitude() + " " + this.gpsCoordinates.getLongitude();
+        double roundedLat = Math.round(this.gpsCoordinates.getLatitude()*100.0)/100.0;
+        double roundedLong = Math.round(this.gpsCoordinates.getLongitude()*100.0)/100.0;
+        return  "Latitude " + roundedLat + " Longitude " + roundedLong;
     }
 
     public int getCo2Emissions() {
