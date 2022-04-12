@@ -70,12 +70,23 @@ public class TravelController {
 
         @Override
         public void valueChanged(ListSelectionEvent e) {
-            String selectedFlight = null;
-            if (view.flightList.getSelectedValue() != null) {
-                selectedFlight = view.flightList.getSelectedValue();
-                view.setSelectedFlight(selectedFlight);
+            if (e.getSource() == view.flightList) {
+
+                String selectedFlight = null;
+                if (view.flightList.getSelectedValue() != null) {
+                    selectedFlight = view.flightList.getSelectedValue();
+                    view.setSelectedFlight(selectedFlight);
+                }
+                view.updateFlightStatus(selectedFlight);
             }
-            view.updateFlightStatus(selectedFlight);
+            else if(e.getSource() == view.controlTowerList){
+                for (ControlTower ct: model.controlTowers) {
+                    if(ct.getName() == view.controlTowerList.getSelectedValue()){
+                        for(Flight flight: ct.ctFlights)
+                            System.out.println(flight.getFlightCode());
+                    }
+                }
+            }
         }
     }
 }

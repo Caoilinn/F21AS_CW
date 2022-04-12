@@ -2,6 +2,7 @@ package View;
 
 import Controller.AddFlightController;
 import Controller.TravelController;
+import Model.ControlTower;
 import Model.Flight;
 import Model.Flights;
 import Model.TravelModel;
@@ -26,11 +27,11 @@ public class TravelGUI extends JFrame implements IObserver {
     }
 
     // GUI components
-    public JButton addFlight, editFlight, close, start, stop;
+    public JButton addFlight, editFlight, close, start, stop, showControlTowerFlights;
     public JTextField distance, time, fuel, co2, flightPlan, flightStatus;
     public JLabel distanceLabel, timeLabel, fuelLabel, co2Label, flightPlanLabel, flightStatusLabel;
-    public JList<String> flightList;
-    public JScrollPane scrollList;
+    public JList<String> flightList, controlTowerList;
+    public JScrollPane scrollList, controlTowerScrollList;
     public String selectedFlight;
 
     // GUI panels setup
@@ -90,6 +91,20 @@ public class TravelGUI extends JFrame implements IObserver {
         flightStatus.setEditable(false);
         p3.add(flightStatus);
         p.add(p3);
+
+        DefaultListModel<String> displayList = new DefaultListModel<>();
+        ArrayList<ControlTower> controlTowers = new ArrayList<ControlTower>(model.controlTowers);
+        for (ControlTower controlTower : controlTowers) {
+            displayList.addElement(controlTower.getName());
+        }
+
+
+        JPanel p4 = new JPanel();
+        controlTowerList = new JList(displayList);
+        controlTowerScrollList = new JScrollPane(controlTowerList);
+        controlTowerList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        p4.add(controlTowerList);
+        p.add(p4);
 
 
         // Adds the panel to the center with an empty boarder
@@ -158,6 +173,9 @@ public class TravelGUI extends JFrame implements IObserver {
         // Stop
         stop = new JButton("Stop");
         p.add(stop);
+
+        showControlTowerFlights = new JButton("Show Flights");
+        p.add(showControlTowerFlights);
 
         // Adds the panel to the south with an empty boarder
         this.add(p, BorderLayout.SOUTH);
@@ -247,6 +265,8 @@ public class TravelGUI extends JFrame implements IObserver {
         start.addActionListener(setListener);
         stop.addActionListener(setListener);
         flightList.addListSelectionListener(setListener);
+        controlTowerList.addListSelectionListener(setListener);
+        showControlTowerFlights.addActionListener(setListener);
     }
 
     // Refreshes the list with any new additions or amendments
