@@ -28,7 +28,8 @@ public class ControlTower implements Runnable, ISubject {
 
     public synchronized void addFlight(Flight flight) {
         newFlightAdded = true;
-        this.ctFlights.add(flight);
+        if (!this.ctFlights.    contains(flight))
+            this.ctFlights.add(flight);
     }
 
     public synchronized void removeFlight(Flight flight) {
