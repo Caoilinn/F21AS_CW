@@ -35,11 +35,6 @@ public class TravelController {
                 stop();
             }
 
-            // Edit
-            else if (e.getSource() == view.editFlight && view.flightEditorGUIisActive == false) {
-                // view.showFlightEditorGUI();
-            }
-
             // Close
             else if (e.getSource() == view.close) {
                 JOptionPane.showMessageDialog(view.getRootPane(), "Report File Generated");
@@ -78,15 +73,24 @@ public class TravelController {
                     view.setSelectedFlight(selectedFlight);
                 }
                 view.updateFlightStatus(selectedFlight);
-            }
-            else if(e.getSource() == view.controlTowerList){
-                for (ControlTower ct: model.controlTowers) {
-                    if(ct.getName() == view.controlTowerList.getSelectedValue()){
-                        for(Flight flight: ct.ctFlights)
-                            System.out.println(flight.getFlightCode());
+            } else if (e.getSource() == view.controlTowerList) {
+                for (ControlTower ct : model.controlTowers) {
+                    if (ct.getName() == view.controlTowerList.getSelectedValue()) {
+                        String ContFlights = "";
+                        for (Flight flight : ct.ctFlights) {
+                            // System.out.println(flight.getFlightCode());
+                            //    controlledFlights = flight.getFlightCode();
+
+                            ContFlights += flight.getFlightCode() + " ";
+                        }
+                        view.controlledFlights.setText(ContFlights);
                     }
+
                 }
+
             }
         }
+
     }
 }
+
