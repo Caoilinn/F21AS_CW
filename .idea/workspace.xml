@@ -8,37 +8,18 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/Model/ControlTower.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/Model/ControlTower.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/Model/Flight.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/Model/Flight.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/Model/FlightPlan.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/Model/FlightPlan.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/Model/Log.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/Model/Log.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/Model/TravelModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/Model/TravelModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/View/TravelGUI$TravelWorker.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/View/TravelGUI$TravelWorker.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/View/TravelGUI$TravelWorker.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/View/TravelGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/View/TravelGUI.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/TravelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TravelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Flight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Flight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/TravelModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/TravelModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/TravelGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/TravelGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/F21AS_CW/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/F21AS_CW/Main.java" afterDir="false" />
-    </list>
-    <list id="b994e8db-be41-404c-804e-9bd5da8be7e1" name="Changes by Adam" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Model/Flight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Flight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/FlightPlan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/FlightPlan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Log.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/TravelModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/TravelModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/TravelGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/TravelGUI.java" afterDir="false" />
     </list>
-    <list id="22e7ffce-d262-4ba0-9f66-c970b4a6d236" name="Changes by caoil" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Controller/TravelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TravelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/ControlTower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/ControlTower.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Model/Flight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Flight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/TravelGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/TravelGUI.java" afterDir="false" />
-    </list>
+    <list id="b994e8db-be41-404c-804e-9bd5da8be7e1" name="Changes by Adam" comment="" />
+    <list id="22e7ffce-d262-4ba0-9f66-c970b4a6d236" name="Changes by caoil" comment="" />
     <list id="692d759c-0cd3-45b1-89c6-44ce445ef260" name="Changes by caoilinnhughes" comment="" />
-    <list id="84e77d74-f72b-4e9b-ba5e-389b65018891" name="Changes by maleeharashid" comment="">
-      <change beforePath="$PROJECT_DIR$/src/View/TravelGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/TravelGUI.java" afterDir="false" />
-    </list>
-    <list id="50d3ca1a-ba84-4706-9fba-2821fa649ccc" name="Changes by ztals" comment="">
-      <change beforePath="$PROJECT_DIR$/src/View/TravelGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/TravelGUI.java" afterDir="false" />
-    </list>
+    <list id="84e77d74-f72b-4e9b-ba5e-389b65018891" name="Changes by maleeharashid" comment="" />
+    <list id="50d3ca1a-ba84-4706-9fba-2821fa649ccc" name="Changes by ztals" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,56 +41,6 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/View/TravelGUI.java">
-      <ranges>
-        <range start1="28" end1="31" start2="28" end2="31" changelist="c267d7a3-c767-4091-b6e9-faf269c2e55d" />
-        <range start1="33" end1="35" start2="33" end2="34" changelist="c267d7a3-c767-4091-b6e9-faf269c2e55d" />
-        <range start1="56" end1="57" start2="55" end2="56" changelist="c267d7a3-c767-4091-b6e9-faf269c2e55d" />
-        <range start1="65" end1="65" start2="64" end2="65" changelist="50d3ca1a-ba84-4706-9fba-2821fa649ccc" />
-        <range start1="71" end1="71" start2="71" end2="92" changelist="c267d7a3-c767-4091-b6e9-faf269c2e55d" />
-        <range start1="131" end1="131" start2="152" end2="160" changelist="50d3ca1a-ba84-4706-9fba-2821fa649ccc" />
-        <range start1="140" end1="141" start2="169" end2="170" changelist="84e77d74-f72b-4e9b-ba5e-389b65018891" />
-        <range start1="167" end1="167" start2="196" end2="227" changelist="22e7ffce-d262-4ba0-9f66-c970b4a6d236" />
-        <range start1="170" end1="170" start2="230" end2="231" changelist="22e7ffce-d262-4ba0-9f66-c970b4a6d236" />
-        <range start1="171" end1="171" start2="232" end2="233" changelist="22e7ffce-d262-4ba0-9f66-c970b4a6d236" />
-        <range start1="172" end1="172" start2="234" end2="238" changelist="b994e8db-be41-404c-804e-9bd5da8be7e1" />
-        <range start1="193" end1="194" start2="259" end2="261" changelist="22e7ffce-d262-4ba0-9f66-c970b4a6d236" />
-        <range start1="195" end1="196" start2="262" end2="263" changelist="22e7ffce-d262-4ba0-9f66-c970b4a6d236" />
-        <range start1="197" end1="199" start2="264" end2="273" changelist="22e7ffce-d262-4ba0-9f66-c970b4a6d236" />
-        <range start1="200" end1="205" start2="274" end2="279" changelist="22e7ffce-d262-4ba0-9f66-c970b4a6d236" />
-        <range start1="206" end1="211" start2="280" end2="285" changelist="22e7ffce-d262-4ba0-9f66-c970b4a6d236" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/Model/Flight.java">
-      <ranges>
-        <range start1="22" end1="23" start2="22" end2="23" changelist="c267d7a3-c767-4091-b6e9-faf269c2e55d" />
-        <range start1="128" end1="129" start2="128" end2="129" changelist="b994e8db-be41-404c-804e-9bd5da8be7e1" />
-        <range start1="158" end1="158" start2="158" end2="160" changelist="22e7ffce-d262-4ba0-9f66-c970b4a6d236" />
-        <range start1="160" end1="165" start2="162" end2="162" changelist="22e7ffce-d262-4ba0-9f66-c970b4a6d236" />
-        <range start1="174" end1="175" start2="171" end2="171" changelist="22e7ffce-d262-4ba0-9f66-c970b4a6d236" />
-        <range start1="200" end1="200" start2="196" end2="200" changelist="22e7ffce-d262-4ba0-9f66-c970b4a6d236" />
-        <range start1="204" end1="207" start2="204" end2="207" changelist="22e7ffce-d262-4ba0-9f66-c970b4a6d236" />
-        <range start1="212" end1="213" start2="212" end2="226" changelist="22e7ffce-d262-4ba0-9f66-c970b4a6d236" />
-        <range start1="214" end1="218" start2="227" end2="232" changelist="22e7ffce-d262-4ba0-9f66-c970b4a6d236" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/Model/TravelModel.java">
-      <ranges>
-        <range start1="20" end1="21" start2="20" end2="21" changelist="c267d7a3-c767-4091-b6e9-faf269c2e55d" />
-        <range start1="28" end1="29" start2="28" end2="29" changelist="c267d7a3-c767-4091-b6e9-faf269c2e55d" />
-        <range start1="36" end1="37" start2="36" end2="37" changelist="b994e8db-be41-404c-804e-9bd5da8be7e1" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/Controller/TravelController.java">
-      <ranges>
-        <range start1="47" end1="48" start2="47" end2="48" changelist="22e7ffce-d262-4ba0-9f66-c970b4a6d236" />
-        <range start1="58" end1="58" start2="58" end2="59" changelist="c267d7a3-c767-4091-b6e9-faf269c2e55d" />
-        <range start1="59" end1="59" start2="60" end2="63" changelist="c267d7a3-c767-4091-b6e9-faf269c2e55d" />
-        <range start1="65" end1="65" start2="69" end2="76" changelist="22e7ffce-d262-4ba0-9f66-c970b4a6d236" />
-      </ranges>
-    </file>
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -123,6 +54,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
@@ -282,6 +214,16 @@
     <MESSAGE value="Working on printing out the string instead of hashcode for the Airlines Hashset." />
     <MESSAGE value="Added date and time fields" />
     <option name="LAST_COMMIT_MESSAGE" value="Added date and time fields" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/View/FlightEditorGUI.java</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/F21AS_CW$Main.ic" NAME="Main Coverage Results" MODIFIED="1644420362925" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

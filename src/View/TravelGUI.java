@@ -28,8 +28,8 @@ public class TravelGUI extends JFrame implements IObserver {
 
     // GUI components
     public JButton addFlight, editFlight, close, start, stop, showControlTowerFlights;
-    public JTextField distance, time, fuel, co2, flightPlan, flightStatus;
-    public JLabel distanceLabel, timeLabel, fuelLabel, co2Label, flightPlanLabel, flightStatusLabel;
+    public JTextField distance, time, fuel, co2, flightPlan, flightStatus, controlledFlights;
+    public JLabel distanceLabel, timeLabel, fuelLabel, co2Label, flightPlanLabel, flightStatusLabel, controlledFlightsLabel;
     public JList<String> flightList, controlTowerList;
     public JScrollPane scrollList, controlTowerScrollList;
     public String selectedFlight;
@@ -52,26 +52,6 @@ public class TravelGUI extends JFrame implements IObserver {
         scrollList = new JScrollPane(flightList);
         flightList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         p.add(scrollList);
-
-        // Flight plan
-        /*JPanel p2 = new JPanel();
-        String[] columnNames = { "Control Tower", "Status"};
-        Object[][] info = {
-                {"test", "test"},
-                {"test", "test"},
-                {"test", "test"},
-                {"test", "test"},
-                {"test", "test"},
-        };
-        flightPlanTable.setValueAt() //sets a particular cell in a JTable
-        flightPlanTable = new JTable(info, columnNames);
-        flightPlanTable.setRowSelectionAllowed(false);
-        flightPlanTable.setColumnSelectionAllowed(false);
-        p2.add(flightPlanTable);
-        p.add(p2);
-
-        flightPlanTable.editCellAt(0,0)
-        */
 
         // Creates another panel within the box layout and
         // assigns a label and a text field to itself before
@@ -98,11 +78,19 @@ public class TravelGUI extends JFrame implements IObserver {
             displayList.addElement(controlTower.getName());
         }
 
-
         JPanel p4 = new JPanel();
+
+        controlledFlightsLabel = new JLabel("Controlled Flights: ");
+        p4.add(controlledFlightsLabel);
+        controlledFlights = new JTextField(20);
+        controlledFlights.setEditable(false);
+        p4.add(controlledFlights);
+
         controlTowerList = new JList(displayList);
         controlTowerScrollList = new JScrollPane(controlTowerList);
         controlTowerList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+
         p4.add(controlTowerList);
         p.add(p4);
 
@@ -158,10 +146,6 @@ public class TravelGUI extends JFrame implements IObserver {
         addFlight = new JButton("Add");
         p.add(addFlight);
 
-        // Edit
-        editFlight = new JButton("Edit");
-        p.add(editFlight);
-
         // Close
         close = new JButton("Close");
         p.add(close);
@@ -174,8 +158,6 @@ public class TravelGUI extends JFrame implements IObserver {
         stop = new JButton("Stop");
         p.add(stop);
 
-        showControlTowerFlights = new JButton("Show Flights");
-        p.add(showControlTowerFlights);
 
         // Adds the panel to the south with an empty boarder
         this.add(p, BorderLayout.SOUTH);
@@ -185,7 +167,7 @@ public class TravelGUI extends JFrame implements IObserver {
     // Sets parameters for creating the GUI
     public void guiCreate() {
         this.setTitle("Travel Application");
-        this.setPreferredSize(new Dimension(900, 300));
+        this.setPreferredSize(new Dimension(900, 600));
         this.setDefaultCloseOperation(this.DO_NOTHING_ON_CLOSE);
         this.setLocation(700, 200);
         this.setLayout(new BorderLayout(5, 5));
@@ -226,6 +208,8 @@ public class TravelGUI extends JFrame implements IObserver {
             String flightPlan = flight.getFlightPlan().toString();
             String flightStatus = "";
 
+          //  String flightsControlled = flight
+
             for (int i = 0; i < flight.getFlightPlan().getFlightPlan().size(); i++) {
                 if (i < flight.listCounter || flight.listCounter == flight.getFlightPlan().getFlightPlan().size() - 1) {
                     flightStatus += "Done | ";
@@ -240,8 +224,12 @@ public class TravelGUI extends JFrame implements IObserver {
             this.fuel.setText(String.valueOf(fuelConsumption));
             this.flightPlan.setText(flightPlan);
             this.flightStatus.setText(flightStatus);
+
         }
     }
+
+
+    //    this.controlledFlights.setText(controlledFlights);
 
     //This will get called whenever the flights hashmap is added to
     @Override
@@ -260,13 +248,12 @@ public class TravelGUI extends JFrame implements IObserver {
         fuel.addActionListener(setListener);
         co2.addActionListener(setListener);
         addFlight.addActionListener(setListener);
-        editFlight.addActionListener(setListener);
         close.addActionListener(setListener);
         start.addActionListener(setListener);
         stop.addActionListener(setListener);
         flightList.addListSelectionListener(setListener);
         controlTowerList.addListSelectionListener(setListener);
-        showControlTowerFlights.addActionListener(setListener);
+
     }
 
     // Refreshes the list with any new additions or amendments
