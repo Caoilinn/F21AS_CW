@@ -9,6 +9,7 @@ import View.TravelGUI;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.text.DefaultEditorKit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -31,6 +32,7 @@ public class TravelController {
             // Add
             if (e.getSource() == view.addFlight && view.addFlightGUIisActive == false) {
                 view.showAddFlightGUI();
+                stop();
             }
 
             // Edit
@@ -54,12 +56,10 @@ public class TravelController {
 
         public void start() {
             suspended = false;
-            /*synchronized (this) {
-                this.notifyAll();
-            }*/
-            for(ControlTower ct: model.controlTowers){
+
+            for (ControlTower ct : model.controlTowers) {
                 ct.restartThreads();
-                for(Flight f: ct.ctFlights)
+                for (Flight f : ct.ctFlights)
                     f.restartThreads();
             }
         }
@@ -70,29 +70,6 @@ public class TravelController {
 
         @Override
         public void valueChanged(ListSelectionEvent e) {
-            /*String x = view.flightList.getSelectedValue();
-            String[] temp = x.split(" ");
-            String flightCode = temp[0];
-            Flight flight = model.getFlights().get(flightCode);
-
-            //Retrieve Distance, Emissions, Time and Fuel Consumption from the flight object
-            double distance = flight.getCurrentDistance();
-            double emissions = flight.getCo2Emissions();
-            String time = flight.getDurationOfFlight();
-            double fuelConsumption = flight.getFuelConsumption();
-            String flightPlan = flight.getFlightPlan().toString();
-            String flightStatus = "";
-
-            for (int i = 0; i < flight.listCounter; i++) {
-                flightStatus += " Done";
-            }
-            //Set the text fields to the appropriate values
-            view.distance.setText(String.valueOf(distance));
-            view.co2.setText(String.valueOf(emissions));
-            view.time.setText(time);
-            view.fuel.setText(String.valueOf(fuelConsumption));
-            view.flightPlan.setText(flightPlan);
-            view.flightStatus.setText(flightStatus);*/
             String selectedFlight = null;
             if (view.flightList.getSelectedValue() != null) {
                 selectedFlight = view.flightList.getSelectedValue();

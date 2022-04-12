@@ -230,7 +230,6 @@ public class AddFlightGUI extends JFrame implements IObserver {
 
         //Add the flight to the flight HashMap
         this.model.getFlights().put(flightCode, flight);
-
         //Reset the main GUI to allow for the updated flights HashMap
         TravelGUI.addFlightGUIisActive = false;
         travelGUI.resetList();

@@ -1,5 +1,6 @@
 package Model;
 
+import Controller.AddFlightController;
 import View.IObserver;
 import Controller.TravelController;
 import com.F21AS_CW.Main;
@@ -10,7 +11,7 @@ public class ControlTower implements Runnable, ISubject {
     private GPSCoordinates gpsLocation;
     private String name;
     private ArrayList<IObserver> observers = new ArrayList<>();
-
+    private boolean newFlightAdded = false;
 
     //The flights that the control tower is currently looking after
     public ArrayList<Flight> ctFlights;
@@ -26,6 +27,7 @@ public class ControlTower implements Runnable, ISubject {
     }
 
     public synchronized void addFlight(Flight flight) {
+        newFlightAdded = true;
         this.ctFlights.add(flight);
     }
 
@@ -46,18 +48,23 @@ public class ControlTower implements Runnable, ISubject {
             thread.start();
         }
         while (true) {
-            if (TravelController.suspended) {
+            if (newFlightAdded) {
+                newFlightAdded = false;
+                if (ctFlights.size() > 0) {
+                    Thread thread = new Thread(this.ctFlights.get(ctFlights.size() - 1));
+                    thread.start();
+                }
+            }
+
+            if (TravelController.suspended || AddFlightController.suspended) {
                 synchronized (this) {
                     while (TravelController.suspended) {
-                        System.out.println("Waiting in while");
-                        System.out.println("Control Tower: " + name + " is suspended");
                         try {
                             wait();
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
                     }
-                    System.out.println("Out of while");
                 }
             }
             try {

@@ -153,6 +153,7 @@ public class Flight implements ISubject, Runnable {
         this.currentBearing = (Math.toDegrees(Math.atan2(bearingY, bearingX)) + 360) % 360;
 
     }
+
     public synchronized void updateGPSPosition() {
         this.updateCounter++;
         caluclateBearing();
@@ -165,7 +166,7 @@ public class Flight implements ISubject, Runnable {
 
         double latNew = Math.asin(Math.sin(rLatCurrent) * Math.cos(angularDistance) + Math.cos(rLatCurrent) * Math.sin(angularDistance) * Math.cos(Math.toRadians(this.currentBearing)));
         double longNew = rLongCurrent + Math.atan2(Math.sin(Math.toRadians(this.currentBearing)) * Math.sin(angularDistance) * Math.cos(rLatCurrent), Math.cos(angularDistance) - Math.sin(rLatCurrent) * Math.sin(latNew));
-        longNew = (longNew + 3* Math.PI) % (2 * Math.PI) - Math.PI;
+        longNew = (longNew + 3 * Math.PI) % (2 * Math.PI) - Math.PI;
         this.gpsCoordinates = new GPSCoordinates(Math.toDegrees(latNew), Math.toDegrees(longNew));
     }
 
@@ -180,10 +181,6 @@ public class Flight implements ISubject, Runnable {
             nextCT = null;
         headingChanged = false;
         Log.getInstance().addToLog("Flight: " + flightCode + " is now communicating with CT: " + currentControlTower.getName());
-    }
-
-    public void printGPSLocation() {
-        System.out.println("Latitude: " + this.gpsCoordinates.getLatitude() + "\n Longitude: " + this.gpsCoordinates.getLongitude());
     }
 
     @Override
@@ -205,11 +202,11 @@ public class Flight implements ISubject, Runnable {
     //Flights should synchronously update their positions
     @Override
     public void run() {
-
         while (true) {
+            if (currentControlTower == null)
+                break;
             try {
                 if (TravelController.suspended) {
-                    System.out.println("Flight: " + this.flightCode + " is suspended");
                     synchronized (this) {
                         wait();
                     }
@@ -240,33 +237,9 @@ public class Flight implements ISubject, Runnable {
                     if (listCounter < flightPlan.getFlightPlan().size()) {
                         this.heading = flightPlan.getFlightPlan().get(listCounter).getControlTower();
                         headingChanged = true;
-                        if (this.flightCode.equals("BA664")) {
-                            System.out.println("Changing heading");
-                        }
                     } else {
-                        if (this.flightCode.equals("BA664")) {
-
-                            this.gpsCoordinates = heading.getGpsLocation();
-                        }
-                        System.out.println("balls piss shit");
                         break;
                     }
-                }
-                if (this.flightCode.equals("BA664")) {
-                    System.out.println("-------CurrentLocation------\n" + getGPSCoordinates());
-                    System.out.println("-------CurrentTower------\n" + this.currentControlTower.getName());
-                    System.out.println("-------CurrentTower location------\n" + this.heading.getGpsLocation().getLatitude() + " " +this.heading.getGpsLocation().getLongitude());
-                    if(nextCT != null) {
-                        System.out.println("-------NextTower------\n" + this.nextCT.getName());
-                    }
-                    System.out.println("-------Heading------\n" + this.heading.getName());
-                    System.out.println("-------Bearing------\n" + this.currentBearing);
-                    System.out.println("-------Distance to heading------\n" + GPSCoordinates.calcDistance(this.gpsCoordinates, heading.getGpsLocation()));
-                    if(nextCT != null) {
-                        System.out.println("-------Distance to next------\n" + GPSCoordinates.calcDistance(this.gpsCoordinates, nextCT.getGpsLocation()));
-                    }
-
-                    System.out.println();
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();

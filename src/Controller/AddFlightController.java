@@ -1,9 +1,6 @@
 package Controller;
 
-import Model.Airport;
-import Model.Flight;
-import Model.FlightPlan;
-import Model.TravelModel;
+import Model.*;
 import View.AddFlightGUI;
 import View.TravelGUI;
 
@@ -12,12 +9,16 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 
 public class AddFlightController {
 
     private TravelModel model;
     private AddFlightGUI view;
+    public static boolean suspended = false;
 
     public AddFlightController(TravelModel model, AddFlightGUI view) {
         this.model = model;
@@ -30,9 +31,15 @@ public class AddFlightController {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == view.addFlight) {
-                addFlight();
+                try {
+                    addFlight();
+                } catch (ParseException ex) {
+                    ex.printStackTrace();
+                }
+                JOptionPane.showMessageDialog(view.getRootPane(), "Please press start");
             } else if (e.getSource() == view.close) {
                 view.dispose();
+                JOptionPane.showMessageDialog(view.getRootPane(), "Please press start");
                 TravelGUI.addFlightGUIisActive = false;
             } else if (e.getSource() == view.addToList) {
                 addToList();
@@ -47,7 +54,12 @@ public class AddFlightController {
     }
 
     //Adds a new flight to the flights HashMap
-    private void addFlight() {
+    private void addFlight() throws ParseException {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd:MM:yyyy");
+        Date earliest = dateFormat.parse("01:01:2000");
+        Date latest = dateFormat.parse("30:12:2099");
+
         //Retrieve values from the text boxes
         String date = view.dateTxt.getText();
         String time = view.timeTxt.getText();
@@ -80,11 +92,38 @@ public class AddFlightController {
             JOptionPane.showMessageDialog(view.getRootPane(), "Date does not match dd:mm:yyyy format");
             return;
         }
+
+        Date enteredDate = dateFormat.parse(date);
+
+        if (enteredDate.after(latest)) {
+            JOptionPane.showMessageDialog(view.getRootPane(), "Date cannot be after 30-12-2099");
+            return;
+        }
+
+        if (enteredDate.before(earliest)) {
+            JOptionPane.showMessageDialog(view.getRootPane(), "Date cannot be before 01-01-2000");
+            return;
+        }
+
         //Make sure time matches a specific format (HH:MM)
         if (!time.matches("\\d{2}:\\d{2}")) {
             JOptionPane.showMessageDialog(view.getRootPane(), "Time does not match hh:mm format");
             return;
         }
+        String[] timeSplit = time.split(":");
+
+        String hour = timeSplit[0];
+        String minute = timeSplit[1];
+
+        if (Integer.parseInt(hour) > 23 || Integer.parseInt(hour) < 0) {
+            JOptionPane.showMessageDialog(view.getRootPane(), "Hours cannot be greater than 23 or less than 0");
+            return;
+        }
+        if (Integer.parseInt(minute) > 59 || Integer.parseInt(hour) < 0) {
+            JOptionPane.showMessageDialog(view.getRootPane(), "Minutes cannot be greater than 59 or less than 0");
+            return;
+        }
+
 
         //Create new FlightPlan object
         FlightPlan plan = new FlightPlan();
@@ -109,6 +148,7 @@ public class AddFlightController {
         //Add the flight to the flight HashMap
         this.model.addFlight(flight);
 
+        Log.getInstance().addToLog(flightCode + " has been added");
         //Reset the main GUI to allow for the updated flights HashMap
         TravelGUI.addFlightGUIisActive = false;
         //travelGUI.resetList(); //FIGURE OUT
