@@ -2,11 +2,9 @@ package Model;
 
 import View.IObserver;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class Airports implements IReadable, ISubject {
 
@@ -42,10 +40,12 @@ public class Airports implements IReadable, ISubject {
 
         try {
             this.airports = new HashMap<>();
-            File airportsFile = new File("Airports");
-            Scanner reader = new Scanner(airportsFile);
-            while (reader.hasNextLine()) {
-                String line = reader.nextLine();
+            //File airportsFile = new File("Airports");
+            //Scanner reader = new Scanner(airportsFile);
+            InputStream data = getClass().getResourceAsStream("/files/Airports");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(data));
+            String line;
+            while ((line = reader.readLine()) != null) {
                 String[] fields = line.split(";");
 
                 //If the line doesn't contain the required fields then skip over the line
@@ -107,6 +107,8 @@ public class Airports implements IReadable, ISubject {
             reader.close();
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return false;
