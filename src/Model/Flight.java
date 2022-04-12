@@ -95,7 +95,9 @@ public class Flight implements ISubject, Runnable {
     }
 
     public String getGPSCoordinates() {
-        return this.gpsCoordinates.getLatitude() + " " + this.gpsCoordinates.getLongitude();
+        double roundedLat = Math.round(this.gpsCoordinates.getLatitude()*100.0)/100.0;
+        double roundedLong = Math.round(this.gpsCoordinates.getLongitude()*100.0)/100.0;
+        return  "Latitude " + roundedLat + " Longitude " + roundedLong;
     }
 
     public int getCo2Emissions() {
@@ -172,15 +174,17 @@ public class Flight implements ISubject, Runnable {
 
     //The new control tower should set itself as the flight's current control tower
     public synchronized void updateControlTower() {
-        this.listCounter++;
-        currentControlTower = nextCT;
-        this.currentControlTower.addFlight(this);
-        if (listCounter < flightPlan.getFlightPlan().size()) {
-            nextCT = flightPlan.getFlightPlan().get(listCounter).getControlTower();
-        } else
-            nextCT = null;
-        headingChanged = false;
-        Log.getInstance().addToLog("Flight: " + flightCode + " is now communicating with CT: " + currentControlTower.getName());
+            this.listCounter++;
+            if(nextCT != null) {
+                currentControlTower = nextCT;
+            }
+            this.currentControlTower.addFlight(this);
+            if (listCounter < flightPlan.getFlightPlan().size()) {
+                nextCT = flightPlan.getFlightPlan().get(listCounter).getControlTower();
+            } else
+                nextCT = null;
+            headingChanged = false;
+            Log.getInstance().addToLog("Flight: " + flightCode + " is now communicating with CT: " + currentControlTower.getName());
     }
 
     @Override

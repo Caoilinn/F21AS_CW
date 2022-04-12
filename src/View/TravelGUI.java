@@ -194,7 +194,7 @@ public class TravelGUI extends JFrame implements IObserver {
         this.flightEditorGUIisActive = true;
     }*/
 
-    public void updateFlightStatus(String selection) {
+    public synchronized void updateFlightStatus(String selection) {
         if (selection != null) {
             String[] temp = selection.split(" ");
             String flightCode = temp[0];
@@ -211,7 +211,7 @@ public class TravelGUI extends JFrame implements IObserver {
           //  String flightsControlled = flight
 
             for (int i = 0; i < flight.getFlightPlan().getFlightPlan().size(); i++) {
-                if (i < flight.listCounter || flight.listCounter == flight.getFlightPlan().getFlightPlan().size() - 1) {
+                if (i < flight.listCounter ) {
                     flightStatus += "Done | ";
                 } else if (i == flight.listCounter) {
                     flightStatus += "En route | ";
