@@ -4,6 +4,8 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -26,8 +28,12 @@ public class Log {
         if (line == null) {
             return;
         }
-        String timeStamp = new SimpleDateFormat("HH:MM").format(Calendar.getInstance().getTime());
-        log.add("Time: " + timeStamp + " \t" + line);
+
+        LocalDateTime myDateObj = LocalDateTime.now();
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH-mm-ss");
+        String formattedDate = myDateObj.format(myFormatObj);
+
+        log.add("Time Stamp: " + formattedDate + " \t" + line);
     }
 
     public String getLine(int x) {
