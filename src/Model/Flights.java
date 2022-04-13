@@ -2,8 +2,7 @@ package Model;
 
 import View.IObserver;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -55,10 +54,10 @@ public class Flights implements IReadable, ISubject {
     public boolean ReadFromFile() {
         try {
             this.flights = new HashMap<>();
-            File flightsFile = new File("Flights");
-            Scanner reader = new Scanner(flightsFile);
-            while (reader.hasNextLine()) {
-                String line = reader.nextLine();
+            InputStream data = getClass().getResourceAsStream("/files/Flights");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(data));
+            String line;
+            while ((line = reader.readLine()) != null) {
                 String[] fields = line.split(";");
 
                 //If the line doesn't contain the required fields then skip over the line
@@ -94,6 +93,8 @@ public class Flights implements IReadable, ISubject {
             reader.close();
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return true;
