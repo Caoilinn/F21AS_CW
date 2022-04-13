@@ -42,7 +42,7 @@ public class Airports implements IReadable, ISubject {
             this.airports = new HashMap<>();
             //File airportsFile = new File("Airports");
             //Scanner reader = new Scanner(airportsFile);
-            InputStream data = getClass().getResourceAsStream("/files/Airports");
+            InputStream data = getClass().getResourceAsStream("/files/Airports.txt");
             BufferedReader reader = new BufferedReader(new InputStreamReader(data));
             String line;
             while ((line = reader.readLine()) != null) {
@@ -57,7 +57,7 @@ public class Airports implements IReadable, ISubject {
                 String latitude = fields[2];
                 String l0ngitude = fields[3];
 
-
+                //Need to add Â infront for JAR to work
                 String[] split1 = latitude.split("°");
 
                 Double degrees1 = Double.parseDouble(split1[0]);
@@ -69,7 +69,7 @@ public class Airports implements IReadable, ISubject {
                 Double seconds1 = (Double.parseDouble(split3[0])) / 3600;
                 Boolean north = split3[1].equals("N");
 
-
+                //Same as above, for working in IDE please remove Â
                 String[] split4 = l0ngitude.split("°");
                 Double degrees2 = Double.parseDouble(split4[0]);
 

@@ -6,7 +6,6 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Scanner;
 
 public class Flights implements IReadable, ISubject {
 
@@ -54,7 +53,7 @@ public class Flights implements IReadable, ISubject {
     public boolean ReadFromFile() {
         try {
             this.flights = new HashMap<>();
-            InputStream data = getClass().getResourceAsStream("/files/Flights");
+            InputStream data = getClass().getResourceAsStream("/files/Flights.txt");
             BufferedReader reader = new BufferedReader(new InputStreamReader(data));
             String line;
             while ((line = reader.readLine()) != null) {
