@@ -78,9 +78,6 @@ public class TravelController {
                     if (ct.getName() == view.controlTowerList.getSelectedValue()) {
                         String ContFlights = "";
                         for (Flight flight : ct.ctFlights) {
-                            // System.out.println(flight.getFlightCode());
-                            //    controlledFlights = flight.getFlightCode();
-
                             ContFlights += flight.getFlightCode() + " ";
                         }
                         view.controlledFlights.setText(ContFlights);

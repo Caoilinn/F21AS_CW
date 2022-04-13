@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.Random;
 import javax.swing.*;
 import javax.swing.BorderFactory;
+import javax.swing.border.EmptyBorder;
 
 public class AddFlightGUI extends JFrame implements IObserver {
     public TravelGUI travelGUI;
@@ -23,7 +24,7 @@ public class AddFlightGUI extends JFrame implements IObserver {
 
     // GUI components
     public JButton addFlight, close, addToList, removeFromList;
-    public JLabel flightNoLbl, airlineLbl, planeLbl, departureLbl, destinationLbl, dateLbl, timeLbl;
+    public JLabel flightNoLbl, airlineLbl, planeLbl, departureLbl, destinationLbl, dateLbl, timeLbl, labelTitle, labelInfo;
     public JTextField flightNoTxt, dateTxt, timeTxt;
     public JComboBox<String> airlineCombo = new JComboBox<String>();
     public JComboBox<String> planeCombo = new JComboBox<String>();
@@ -33,10 +34,34 @@ public class AddFlightGUI extends JFrame implements IObserver {
     public JScrollPane scrollList1, scrollList2;
     public DefaultListModel controlTowers, flightPlan;
 
+    public void title() {
+
+        JPanel p = new JPanel();
+        JPanel title = new JPanel();
+        BoxLayout boxlayout = new BoxLayout(p, BoxLayout.Y_AXIS);
+        p.setLayout(boxlayout);
+
+        labelTitle = new JLabel("<html><span style='color: navy;'>Add Flight</span></html>");
+        labelTitle.setFont(new Font("Dialog", Font.BOLD, 35));
+        title.add(labelTitle);
+        p.add(title);
+
+        JPanel textInfo = new JPanel();
+        labelInfo = new JLabel("<html><span style='color:  navy;'> Please fill out all the fields below and add a flight plan then select the 'Add flight' button. </span></html>");
+        textInfo.add(labelInfo);
+        p.add(textInfo);
+
+        this.add(p, BorderLayout.NORTH);
+        p.setBorder(new EmptyBorder(new Insets(25, 25, 2, 25)));
+
+    }
+
+
     // Methods to set up all relevant panels
     public void mainPanel() {
         JPanel p = new JPanel(new GridBagLayout());
         airlineLbl = new JLabel("Airline:");
+        airlineLbl.setFont( new Font("Dialog", Font.BOLD , 15));
 
         // add items to the combo box
         ArrayList<Airline> airlines = new ArrayList<Airline>(this.model.getAirlines().values());
@@ -46,6 +71,7 @@ public class AddFlightGUI extends JFrame implements IObserver {
         }
 
         planeLbl = new JLabel("Plane:");
+        planeLbl.setFont( new Font("Dialog", Font.BOLD , 15));
 
         ArrayList<Aeroplane> aeroplanes = new ArrayList<Aeroplane>(this.model.getAeroplanes().values());
         for (Aeroplane aeroplane : aeroplanes) {
@@ -53,17 +79,20 @@ public class AddFlightGUI extends JFrame implements IObserver {
         }
 
         departureLbl = new JLabel("Departure:");
+        departureLbl.setFont( new Font("Dialog", Font.BOLD , 15));
         destinationLbl = new JLabel("Destination:");
+        destinationLbl.setFont( new Font("Dialog", Font.BOLD , 15));
         for (String airportCode : model.getAirports().keySet()) {
             departureCombo.addItem(airportCode);
             destinationCombo.addItem(airportCode);
         }
 
-
         dateLbl = new JLabel("Date:");
+        dateLbl.setFont( new Font("Dialog", Font.BOLD , 15));
         dateTxt = new JTextField(8);
 
         timeLbl = new JLabel("Time:");
+        timeLbl.setFont( new Font("Dialog", Font.BOLD , 15));
         timeTxt = new JTextField(8);
 
         // Adding constraints to GridBagLayout
@@ -116,7 +145,7 @@ public class AddFlightGUI extends JFrame implements IObserver {
         p2.add(addFlight);
         close = new JButton("Close");
         p2.add(close);
-        this.add(p2, BorderLayout.NORTH);
+        this.add(p2, BorderLayout.PAGE_END);
 
 
         JPanel p3 = new JPanel();
@@ -322,10 +351,11 @@ public class AddFlightGUI extends JFrame implements IObserver {
 
     public void guiCreate() {
         this.setTitle("Add A Flight");
-        this.setPreferredSize(new Dimension(800, 400));
+        this.setPreferredSize(new Dimension(800, 520));
         this.setDefaultCloseOperation(this.DO_NOTHING_ON_CLOSE);
-        this.setLocation(600, 400);
+        this.setLocation(400, 160);
         this.setLayout(new BorderLayout(5, 5));
+        this.title();
         this.mainPanel();
         this.setVisible(true);
         this.pack();
