@@ -5,7 +5,6 @@ import View.IObserver;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class Airlines implements IReadable, ISubject {
 
@@ -26,7 +25,7 @@ public class Airlines implements IReadable, ISubject {
     public boolean ReadFromFile() {
         try {
             this.airlines = new HashMap<String, Airline>();
-            InputStream data = getClass().getResourceAsStream("/files/Airlines");
+            InputStream data = getClass().getResourceAsStream("/files/Airlines.txt");
             BufferedReader reader = new BufferedReader(new InputStreamReader(data));
             String line;
             while ((line = reader.readLine()) != null) {

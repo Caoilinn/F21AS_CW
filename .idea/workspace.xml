@@ -10,13 +10,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c267d7a3-c767-4091-b6e9-faf269c2e55d" name="Changes" comment="Added date and time fields">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/F21AS_CW_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/F21AS_CW_jar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/Model/Flight.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/Model/Flight.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/View/AddFlightGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/View/AddFlightGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/View/TravelGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/View/TravelGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/TravelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TravelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/AddFlightGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/AddFlightGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/TravelGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/TravelGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogFile" beforeDir="false" afterPath="$PROJECT_DIR$/LogFile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReportFile" beforeDir="false" afterPath="$PROJECT_DIR$/ReportFile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/F21AS_CW_jar/LogFile" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/F21AS_CW_jar/LogFile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/F21AS_CW_jar/ReportFile" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/F21AS_CW_jar/ReportFile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/Model/Aeroplanes.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/Model/Aeroplanes.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/Model/Airlines.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/Model/Airlines.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/Model/Airports.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/Model/Airports.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/F21AS_CW/Model/Flights.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/F21AS_CW/Model/Flights.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Aeroplanes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Aeroplanes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Airlines.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Airlines.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Airports.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Airports.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Flights.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Flights.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/files/Aeroplanes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/files/Airlines" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/files/Airports" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/files/Flights" beforeDir="false" />
     </list>
     <list id="b994e8db-be41-404c-804e-9bd5da8be7e1" name="Changes by Adam" comment="" />
     <list id="22e7ffce-d262-4ba0-9f66-c970b4a6d236" name="Changes by caoil" comment="" />
@@ -76,6 +88,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/out/artifacts/F21AS_CW_jar/F21AS_CW.jar" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -83,13 +96,19 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Artifacts" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
-  <component name="RunManager" selected="Application.TravelAPP">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\willi\Documents\HW\AdvSoftDes\AS_CW\src" />
+      <recent name="D:\willi\Documents\HW\AdvSoftDes\AS_CW" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JAR Application.FlightSimJAR">
     <configuration name="TravelAPP" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.F21AS_CW.Main" />
       <module name="F21AS_CW" />
@@ -112,8 +131,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="FlightSimJAR" type="JarApplication">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/F21AS_CW_jar/F21AS_CW.jar" />
+      <option name="WORKING_DIRECTORY" value="D:\willi\Documents\HW\AdvSoftDes\AS_CW" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Application.TravelAPP" />
+      <item itemvalue="JAR Application.FlightSimJAR" />
       <item itemvalue="JUnit.DataClassTests" />
     </list>
     <recent_temporary>
@@ -162,6 +188,7 @@
       <workItem from="1647001892160" duration="11475000" />
       <workItem from="1647952062981" duration="3407000" />
       <workItem from="1647988543391" duration="192000" />
+      <workItem from="1649854851067" duration="5931000" />
     </task>
     <task id="LOCAL-00001" summary="Added the text files">
       <created>1645544767018</created>
