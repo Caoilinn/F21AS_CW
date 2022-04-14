@@ -95,9 +95,9 @@ public class Flight implements ISubject, Runnable {
     }
 
     public String getGPSCoordinates() {
-        double roundedLat = Math.round(this.gpsCoordinates.getLatitude()*100.0)/100.0;
-        double roundedLong = Math.round(this.gpsCoordinates.getLongitude()*100.0)/100.0;
-        return  "Latitude " + roundedLat + " Longitude " + roundedLong;
+        double roundedLat = Math.round(this.gpsCoordinates.getLatitude() * 100.0) / 100.0;
+        double roundedLong = Math.round(this.gpsCoordinates.getLongitude() * 100.0) / 100.0;
+        return "Latitude " + roundedLat + " Longitude " + roundedLong;
     }
 
     public int getCo2Emissions() {
@@ -117,6 +117,16 @@ public class Flight implements ISubject, Runnable {
         float consumption = plane.getFuelConsumption() * ((float) flightPlan.getFlightPlanTotalDistance() / 100.0f);
         //returns integer for ease of use with GUI
         return (int) consumption;
+    }
+
+    public int getCurrentFuelConsumption() {
+        float consumption = plane.getFuelConsumption() * ((float) GPSCoordinates.calcDistance(this.gpsCoordinates, this.departure.getControlTower().getGpsLocation()) / 100f);
+        return (int) consumption;
+    }
+
+    public double getCurrentCo2Emissions() {
+        float emissions = this.getCurrentFuelConsumption() * 0.82f;
+        return (int) emissions;
     }
 
     public boolean getStatus() {
@@ -174,17 +184,17 @@ public class Flight implements ISubject, Runnable {
 
     //The new control tower should set itself as the flight's current control tower
     public synchronized void updateControlTower() {
-            this.listCounter++;
-            if(nextCT != null) {
-                currentControlTower = nextCT;
-            }
-            this.currentControlTower.addFlight(this);
-            if (listCounter < flightPlan.getFlightPlan().size()) {
-                nextCT = flightPlan.getFlightPlan().get(listCounter).getControlTower();
-            } else
-                nextCT = null;
-            headingChanged = false;
-            Log.getInstance().addToLog("Flight: " + flightCode + " is now communicating with CT: " + currentControlTower.getName());
+        this.listCounter++;
+        if (nextCT != null) {
+            currentControlTower = nextCT;
+        }
+        this.currentControlTower.addFlight(this);
+        if (listCounter < flightPlan.getFlightPlan().size()) {
+            nextCT = flightPlan.getFlightPlan().get(listCounter).getControlTower();
+        } else
+            nextCT = null;
+        headingChanged = false;
+        Log.getInstance().addToLog("Flight: " + flightCode + " is now communicating with CT: " + currentControlTower.getName());
     }
 
     @Override

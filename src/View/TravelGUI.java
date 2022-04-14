@@ -250,9 +250,9 @@ public class TravelGUI extends JFrame implements IObserver {
 
             //Retrieve Distance, Emissions, Time and Fuel Consumption from the flight object
             double distance = flight.getCurrentDistance();
-            double emissions = flight.getCo2Emissions();
+            double emissions = flight.getCurrentCo2Emissions();
             String time = flight.getDurationOfFlight();
-            double fuelConsumption = flight.getFuelConsumption();
+            double fuelConsumption = flight.getCurrentFuelConsumption();
             String flightPlan = flight.getFlightPlan().toString();
             String flightStatus = "";
 
